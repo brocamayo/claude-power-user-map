@@ -3,936 +3,309 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Claude Guide — Get More From AI</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<title>Claude Cheat Sheet</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #fafafa;
+    --bg: #f7f7fb;
     --white: #ffffff;
     --text: #1a1a2e;
-    --text-secondary: #555770;
-    --text-light: #8889a0;
+    --sub: #555770;
+    --dim: #999;
     --border: #e5e5ef;
-    --border-light: #f0f0f5;
     --purple: #7c5cfc;
-    --purple-light: #f0ecff;
-    --purple-mid: #e0d6ff;
+    --purple-bg: #f0ecff;
     --blue: #3b82f6;
-    --blue-light: #eff6ff;
+    --blue-bg: #eff6ff;
     --green: #10b981;
-    --green-light: #ecfdf5;
+    --green-bg: #ecfdf5;
     --amber: #f59e0b;
-    --amber-light: #fffbeb;
+    --amber-bg: #fffbeb;
     --orange: #f97316;
-    --orange-light: #fff7ed;
+    --orange-bg: #fff7ed;
     --red: #ef4444;
-    --red-light: #fef2f2;
-    --teal: #14b8a6;
-    --teal-light: #f0fdfa;
-    --pink: #ec4899;
-    --radius: 12px;
-    --radius-sm: 8px;
+    --red-bg: #fef2f2;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     background: var(--bg);
     color: var(--text);
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    font-size: 16px;
-    line-height: 1.7;
-    -webkit-font-smoothing: antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    padding: 0 0 40px;
   }
 
-  /* ── NAV ── */
-  .nav {
+  /* Header */
+  .header {
     background: var(--white);
     border-bottom: 1px solid var(--border);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    padding: 0 32px;
-  }
-  .nav-inner {
-    max-width: 960px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 60px;
-  }
-  .nav-logo {
-    font-size: 17px;
-    font-weight: 800;
-    color: var(--text);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .nav-logo .dot {
-    width: 28px;
-    height: 28px;
-    background: linear-gradient(135deg, var(--purple), var(--blue));
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 13px;
-    font-weight: 700;
-  }
-  .nav-links {
-    display: flex;
-    gap: 6px;
-    list-style: none;
-    overflow-x: auto;
-  }
-  .nav-links a {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text-light);
-    text-decoration: none;
-    padding: 6px 12px;
-    border-radius: 6px;
-    transition: all 0.12s;
-    white-space: nowrap;
-  }
-  .nav-links a:hover, .nav-links a.active {
-    color: var(--purple);
-    background: var(--purple-light);
-  }
-
-  /* ── HERO ── */
-  .hero {
     text-align: center;
-    padding: 64px 32px 48px;
-    max-width: 720px;
-    margin: 0 auto;
+    padding: 32px 24px;
   }
-  .hero-badge {
-    display: inline-block;
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--purple);
-    background: var(--purple-light);
-    padding: 5px 14px;
-    border-radius: 20px;
-    letter-spacing: 0.5px;
-    margin-bottom: 20px;
-  }
-  .hero h1 {
-    font-size: 40px;
-    font-weight: 800;
-    letter-spacing: -1px;
-    line-height: 1.15;
-    margin-bottom: 16px;
-  }
-  .hero p {
-    font-size: 18px;
-    color: var(--text-secondary);
-    line-height: 1.7;
-    max-width: 560px;
-    margin: 0 auto;
-  }
+  .header h1 { font-size: 24px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 4px; }
+  .header p { font-size: 14px; color: var(--sub); }
 
-  /* ── SECTIONS ── */
-  .section {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 48px 32px;
-    scroll-margin-top: 80px;
-  }
-  .section + .section { border-top: 1px solid var(--border); }
-  .section-label {
-    font-size: 12px;
+  /* Layout */
+  .wrap { max-width: 880px; margin: 0 auto; padding: 24px 20px 0; }
+  .label {
+    font-size: 11px;
     font-weight: 700;
-    color: var(--purple);
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    margin-bottom: 8px;
+    color: var(--purple);
+    margin-bottom: 10px;
   }
-  .section-title {
-    font-size: 28px;
-    font-weight: 800;
-    letter-spacing: -0.5px;
-    margin-bottom: 8px;
-    line-height: 1.2;
-  }
-  .section-desc {
-    font-size: 16px;
-    color: var(--text-secondary);
-    max-width: 640px;
-    margin-bottom: 32px;
-    line-height: 1.7;
-  }
+  .block { margin-bottom: 28px; }
 
-  /* ── GRIDS ── */
-  .grid { display: grid; gap: 16px; }
-  .grid-2 { grid-template-columns: repeat(2, 1fr); }
-  .grid-3 { grid-template-columns: repeat(3, 1fr); }
-  .grid-4 { grid-template-columns: repeat(4, 1fr); }
+  /* Cards */
+  .row { display: grid; gap: 12px; }
+  .r2 { grid-template-columns: 1fr 1fr; }
+  .r3 { grid-template-columns: 1fr 1fr 1fr; }
+  .r4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
 
-  /* ── CARDS ── */
-  .card {
+  .c {
     background: var(--white);
     border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 24px;
-    transition: box-shadow 0.15s, transform 0.15s;
-  }
-  .card:hover {
-    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-    transform: translateY(-1px);
-  }
-  .card-icon {
-    width: 44px;
-    height: 44px;
     border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    margin-bottom: 14px;
+    padding: 16px 18px;
   }
-  .card-label {
-    font-size: 11px;
+  .c-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
+  .c-desc { font-size: 13px; color: var(--sub); line-height: 1.55; }
+  .c ul { list-style: none; margin-top: 6px; }
+  .c li { font-size: 13px; color: var(--sub); padding: 2px 0; display: flex; gap: 6px; align-items: baseline; }
+  .c li::before { content: '•'; color: var(--dim); flex-shrink: 0; }
+
+  .pill {
+    display: inline-block;
+    font-size: 10px;
     font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    margin-bottom: 4px;
-  }
-  .card-title {
-    font-size: 17px;
-    font-weight: 700;
-    margin-bottom: 8px;
-  }
-  .card-desc {
-    font-size: 14px;
-    color: var(--text-secondary);
-    line-height: 1.65;
+    padding: 2px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.3px;
   }
 
-  /* ── LISTS ── */
-  .check-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-top: 12px;
+  /* Table */
+  .tbl { background: var(--white); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+  .tbl table { width: 100%; border-collapse: collapse; }
+  .tbl th {
+    font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--dim); padding: 10px 14px; text-align: left; background: var(--bg); border-bottom: 1px solid var(--border);
   }
-  .check-list li {
+  .tbl td { padding: 10px 14px; font-size: 13px; color: var(--sub); border-bottom: 1px solid var(--border); }
+  .tbl tr:last-child td { border-bottom: none; }
+
+  /* Callout */
+  .tip {
+    border-radius: 10px;
+    padding: 14px 18px;
+    font-size: 13px;
+    line-height: 1.6;
     display: flex;
     gap: 10px;
     align-items: flex-start;
-    font-size: 14px;
-    color: var(--text-secondary);
-    line-height: 1.55;
-  }
-  .check-list li::before {
-    content: '✓';
-    font-weight: 700;
-    flex-shrink: 0;
-    margin-top: 1px;
   }
 
-  /* ── TAGS ── */
-  .tag {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 700;
-    padding: 3px 10px;
-    border-radius: 6px;
-    letter-spacing: 0.3px;
-  }
-  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
-
-  /* ── STEPS ── */
-  .step-row {
-    display: flex;
-    gap: 24px;
-    margin-bottom: 28px;
-    align-items: flex-start;
-  }
-  .step-number {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: var(--purple-light);
-    color: var(--purple);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 15px;
-    font-weight: 800;
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
-  .step-content { flex: 1; }
-  .step-title { font-size: 17px; font-weight: 700; margin-bottom: 4px; }
-  .step-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.65; }
-
-  /* ── CALLOUT ── */
-  .callout {
-    border-radius: var(--radius);
-    padding: 20px 24px;
-    font-size: 15px;
-    line-height: 1.7;
-    display: flex;
-    gap: 14px;
-    align-items: flex-start;
-    margin-top: 24px;
-  }
-  .callout-icon { font-size: 20px; flex-shrink: 0; }
-
-  /* ── TABLE ── */
-  .table-wrap {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    overflow: hidden;
-  }
-  table { width: 100%; border-collapse: collapse; }
-  th {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--text-light);
-    padding: 14px 20px;
-    text-align: left;
-    background: var(--bg);
-    border-bottom: 1px solid var(--border);
-  }
-  td {
-    padding: 14px 20px;
-    font-size: 14px;
-    border-bottom: 1px solid var(--border-light);
-    vertical-align: top;
-    color: var(--text-secondary);
-  }
-  tr:last-child td { border-bottom: none; }
-
-  /* ── FLOW ── */
+  /* Flow */
   .flow {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 10px;
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 20px 24px;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
   }
-  .flow-node {
-    font-size: 13px;
-    font-weight: 700;
-    padding: 8px 16px;
-    border-radius: 20px;
-    border: 1.5px solid;
-  }
-  .flow-arrow { color: var(--text-light); font-size: 16px; }
+  .fn { padding: 5px 12px; border-radius: 6px; }
+  .fa { color: var(--dim); }
 
-  /* ── TIER ── */
-  .tier {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    margin-bottom: 16px;
-    overflow: hidden;
-  }
-  .tier-head {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 18px 24px;
-    border-bottom: 1px solid var(--border-light);
-    cursor: pointer;
-  }
-  .tier-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    flex-shrink: 0;
-  }
-  .tier-title { font-size: 16px; font-weight: 700; }
-  .tier-sub { font-size: 14px; color: var(--text-secondary); }
-  .tier-body { padding: 20px 24px; }
+  /* Divider */
+  hr { border: none; border-top: 1px solid var(--border); margin: 28px 0; }
 
-  /* ── DECISION ── */
-  .decision-row {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    padding: 14px 0;
-    border-bottom: 1px solid var(--border-light);
-  }
-  .decision-row:last-child { border-bottom: none; }
-  .decision-q { flex: 1; font-size: 15px; color: var(--text-secondary); }
-  .decision-a { font-size: 14px; font-weight: 700; flex-shrink: 0; min-width: 180px; }
+  /* Footer */
+  .footer { text-align: center; font-size: 12px; color: var(--dim); padding: 20px; }
 
-  /* ── FOOTER ── */
-  .footer {
-    text-align: center;
-    padding: 40px 32px;
-    border-top: 1px solid var(--border);
-    color: var(--text-light);
-    font-size: 13px;
-  }
-  .footer a { color: var(--purple); text-decoration: none; }
-
-  /* ── MOBILE ── */
-  @media (max-width: 768px) {
-    .hero h1 { font-size: 28px; }
-    .hero { padding: 40px 20px 32px; }
-    .section { padding: 36px 20px; }
-    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
-    .nav-links { display: none; }
-    .step-row { flex-direction: column; gap: 12px; }
-    .decision-row { flex-direction: column; gap: 4px; align-items: flex-start; }
-    .decision-a { min-width: 0; }
-    .flow { justify-content: center; }
+  @media (max-width: 640px) {
+    .r2, .r3, .r4 { grid-template-columns: 1fr; }
+    .header { padding: 24px 20px; }
+    .header h1 { font-size: 20px; }
   }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav class="nav">
-  <div class="nav-inner">
-    <div class="nav-logo">
-      <span class="dot">C</span>
-      The Claude Guide
-    </div>
-    <div class="nav-links">
-      <a href="#surfaces">Surfaces</a>
-      <a href="#workflow">Workflow</a>
-      <a href="#patterns">Patterns</a>
-      <a href="#context">Context</a>
-      <a href="#models">Models</a>
-      <a href="#tips">Tips</a>
-    </div>
-  </div>
-</nav>
-
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-badge">Free Reference Guide &middot; Model-Agnostic</div>
-  <h1>Get more from Claude<br>(and any AI)</h1>
-  <p>A practical guide to prompting, workflows, and patterns that separate casual users from people who get 10x the value. Everything here works across Claude, GPT-4, Gemini, and other frontier models.</p>
+<div class="header">
+  <h1>Claude Cheat Sheet</h1>
+  <p>A quick reference for getting better results from AI. Works with Claude, GPT-4, Gemini & others.</p>
 </div>
 
+<div class="wrap">
 
-<!-- ══════ SURFACES ══════ -->
-<div class="section" id="surfaces">
-  <div class="section-label">Know Your Tools</div>
-  <div class="section-title">The Four Surfaces</div>
-  <p class="section-desc">Claude isn't one tool — it's four. Picking the right one for the job is the single biggest factor in your results.</p>
-
-  <div class="grid grid-2" style="margin-bottom:24px;">
-
-    <div class="card">
-      <div class="card-icon" style="background:var(--purple-light);">&#9889;</div>
-      <div class="card-label" style="color:var(--purple);">Claude Code</div>
-      <div class="card-title">The Power Tool</div>
-      <div class="card-desc">Multi-file editing, shell access, git integration. Use this for building real software — refactors, new features, full-stack apps.</div>
-      <ul class="check-list" style="--check-color:var(--purple);">
-        <li style="color:var(--purple);">Multi-file edits across a codebase</li>
-        <li style="color:var(--purple);">Runs shell commands & tests</li>
-        <li style="color:var(--purple);">Built-in plan mode for safety</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <div class="card-icon" style="background:var(--amber-light);">&#128193;</div>
-      <div class="card-label" style="color:var(--amber);">Projects</div>
-      <div class="card-title">Persistent Memory</div>
-      <div class="card-desc">Upload docs and set a system prompt that stays active across every conversation. Your reusable knowledge base.</div>
-      <ul class="check-list">
-        <li style="color:var(--amber);">Context carries between chats</li>
-        <li style="color:var(--amber);">Great for recurring tasks</li>
-        <li style="color:var(--amber);">Upload style guides & docs</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <div class="card-icon" style="background:var(--green-light);">&#128172;</div>
-      <div class="card-label" style="color:var(--green);">Chat</div>
-      <div class="card-title">Quick & Flexible</div>
-      <div class="card-desc">The fastest path for one-off tasks — brainstorming, drafts, analysis, learning. No setup, just go.</div>
-      <ul class="check-list">
-        <li style="color:var(--green);">Zero setup overhead</li>
-        <li style="color:var(--green);">Fast iteration on ideas</li>
-        <li style="color:var(--green);">Best for exploration</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <div class="card-icon" style="background:var(--blue-light);">&#129302;</div>
-      <div class="card-label" style="color:var(--blue);">API / Artifacts</div>
-      <div class="card-title">Build With AI</div>
-      <div class="card-desc">Embed Claude in your own products and pipelines. Artifacts let you create interactive UIs right in chat.</div>
-      <ul class="check-list">
-        <li style="color:var(--blue);">Custom agents & integrations</li>
-        <li style="color:var(--blue);">Automated pipelines</li>
-        <li style="color:var(--blue);">AI-powered product features</li>
-      </ul>
+  <!-- PICK YOUR TOOL -->
+  <div class="block">
+    <div class="label">Pick Your Tool</div>
+    <div class="row r4">
+      <div class="c" style="border-top: 3px solid var(--purple);">
+        <div class="c-title">&#9889; Claude Code</div>
+        <div class="c-desc">Multi-file code edits, shell access, git. For real software builds.</div>
+      </div>
+      <div class="c" style="border-top: 3px solid var(--amber);">
+        <div class="c-title">&#128193; Projects</div>
+        <div class="c-desc">Persistent context across chats. For recurring tasks.</div>
+      </div>
+      <div class="c" style="border-top: 3px solid var(--green);">
+        <div class="c-title">&#128172; Chat</div>
+        <div class="c-desc">Quick and flexible. For one-off questions, drafts, ideas.</div>
+      </div>
+      <div class="c" style="border-top: 3px solid var(--blue);">
+        <div class="c-title">&#129302; API</div>
+        <div class="c-desc">Build AI into your products. Custom agents & pipelines.</div>
+      </div>
     </div>
   </div>
 
-  <div class="callout" style="background:var(--purple-light);border:1px solid var(--purple-mid);">
-    <span class="callout-icon">&#128161;</span>
-    <div style="color:var(--purple);">
-      <strong>Quick rule:</strong> Need shell access? &rarr; Claude Code. Same task every week? &rarr; Projects. One-off question? &rarr; Chat. Building a product? &rarr; API.
+  <!-- WORKFLOW -->
+  <div class="block">
+    <div class="label">The Workflow</div>
+    <div class="c">
+      <div class="flow">
+        <span class="fn" style="background:var(--purple-bg);color:var(--purple);">1. Load context</span>
+        <span class="fa">&rarr;</span>
+        <span class="fn" style="background:var(--amber-bg);color:#92400e;">2. Frame problem</span>
+        <span class="fa">&rarr;</span>
+        <span class="fn" style="background:var(--green-bg);color:#065f46;">3. Ask for plan first</span>
+        <span class="fa">&rarr;</span>
+        <span class="fn" style="background:var(--blue-bg);color:var(--blue);">4. Build in pieces</span>
+        <span class="fa">&rarr;</span>
+        <span class="fn" style="background:var(--orange-bg);color:#9a3412;">5. Review & test</span>
+        <span class="fa">&rarr;</span>
+        <span class="fn" style="background:var(--purple-bg);color:var(--purple);">6. Document & ship</span>
+      </div>
+    </div>
+    <div class="tip" style="background:var(--amber-bg);margin-top:10px;color:#92400e;">
+      <span>&#9888;&#65039;</span>
+      <span><strong>Never skip step 3.</strong> If a task touches 2+ files or takes 10+ min manually, always ask for a plan first.</span>
     </div>
   </div>
+
+  <!-- PATTERNS -->
+  <div class="block">
+    <div class="label">Patterns Worth Knowing</div>
+    <div class="row r2">
+      <div class="c">
+        <div class="c-title">&#128279; Prompt Chaining <span class="pill" style="background:var(--amber-bg);color:#92400e;">Common</span></div>
+        <div class="c-desc">Break big tasks into steps. Each output feeds the next. Add checkpoints between.</div>
+      </div>
+      <div class="c">
+        <div class="c-title">&#128260; Critic-Refine <span class="pill" style="background:var(--blue-bg);color:var(--blue);">Quality</span></div>
+        <div class="c-desc">Generate &rarr; critique &rarr; improve. Use a fresh session for the critique (Claude is too nice to itself).</div>
+      </div>
+      <div class="c">
+        <div class="c-title">&#128736; Eval-Fix Loop <span class="pill" style="background:var(--orange-bg);color:#9a3412;">Code</span></div>
+        <div class="c-desc">Generate code &rarr; run tests &rarr; feed errors back &rarr; fix. Set a max of 3-5 loops.</div>
+      </div>
+      <div class="c">
+        <div class="c-title">&#129520; Orchestrator <span class="pill" style="background:var(--purple-bg);color:var(--purple);">Advanced</span></div>
+        <div class="c-desc">Give different Claude calls different roles (researcher, builder, reviewer). You pass outputs between them.</div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- WHICH MODEL -->
+  <div class="block">
+    <div class="label">Which Model</div>
+    <div class="row r3">
+      <div class="c" style="border-top: 3px solid var(--purple);">
+        <div class="c-title">&#9733; Opus</div>
+        <ul>
+          <li>Complex architecture</li>
+          <li>Nuanced writing</li>
+          <li>Hard debugging</li>
+          <li>Security audits</li>
+        </ul>
+        <div style="margin-top:8px;"><span class="pill" style="background:var(--purple-bg);color:var(--purple);">Slowest &middot; Best quality</span></div>
+      </div>
+      <div class="c" style="border-top: 3px solid var(--blue);">
+        <div class="c-title">&#9670; Sonnet</div>
+        <ul>
+          <li>Day-to-day coding</li>
+          <li>Content drafts</li>
+          <li>Data analysis</li>
+          <li>Agentic workflows</li>
+        </ul>
+        <div style="margin-top:8px;"><span class="pill" style="background:var(--blue-bg);color:var(--blue);">Start here &middot; Best default</span></div>
+      </div>
+      <div class="c" style="border-top: 3px solid var(--green);">
+        <div class="c-title">&#9651; Haiku</div>
+        <ul>
+          <li>Classification</li>
+          <li>Data extraction</li>
+          <li>Simple Q&A</li>
+          <li>Pipeline routing</li>
+        </ul>
+        <div style="margin-top:8px;"><span class="pill" style="background:var(--green-bg);color:#065f46;">Fastest &middot; Cheapest</span></div>
+      </div>
+    </div>
+    <div class="tip" style="background:var(--purple-bg);margin-top:10px;color:var(--purple);">
+      <span>&#128161;</span>
+      <span><strong>Cascade trick:</strong> Use Haiku to triage &rarr; Sonnet to execute &rarr; Opus for final review. Cuts costs 5-10x.</span>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- CONTEXT -->
+  <div class="block">
+    <div class="label">Context Rules</div>
+    <div class="row r2">
+      <div class="c" style="border-left: 3px solid var(--green);">
+        <div class="c-title" style="color:var(--green);">&#9989; Do</div>
+        <ul>
+          <li>Paste full error messages</li>
+          <li>Include exact file paths</li>
+          <li>State language + versions</li>
+          <li>Say what you expected vs. what happened</li>
+        </ul>
+      </div>
+      <div class="c" style="border-left: 3px solid var(--red);">
+        <div class="c-title" style="color:var(--red);">&#9940; Don't</div>
+        <ul>
+          <li>Summarize errors in your own words</li>
+          <li>Dump huge files without pointing to the issue</li>
+          <li>Assume it remembers last session</li>
+          <li>Let context bloat past ~70% on code tasks</li>
+        </ul>
+      </div>
+    </div>
+    <div class="c" style="margin-top:12px;">
+      <div class="c-title">&#128260; Start fresh when:</div>
+      <div class="c-desc">Responses drift or hallucinate &middot; Claude contradicts itself &middot; Quality drops &middot; 30+ turns deep &middot; It re-suggests things you rejected</div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- 8 RULES -->
+  <div class="block">
+    <div class="label">8 Golden Rules</div>
+    <div class="row r2">
+      <div class="c"><div class="c-title">&#127919; One job per prompt</div><div class="c-desc">Don't ask it to design + build + test + document in one shot.</div></div>
+      <div class="c"><div class="c-title">&#128203; Plan before building</div><div class="c-desc">Ask for an outline first. Review it. Then say "proceed."</div></div>
+      <div class="c"><div class="c-title">&#128257; Never accept draft one</div><div class="c-desc">Generate &rarr; critique &rarr; refine. 3x better every time.</div></div>
+      <div class="c"><div class="c-title">&#128207; Be specific about output</div><div class="c-desc">"Write a function" is weak. Add format, types, and constraints.</div></div>
+      <div class="c"><div class="c-title">&#129514; Write tests first</div><div class="c-desc">Forces clear acceptance criteria before any code is written.</div></div>
+      <div class="c"><div class="c-title">&#128272; Adversarial review</div><div class="c-desc">"Try to break this. What are the failure modes?"</div></div>
+      <div class="c"><div class="c-title">&#128204; Repeat key constraints</div><div class="c-desc">Put critical rules at the top AND bottom of long prompts.</div></div>
+      <div class="c"><div class="c-title">&#128451; Use Projects for repeat work</div><div class="c-desc">Persistent context beats re-explaining yourself every time.</div></div>
+    </div>
+  </div>
+
 </div>
 
-
-<!-- ══════ WORKFLOW ══════ -->
-<div class="section" id="workflow">
-  <div class="section-label">How to Work</div>
-  <div class="section-title">The 6-Step Workflow</div>
-  <p class="section-desc">Whether you're building an app, writing a doc, or analyzing data — this loop works. The key insight: <strong>always plan before you build.</strong></p>
-
-  <div class="step-row">
-    <div class="step-number">1</div>
-    <div class="step-content">
-      <div class="step-title">Load Context</div>
-      <div class="step-desc">Give Claude everything it needs upfront — docs, schemas, error logs, examples. Don't summarize errors; paste them in full. The more context Claude has, the better the output.</div>
-    </div>
-  </div>
-
-  <div class="step-row">
-    <div class="step-number">2</div>
-    <div class="step-content">
-      <div class="step-title">Frame the Problem</div>
-      <div class="step-desc">State what you have, what you want, and what you've already tried. Give a concrete example of the desired output. Mention any constraints (language, dependencies, performance).</div>
-    </div>
-  </div>
-
-  <div class="step-row">
-    <div class="step-number">3</div>
-    <div class="step-content">
-      <div class="step-title">Ask for a Plan First</div>
-      <div class="step-desc">Before Claude writes anything, ask it to outline its approach. In Claude Code, use <code style="background:var(--purple-light);color:var(--purple);padding:2px 8px;border-radius:4px;font-size:13px;">--plan</code> mode. In chat, just say "outline your approach before writing." Review the plan, then approve.</div>
-    </div>
-  </div>
-
-  <div class="step-row">
-    <div class="step-number">4</div>
-    <div class="step-content">
-      <div class="step-title">Build Incrementally</div>
-      <div class="step-desc">Don't try to build everything at once. Work in small pieces — one module, one function, one section at a time. Test each piece before moving on.</div>
-    </div>
-  </div>
-
-  <div class="step-row">
-    <div class="step-number">5</div>
-    <div class="step-content">
-      <div class="step-title">Review & Stress-Test</div>
-      <div class="step-desc">Ask Claude to critique its own work: "What would break this? What edge cases am I missing? What are the security concerns?" A separate review prompt catches things the build prompt missed.</div>
-    </div>
-  </div>
-
-  <div class="step-row">
-    <div class="step-number">6</div>
-    <div class="step-content">
-      <div class="step-title">Document & Ship</div>
-      <div class="step-desc">Have Claude generate documentation, README, or handoff notes while the context is fresh. Log what was built and why — future-you will thank you.</div>
-    </div>
-  </div>
-
-  <div class="callout" style="background:var(--amber-light);border:1px solid #fde68a;">
-    <span class="callout-icon">&#9888;&#65039;</span>
-    <div style="color:#92400e;">
-      <strong>The #1 mistake:</strong> Skipping step 3. If a task touches more than 2 files or takes 10+ minutes manually, asking for a plan first will save you from expensive rewrites.
-    </div>
-  </div>
-</div>
-
-
-<!-- ══════ PATTERNS ══════ -->
-<div class="section" id="patterns">
-  <div class="section-label">Level Up</div>
-  <div class="section-title">Powerful Patterns</div>
-  <p class="section-desc">Once you've nailed the basics, these patterns let you chain multiple AI interactions together for much better results.</p>
-
-  <div class="grid grid-2" style="margin-bottom:24px;">
-
-    <div class="tier">
-      <div class="tier-head">
-        <div class="tier-icon" style="background:var(--amber-light);">&#128279;</div>
-        <div>
-          <div class="tier-title">Prompt Chaining</div>
-          <div class="tier-sub">Break big tasks into sequential steps</div>
-        </div>
-        <span class="tag" style="background:var(--amber-light);color:#92400e;margin-left:auto;">Intermediate</span>
-      </div>
-      <div class="tier-body">
-        <div class="card-desc" style="margin-bottom:12px;">Instead of one massive prompt, break work into stages. Each step's output feeds the next. Add human checkpoints between stages.</div>
-        <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:8px;">Example:</div>
-        <div style="display:flex;align-items:center;flex-wrap:wrap;gap:6px;font-size:13px;">
-          <span style="background:var(--amber-light);color:#92400e;padding:5px 12px;border-radius:6px;font-weight:600;">Research</span>
-          <span style="color:var(--text-light);">&rarr;</span>
-          <span style="background:var(--blue-light);color:var(--blue);padding:5px 12px;border-radius:6px;font-weight:600;">Outline</span>
-          <span style="color:var(--text-light);">&rarr;</span>
-          <span style="background:var(--green-light);color:#065f46;padding:5px 12px;border-radius:6px;font-weight:600;">Draft</span>
-          <span style="color:var(--text-light);">&rarr;</span>
-          <span style="background:var(--purple-light);color:var(--purple);padding:5px 12px;border-radius:6px;font-weight:600;">Edit</span>
-          <span style="color:var(--text-light);">&rarr;</span>
-          <span style="background:var(--teal-light);color:#115e59;padding:5px 12px;border-radius:6px;font-weight:600;">Ship</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="tier">
-      <div class="tier-head">
-        <div class="tier-icon" style="background:var(--blue-light);">&#128260;</div>
-        <div>
-          <div class="tier-title">Critic-Refine Loop</div>
-          <div class="tier-sub">Generate, critique, improve — repeat</div>
-        </div>
-        <span class="tag" style="background:var(--blue-light);color:var(--blue);margin-left:auto;">Intermediate</span>
-      </div>
-      <div class="tier-body">
-        <div class="card-desc" style="margin-bottom:12px;">Never accept the first draft. Ask Claude to generate, then critique its own work, then refine the weak parts. This simple loop produces dramatically better output.</div>
-        <div style="font-size:13px;color:var(--orange);font-weight:600;">
-          &#9888; Tip: Use a fresh conversation for the critique step — Claude tends to be too kind to its own work in the same session.
-        </div>
-      </div>
-    </div>
-
-    <div class="tier">
-      <div class="tier-head">
-        <div class="tier-icon" style="background:var(--orange-light);">&#128736;</div>
-        <div>
-          <div class="tier-title">Eval-Fix Loop</div>
-          <div class="tier-sub">Generate code, run tests, fix failures, repeat</div>
-        </div>
-        <span class="tag" style="background:var(--orange-light);color:#9a3412;margin-left:auto;">Advanced</span>
-      </div>
-      <div class="tier-body">
-        <div class="card-desc" style="margin-bottom:12px;">For code: have Claude generate it, run your tests, feed the errors back, and let it fix them. Set a max of 3–5 iterations so it doesn't loop forever.</div>
-        <div style="display:flex;align-items:center;flex-wrap:wrap;gap:6px;font-size:13px;">
-          <span style="background:var(--purple-light);color:var(--purple);padding:5px 12px;border-radius:6px;font-weight:600;">Generate</span>
-          <span style="color:var(--text-light);">&rarr;</span>
-          <span style="background:var(--amber-light);color:#92400e;padding:5px 12px;border-radius:6px;font-weight:600;">Test</span>
-          <span style="color:var(--text-light);">&rarr;</span>
-          <span style="background:var(--red-light);color:var(--red);padding:5px 12px;border-radius:6px;font-weight:600;">Feed errors</span>
-          <span style="color:var(--text-light);">&rarr;</span>
-          <span style="background:var(--blue-light);color:var(--blue);padding:5px 12px;border-radius:6px;font-weight:600;">Fix</span>
-          <span style="color:var(--text-light);">&rarr;</span>
-          <span style="background:var(--green-light);color:#065f46;padding:5px 12px;border-radius:6px;font-weight:600;">Pass? Ship!</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="tier">
-      <div class="tier-head">
-        <div class="tier-icon" style="background:var(--purple-light);">&#129520;</div>
-        <div>
-          <div class="tier-title">Orchestrator Pattern</div>
-          <div class="tier-sub">You design the pipeline, Claude runs each role</div>
-        </div>
-        <span class="tag" style="background:var(--purple-light);color:var(--purple);margin-left:auto;">Advanced</span>
-      </div>
-      <div class="tier-body">
-        <div class="card-desc" style="margin-bottom:12px;">For complex projects: break the work into roles (researcher, builder, reviewer, writer). Give each role its own focused prompt and pass outputs between them. You're the project manager.</div>
-        <div style="font-size:13px;color:var(--text-secondary);">
-          <strong>Key insight:</strong> Multiple focused Claude calls with specific system prompts beat one massive do-everything prompt every time.
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="callout" style="background:var(--green-light);border:1px solid #a7f3d0;">
-    <span class="callout-icon">&#128640;</span>
-    <div style="color:#065f46;">
-      <strong>Start simple:</strong> Most tasks only need single-prompt or prompt chaining. Don't reach for loops and orchestration until simpler approaches fall short.
-    </div>
-  </div>
-</div>
-
-
-<!-- ══════ CONTEXT ══════ -->
-<div class="section" id="context">
-  <div class="section-label">Stay Sharp</div>
-  <div class="section-title">Context Hygiene</div>
-  <p class="section-desc">The quality of Claude's output is directly tied to the quality of context you provide. These rules keep conversations productive.</p>
-
-  <div class="grid grid-2" style="margin-bottom:20px;">
-
-    <div class="card" style="border-left:3px solid var(--green);">
-      <div style="font-weight:700;color:var(--green);margin-bottom:10px;font-size:14px;">&#9989; Always Do</div>
-      <ul class="check-list">
-        <li style="color:var(--green);">Paste full error messages — never summarize</li>
-        <li style="color:var(--green);">Include exact file paths</li>
-        <li style="color:var(--green);">State language, runtime, and library versions</li>
-        <li style="color:var(--green);">Explain what you expected vs. what happened</li>
-        <li style="color:var(--green);">Open long sessions with a context brief</li>
-      </ul>
-    </div>
-
-    <div class="card" style="border-left:3px solid var(--red);">
-      <div style="font-weight:700;color:var(--red);margin-bottom:10px;font-size:14px;">&#9940; Never Do</div>
-      <ul class="check-list">
-        <li style="color:var(--red);">Summarize errors in your own words</li>
-        <li style="color:var(--red);">Paste 1000+ lines without flagging the key area</li>
-        <li style="color:var(--red);">Start a new session mid-problem without a recap</li>
-        <li style="color:var(--red);">Assume Claude remembers previous sessions</li>
-        <li style="color:var(--red);">Let context bloat past 70-80% on precision tasks</li>
-      </ul>
-    </div>
-
-  </div>
-
-  <div class="card" style="margin-bottom:20px;">
-    <div style="font-weight:700;margin-bottom:10px;font-size:14px;">&#128260; When to Start a Fresh Session</div>
-    <div class="grid grid-2" style="gap:8px;">
-      <div class="card-desc">Responses start drifting or hallucinating</div>
-      <div class="card-desc">Claude contradicts something it said earlier</div>
-      <div class="card-desc">Output quality drops noticeably</div>
-      <div class="card-desc">You're 30+ turns deep on one problem</div>
-      <div class="card-desc">It suggests something you already ruled out</div>
-      <div class="card-desc">It stops following your constraints</div>
-    </div>
-  </div>
-
-  <!-- Context meter -->
-  <div class="card">
-    <div style="font-weight:700;margin-bottom:12px;font-size:14px;">Context Window Health</div>
-    <div style="display:flex;height:20px;border-radius:6px;overflow:hidden;margin-bottom:12px;">
-      <div style="flex:0.6;background:var(--green);opacity:0.75;border-radius:6px 0 0 6px;"></div>
-      <div style="flex:0.2;background:var(--amber);opacity:0.8;"></div>
-      <div style="flex:0.2;background:var(--orange);opacity:0.8;border-radius:0 6px 6px 0;"></div>
-    </div>
-    <div style="display:flex;gap:24px;flex-wrap:wrap;font-size:13px;color:var(--text-secondary);">
-      <span><strong style="color:var(--green);">0-60%</strong> — Optimal</span>
-      <span><strong style="color:var(--amber);">60-80%</strong> — Watch for drift</span>
-      <span><strong style="color:var(--orange);">80%+</strong> — Consider a fresh session</span>
-    </div>
-  </div>
-</div>
-
-
-<!-- ══════ MODELS ══════ -->
-<div class="section" id="models">
-  <div class="section-label">Choose Wisely</div>
-  <div class="section-title">Which Model to Use</div>
-  <p class="section-desc">Bigger isn't always better. Matching the right model to the task saves money, reduces wait time, and often produces better results.</p>
-
-  <div class="grid grid-3" style="margin-bottom:24px;">
-
-    <div class="card" style="border-top:3px solid var(--purple);">
-      <div class="card-icon" style="background:var(--purple-light);">&#9733;</div>
-      <div class="card-label" style="color:var(--purple);">Opus</div>
-      <div class="card-title">Maximum Brainpower</div>
-      <div class="card-desc">The most capable model. Use for tasks where quality and depth matter most.</div>
-      <ul class="check-list">
-        <li style="color:var(--purple);">Complex architecture decisions</li>
-        <li style="color:var(--purple);">Nuanced writing & strategy</li>
-        <li style="color:var(--purple);">Hard debugging & edge cases</li>
-        <li style="color:var(--purple);">Security audits</li>
-      </ul>
-      <div class="tags">
-        <span class="tag" style="background:var(--purple-light);color:var(--purple);">Slowest</span>
-        <span class="tag" style="background:var(--purple-light);color:var(--purple);">Highest quality</span>
-      </div>
-    </div>
-
-    <div class="card" style="border-top:3px solid var(--blue);">
-      <div class="card-icon" style="background:var(--blue-light);">&#9670;</div>
-      <div class="card-label" style="color:var(--blue);">Sonnet</div>
-      <div class="card-title">The Sweet Spot</div>
-      <div class="card-desc">Handles 80% of tasks at near-Opus quality. Start here unless you have a specific reason not to.</div>
-      <ul class="check-list">
-        <li style="color:var(--blue);">Day-to-day coding</li>
-        <li style="color:var(--blue);">Content drafting & editing</li>
-        <li style="color:var(--blue);">Data analysis</li>
-        <li style="color:var(--blue);">Agentic workflows</li>
-      </ul>
-      <div class="tags">
-        <span class="tag" style="background:var(--blue-light);color:var(--blue);">Balanced</span>
-        <span class="tag" style="background:var(--blue-light);color:var(--blue);">Best default</span>
-      </div>
-    </div>
-
-    <div class="card" style="border-top:3px solid var(--green);">
-      <div class="card-icon" style="background:var(--green-light);">&#9651;</div>
-      <div class="card-label" style="color:var(--green);">Haiku</div>
-      <div class="card-title">Fast & Cheap</div>
-      <div class="card-desc">Best for simple, well-defined tasks — especially at high volume where speed and cost matter.</div>
-      <ul class="check-list">
-        <li style="color:var(--green);">Classification & tagging</li>
-        <li style="color:var(--green);">Data extraction</li>
-        <li style="color:var(--green);">Simple Q&A</li>
-        <li style="color:var(--green);">Routing in pipelines</li>
-      </ul>
-      <div class="tags">
-        <span class="tag" style="background:var(--green-light);color:#065f46;">Fastest</span>
-        <span class="tag" style="background:var(--green-light);color:#065f46;">Lowest cost</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="table-wrap" style="margin-bottom:24px;">
-    <table>
-      <thead>
-        <tr><th>If you're doing this...</th><th>Use this</th><th>Why</th></tr>
-      </thead>
-      <tbody>
-        <tr><td style="color:var(--text);">Designing system architecture</td><td style="color:var(--purple);font-weight:700;">Opus</td><td>Deep reasoning across many constraints</td></tr>
-        <tr><td style="color:var(--text);">Debugging a tricky, elusive bug</td><td style="color:var(--purple);font-weight:700;">Opus</td><td>Needs widest hypothesis space</td></tr>
-        <tr><td style="color:var(--text);">Writing features or fixing bugs</td><td style="color:var(--blue);font-weight:700;">Sonnet</td><td>Great quality at reasonable speed</td></tr>
-        <tr><td style="color:var(--text);">Drafting articles or docs</td><td style="color:var(--blue);font-weight:700;">Sonnet</td><td>Strong writing ability, fast iteration</td></tr>
-        <tr><td style="color:var(--text);">Running agentic loops</td><td style="color:var(--blue);font-weight:700;">Sonnet</td><td>Multiple iterations — keep costs manageable</td></tr>
-        <tr><td style="color:var(--text);">Sorting emails or tickets</td><td style="color:var(--green);font-weight:700;">Haiku</td><td>Clear categories, speed matters</td></tr>
-        <tr><td style="color:var(--text);">Extracting data from forms</td><td style="color:var(--green);font-weight:700;">Haiku</td><td>Structured extraction at scale</td></tr>
-        <tr><td style="color:var(--text);">Routing requests in a pipeline</td><td style="color:var(--green);font-weight:700;">Haiku</td><td>Fast triage before a bigger model</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="grid grid-2">
-    <div class="callout" style="background:var(--purple-light);border:1px solid var(--purple-mid);">
-      <span class="callout-icon">&#128161;</span>
-      <div style="color:var(--purple);">
-        <strong>Cascade trick:</strong> Use Haiku to triage, Sonnet to execute, Opus only for final review. Cuts costs 5-10x.
-      </div>
-    </div>
-    <div class="callout" style="background:var(--amber-light);border:1px solid #fde68a;">
-      <span class="callout-icon">&#9888;&#65039;</span>
-      <div style="color:#92400e;">
-        <strong>Don't default to Opus.</strong> Sonnet handles most tasks at comparable quality. Save Opus for the 20% that genuinely need maximum depth.
-      </div>
-    </div>
-  </div>
-
-  <div class="callout" style="background:var(--blue-light);border:1px solid #bfdbfe;margin-top:16px;">
-    <span class="callout-icon">&#127760;</span>
-    <div style="color:#1e40af;">
-      <strong>Works across providers:</strong> This tiering applies everywhere. GPT-4o &asymp; Sonnet, GPT-4o-mini &asymp; Haiku, o1/o3 &asymp; Opus-class. Gemini Pro/Flash follow the same split.
-    </div>
-  </div>
-</div>
-
-
-<!-- ══════ TIPS ══════ -->
-<div class="section" id="tips">
-  <div class="section-label">Quick Reference</div>
-  <div class="section-title">8 Rules That Make Everything Better</div>
-  <p class="section-desc">Pin these to your wall. They're model-agnostic — they work with any AI tool.</p>
-
-  <div class="grid grid-2">
-
-    <div class="card" style="display:flex;gap:16px;">
-      <div class="card-icon" style="background:var(--green-light);width:38px;height:38px;font-size:17px;">&#127919;</div>
-      <div>
-        <div class="card-title" style="font-size:15px;">One Job Per Prompt</div>
-        <div class="card-desc" style="margin:0;">Don't ask Claude to design, build, test, AND document in one message. Break it up.</div>
-      </div>
-    </div>
-
-    <div class="card" style="display:flex;gap:16px;">
-      <div class="card-icon" style="background:var(--purple-light);width:38px;height:38px;font-size:17px;">&#128203;</div>
-      <div>
-        <div class="card-title" style="font-size:15px;">Plan Before You Build</div>
-        <div class="card-desc" style="margin:0;">Always ask Claude to outline its approach before writing code or content. Review, then approve.</div>
-      </div>
-    </div>
-
-    <div class="card" style="display:flex;gap:16px;">
-      <div class="card-icon" style="background:var(--blue-light);width:38px;height:38px;font-size:17px;">&#128257;</div>
-      <div>
-        <div class="card-title" style="font-size:15px;">Iterate, Don't Accept</div>
-        <div class="card-desc" style="margin:0;">Generate, critique, refine is 3x better than taking the first answer. Push for improvement.</div>
-      </div>
-    </div>
-
-    <div class="card" style="display:flex;gap:16px;">
-      <div class="card-icon" style="background:var(--amber-light);width:38px;height:38px;font-size:17px;">&#128207;</div>
-      <div>
-        <div class="card-title" style="font-size:15px;">Be Specific About Output</div>
-        <div class="card-desc" style="margin:0;">"Write a function" is weak. "Write a Python function that returns X given Y, with type hints" is strong.</div>
-      </div>
-    </div>
-
-    <div class="card" style="display:flex;gap:16px;">
-      <div class="card-icon" style="background:var(--teal-light);width:38px;height:38px;font-size:17px;">&#129514;</div>
-      <div>
-        <div class="card-title" style="font-size:15px;">Tests Before Code</div>
-        <div class="card-desc" style="margin:0;">Ask Claude to write tests first. It forces clear thinking about what success looks like.</div>
-      </div>
-    </div>
-
-    <div class="card" style="display:flex;gap:16px;">
-      <div class="card-icon" style="background:var(--red-light);width:38px;height:38px;font-size:17px;">&#128272;</div>
-      <div>
-        <div class="card-title" style="font-size:15px;">Adversarial Review</div>
-        <div class="card-desc" style="margin:0;">"Act as a senior engineer trying to break this. What are the failure modes?" catches what you'd miss.</div>
-      </div>
-    </div>
-
-    <div class="card" style="display:flex;gap:16px;">
-      <div class="card-icon" style="background:var(--orange-light);width:38px;height:38px;font-size:17px;">&#128204;</div>
-      <div>
-        <div class="card-title" style="font-size:15px;">Repeat Key Constraints</div>
-        <div class="card-desc" style="margin:0;">Put your most important rules at the beginning AND end of long prompts. Attention fades in the middle.</div>
-      </div>
-    </div>
-
-    <div class="card" style="display:flex;gap:16px;">
-      <div class="card-icon" style="background:var(--green-light);width:38px;height:38px;font-size:17px;">&#128451;</div>
-      <div>
-        <div class="card-title" style="font-size:15px;">Use Projects for Repeat Work</div>
-        <div class="card-desc" style="margin:0;">If you do the same kind of task weekly, set up a Project. Persistent context beats re-explaining every time.</div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-
-<!-- FOOTER -->
 <div class="footer">
-  <p style="margin-bottom:6px;"><strong>The Claude Guide</strong> &middot; v2.1</p>
-  <p>Works with Claude, GPT-4, Gemini, Mistral & any frontier LLM.</p>
-  <p style="margin-top:8px;">Built to share. Pass it on.</p>
+  Claude Cheat Sheet v2.1 &middot; Works with any frontier LLM &middot; Share freely
 </div>
-
-<!-- Back to top -->
-<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="
-  position:fixed;bottom:24px;right:24px;
-  background:var(--white);border:1px solid var(--border);
-  color:var(--text-secondary);border-radius:10px;
-  padding:10px 16px;font-size:13px;font-family:inherit;font-weight:600;
-  cursor:pointer;opacity:0;transition:opacity 0.2s;z-index:200;
-  box-shadow:0 2px 8px rgba(0,0,0,0.08);
-">&uarr; Top</button>
-
-<script>
-  const btn = document.getElementById('back-to-top');
-  window.addEventListener('scroll', () => {
-    btn.style.opacity = window.scrollY > 400 ? '1' : '0';
-  });
-  const sections = document.querySelectorAll('.section[id]');
-  const navLinks = document.querySelectorAll('.nav-links a');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        navLinks.forEach(a => a.classList.remove('active'));
-        const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
-        if (active) active.classList.add('active');
-      }
-    });
-  }, { rootMargin: '-20% 0px -70% 0px' });
-  sections.forEach(s => observer.observe(s));
-</script>
 
 </body>
 </html>
