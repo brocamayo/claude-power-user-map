@@ -568,6 +568,10 @@
     <a class="nav-link" href="#tool-selection">
       <span class="nav-icon">&#9776;</span> Tool Selection
     </a>
+    <a class="nav-link" href="#model-selection">
+      <span class="nav-icon">&#9733;</span> Model Selection
+      <span class="nav-badge">5</span>
+    </a>
   </nav>
 
   <div class="sidebar-footer">
@@ -1438,6 +1442,199 @@
         </div>
       </div>
     </div>
+
+    <!-- ══════ 8. MODEL SELECTION ══════ -->
+    <div class="section" id="model-selection">
+      <div class="section-header">
+        <div class="section-label">Section 08</div>
+        <div class="section-title">Model Selection Guide</div>
+        <p class="section-desc">Different models have different strengths. Picking the right model for each task saves money, reduces latency, and often produces better results than defaulting to the most powerful option.</p>
+      </div>
+
+      <!-- Model cards -->
+      <div class="grid grid-3" style="margin-bottom:24px;">
+
+        <div class="card" style="border-top:3px solid var(--accent);">
+          <div class="card-icon" style="background:rgba(124,92,252,0.15);border:1px solid rgba(124,92,252,0.3);">&#9733;</div>
+          <div class="card-label" style="color:var(--accent-light);">Opus</div>
+          <div class="card-title">Maximum Intelligence</div>
+          <div class="card-desc">The most capable model. Use when quality matters more than speed or cost.</div>
+          <ul class="bullet-list">
+            <li>Complex architectural decisions</li>
+            <li>Nuanced writing (essays, strategy docs)</li>
+            <li>Multi-step reasoning & math proofs</li>
+            <li>Ambiguous problems with many edge cases</li>
+            <li>Code review of critical systems</li>
+            <li>Research synthesis across many sources</li>
+          </ul>
+          <div class="tags">
+            <span class="tag" style="background:rgba(124,92,252,0.1);border:1px solid rgba(124,92,252,0.3);color:var(--accent-light);">Slowest</span>
+            <span class="tag" style="background:rgba(124,92,252,0.1);border:1px solid rgba(124,92,252,0.3);color:var(--accent-light);">Highest cost</span>
+            <span class="tag" style="background:rgba(124,92,252,0.1);border:1px solid rgba(124,92,252,0.3);color:var(--accent-light);">Best quality</span>
+          </div>
+        </div>
+
+        <div class="card" style="border-top:3px solid var(--blue);">
+          <div class="card-icon" style="background:rgba(91,156,246,0.15);border:1px solid rgba(91,156,246,0.3);">&#9670;</div>
+          <div class="card-label" style="color:var(--blue);">Sonnet</div>
+          <div class="card-title">Best All-Rounder</div>
+          <div class="card-desc">The sweet spot for most tasks. Strong reasoning at reasonable speed and cost.</div>
+          <ul class="bullet-list">
+            <li>Day-to-day coding & debugging</li>
+            <li>Content drafting & editing</li>
+            <li>Data analysis & transformation</li>
+            <li>API integrations & tooling</li>
+            <li>Agentic workflows (Claude Code default)</li>
+            <li>Most prompt chaining pipelines</li>
+          </ul>
+          <div class="tags">
+            <span class="tag" style="background:rgba(91,156,246,0.1);border:1px solid rgba(91,156,246,0.3);color:var(--blue);">Balanced</span>
+            <span class="tag" style="background:rgba(91,156,246,0.1);border:1px solid rgba(91,156,246,0.3);color:var(--blue);">Default choice</span>
+            <span class="tag" style="background:rgba(91,156,246,0.1);border:1px solid rgba(91,156,246,0.3);color:var(--blue);">Great value</span>
+          </div>
+        </div>
+
+        <div class="card" style="border-top:3px solid var(--green);">
+          <div class="card-icon" style="background:rgba(52,211,153,0.15);border:1px solid rgba(52,211,153,0.3);">&#9651;</div>
+          <div class="card-label" style="color:var(--green);">Haiku</div>
+          <div class="card-title">Speed & Efficiency</div>
+          <div class="card-desc">Fastest and cheapest. Use for high-volume, well-defined tasks where latency matters.</div>
+          <ul class="bullet-list">
+            <li>Classification & categorization</li>
+            <li>Data extraction from structured text</li>
+            <li>Simple Q&A and lookups</li>
+            <li>Content moderation & filtering</li>
+            <li>High-volume API calls (batch processing)</li>
+            <li>Routing and triage in pipelines</li>
+          </ul>
+          <div class="tags">
+            <span class="tag" style="background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.3);color:var(--green);">Fastest</span>
+            <span class="tag" style="background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.3);color:var(--green);">Lowest cost</span>
+            <span class="tag" style="background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.3);color:var(--green);">High volume</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Task-to-model matrix -->
+      <div class="table-wrap" style="margin-bottom:24px;">
+        <table>
+          <thead>
+            <tr><th>Task Type</th><th>Recommended Model</th><th>Why</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Complex architecture design</td>
+              <td><span style="color:var(--accent-light);font-weight:600;">Opus</span></td>
+              <td style="color:var(--text-secondary);">Needs deep reasoning across many constraints and trade-offs</td>
+            </tr>
+            <tr>
+              <td>Security audit / code review</td>
+              <td><span style="color:var(--accent-light);font-weight:600;">Opus</span></td>
+              <td style="color:var(--text-secondary);">Subtle vulnerabilities require maximum attention to detail</td>
+            </tr>
+            <tr>
+              <td>Day-to-day feature development</td>
+              <td><span style="color:var(--blue);font-weight:600;">Sonnet</span></td>
+              <td style="color:var(--text-secondary);">Best balance of code quality, speed, and cost for routine work</td>
+            </tr>
+            <tr>
+              <td>Writing & content creation</td>
+              <td><span style="color:var(--blue);font-weight:600;">Sonnet</span> or <span style="color:var(--accent-light);font-weight:600;">Opus</span></td>
+              <td style="color:var(--text-secondary);">Sonnet for drafts and iteration; Opus for final polish on high-stakes pieces</td>
+            </tr>
+            <tr>
+              <td>Data pipeline / ETL scripts</td>
+              <td><span style="color:var(--blue);font-weight:600;">Sonnet</span></td>
+              <td style="color:var(--text-secondary);">Structured transformation with clear inputs/outputs -- Sonnet handles well</td>
+            </tr>
+            <tr>
+              <td>Agentic loops (eval-fix, critic-refine)</td>
+              <td><span style="color:var(--blue);font-weight:600;">Sonnet</span></td>
+              <td style="color:var(--text-secondary);">Multiple iterations multiply cost; Sonnet keeps loops affordable</td>
+            </tr>
+            <tr>
+              <td>Classifying or tagging items</td>
+              <td><span style="color:var(--green);font-weight:600;">Haiku</span></td>
+              <td style="color:var(--text-secondary);">Well-defined categories with clear rules -- speed wins</td>
+            </tr>
+            <tr>
+              <td>Extracting fields from documents</td>
+              <td><span style="color:var(--green);font-weight:600;">Haiku</span></td>
+              <td style="color:var(--text-secondary);">Structured extraction from known formats is Haiku's sweet spot</td>
+            </tr>
+            <tr>
+              <td>Routing / triage in a pipeline</td>
+              <td><span style="color:var(--green);font-weight:600;">Haiku</span></td>
+              <td style="color:var(--text-secondary);">Fast first-pass classification before sending to a bigger model</td>
+            </tr>
+            <tr>
+              <td>Debugging a tricky, elusive bug</td>
+              <td><span style="color:var(--accent-light);font-weight:600;">Opus</span></td>
+              <td style="color:var(--text-secondary);">Subtle bugs require the deepest reasoning and widest hypothesis space</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Model selection decision tree -->
+      <div class="card" style="margin-bottom:24px;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-dim);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:16px;">Model Decision Tree</div>
+        <div class="decision-row">
+          <span class="decision-q">Is this a high-stakes decision with ambiguity?</span>
+          <span class="decision-a" style="color:var(--accent-light);">&rarr; Opus</span>
+        </div>
+        <div class="decision-row">
+          <span class="decision-q">Does the task require deep multi-step reasoning?</span>
+          <span class="decision-a" style="color:var(--accent-light);">&rarr; Opus</span>
+        </div>
+        <div class="decision-row">
+          <span class="decision-q">Is it a well-scoped coding or writing task?</span>
+          <span class="decision-a" style="color:var(--blue);">&rarr; Sonnet</span>
+        </div>
+        <div class="decision-row">
+          <span class="decision-q">Will this run in an agentic loop (multiple iterations)?</span>
+          <span class="decision-a" style="color:var(--blue);">&rarr; Sonnet (cost control)</span>
+        </div>
+        <div class="decision-row">
+          <span class="decision-q">Is it high-volume with a clear, simple pattern?</span>
+          <span class="decision-a" style="color:var(--green);">&rarr; Haiku</span>
+        </div>
+        <div class="decision-row">
+          <span class="decision-q">Does latency matter more than nuance?</span>
+          <span class="decision-a" style="color:var(--green);">&rarr; Haiku</span>
+        </div>
+        <div class="decision-row" style="border-bottom:none;">
+          <span class="decision-q">Not sure? Start here and upgrade if quality falls short.</span>
+          <span class="decision-a" style="color:var(--blue);">&rarr; Sonnet (safe default)</span>
+        </div>
+      </div>
+
+      <!-- Pro tips -->
+      <div class="grid grid-2">
+        <div class="callout" style="background:rgba(124,92,252,0.08);border:1px solid rgba(124,92,252,0.2);">
+          <span class="callout-icon">&#128161;</span>
+          <div style="color:var(--accent-light);">
+            <strong>Cascade pattern:</strong> Start with Haiku for triage/routing, escalate to Sonnet for execution, use Opus only for final review or edge cases. This can cut costs 5-10x vs. running everything through Opus.
+          </div>
+        </div>
+        <div class="callout" style="background:rgba(251,146,60,0.08);border:1px solid rgba(251,146,60,0.2);">
+          <span class="callout-icon">&#9888;</span>
+          <div style="color:var(--orange);">
+            <strong>Don't default to Opus:</strong> Running every task through the most powerful model is wasteful. Sonnet handles 80% of tasks at comparable quality. Reserve Opus for the 20% that genuinely need maximum reasoning depth.
+          </div>
+        </div>
+      </div>
+
+      <!-- Cross-provider note -->
+      <div class="callout" style="background:rgba(251,191,36,0.08);border:1px solid rgba(251,191,36,0.2);margin-top:16px;">
+        <span class="callout-icon">&#127760;</span>
+        <div style="color:var(--gold);">
+          <strong>Model-agnostic equivalent:</strong> This tiering pattern applies across providers. GPT-4o maps roughly to Sonnet, GPT-4o-mini to Haiku, and o1/o3 to Opus-class reasoning. Gemini Pro/Flash follow the same split. Always match model tier to task complexity.
+        </div>
+      </div>
+    </div>
+
 
   </div><!-- /content -->
 
