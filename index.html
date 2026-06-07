@@ -30,7 +30,7 @@
     background: var(--bg);
     color: var(--text);
     font-family: 'IBM Plex Sans', system-ui, sans-serif;
-    font-size: 14px;
+    font-size: 17px;
     line-height: 1.6;
   }
 
@@ -43,7 +43,7 @@
     top: 0;
     z-index: 100;
   }
-  .header-meta { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 6px; }
+  .header-meta { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--muted); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 6px; }
   .header h1 { font-family: 'IBM Plex Mono', monospace; font-size: 22px; font-weight: 700; margin-bottom: 20px; letter-spacing: -0.5px; }
   .header h1 .accent { color: var(--accent); }
   .header h1 .slash { color: var(--dim); }
@@ -53,7 +53,7 @@
     display: block;
     padding: 10px 18px;
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
+    font-size: 13px;
     letter-spacing: 1px;
     text-transform: uppercase;
     color: var(--muted);
@@ -68,7 +68,7 @@
   .section { padding: 36px 40px; border-bottom: 1px solid var(--border); }
   .section-label {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
+    font-size: 12px;
     color: var(--muted);
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -80,7 +80,7 @@
     margin-bottom: 8px;
     letter-spacing: -0.3px;
   }
-  .section-desc { color: var(--muted); font-size: 13px; max-width: 680px; margin-bottom: 28px; }
+  .section-desc { color: var(--muted); font-size: 15px; max-width: 680px; margin-bottom: 28px; }
 
   /* ── CARDS GRID ── */
   .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
@@ -99,17 +99,17 @@
   .card-accent-left { border-left: 3px solid; }
 
   .card-icon { font-size: 22px; margin-bottom: 10px; display: block; }
-  .card-step { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 2px; font-weight: 700; margin-bottom: 2px; }
-  .card-title { font-size: 14px; font-weight: 700; margin-bottom: 10px; }
-  .card-desc { font-size: 12px; color: var(--muted); line-height: 1.6; margin-bottom: 12px; }
+  .card-step { font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 2px; font-weight: 700; margin-bottom: 2px; }
+  .card-title { font-size: 16px; font-weight: 700; margin-bottom: 10px; }
+  .card-desc { font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 12px; }
 
   /* ── BULLETS ── */
   .bullet-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
-  .bullet-list li { display: flex; gap: 8px; align-items: flex-start; font-size: 12px; color: var(--muted); line-height: 1.5; }
-  .bullet-list li::before { content: '◆'; font-size: 9px; margin-top: 3px; flex-shrink: 0; }
+  .bullet-list li { display: flex; gap: 8px; align-items: flex-start; font-size: 14px; color: var(--muted); line-height: 1.5; }
+  .bullet-list li::before { content: '◆'; font-size: 11px; margin-top: 3px; flex-shrink: 0; }
 
   /* ── TAGS ── */
-  .tag { display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 10px; padding: 3px 9px; border-radius: 4px; letter-spacing: 0.5px; }
+  .tag { display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 12px; padding: 3px 9px; border-radius: 4px; letter-spacing: 0.5px; }
   .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
 
   /* ── PHASE STEPS ── */
@@ -134,7 +134,7 @@
     background: var(--surface);
     padding: 0 6px;
     color: var(--dim);
-    font-size: 16px;
+    font-size: 18px;
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
   }
@@ -144,7 +144,7 @@
   thead tr { background: var(--surface); }
   th {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
+    font-size: 12px;
     letter-spacing: 2px;
     text-transform: uppercase;
     color: var(--dim);
@@ -152,7 +152,7 @@
     text-align: left;
     border-bottom: 1px solid var(--border);
   }
-  td { padding: 13px 16px; font-size: 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  td { padding: 13px 16px; font-size: 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
   tr:nth-child(even) td { background: rgba(17,19,24,0.6); }
   tr:last-child td { border-bottom: none; }
 
@@ -160,7 +160,7 @@
   .callout {
     border-radius: 8px;
     padding: 16px 20px;
-    font-size: 12px;
+    font-size: 14px;
     line-height: 1.7;
     margin-top: 16px;
   }
@@ -179,13 +179,13 @@
   }
   .flow-node {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 600;
     padding: 6px 14px;
     border-radius: 20px;
     border: 1px solid;
   }
-  .flow-arrow { color: var(--dim); font-size: 16px; }
+  .flow-arrow { color: var(--dim); font-size: 18px; }
 
   /* ── DECISION TREE ── */
   .decision-row {
@@ -196,14 +196,14 @@
     border-bottom: 1px solid var(--border);
   }
   .decision-row:last-child { border-bottom: none; }
-  .decision-q { flex: 1; font-size: 12px; color: var(--muted); }
-  .decision-a { font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 700; flex-shrink: 0; min-width: 180px; }
+  .decision-q { flex: 1; font-size: 14px; color: var(--muted); }
+  .decision-a { font-family: 'IBM Plex Mono', monospace; font-size: 14px; font-weight: 700; flex-shrink: 0; min-width: 180px; }
 
   /* ── CONTEXT METER ── */
   .meter { display: flex; height: 20px; border-radius: 4px; overflow: hidden; margin: 12px 0; }
   .meter-legend { display: flex; gap: 24px; }
   .meter-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
-  .meter-label { font-size: 11px; color: var(--muted); }
+  .meter-label { font-size: 13px; color: var(--muted); }
 
   /* ── SUBAGENTS SECTION ── */
   .agent-tier {
@@ -236,7 +236,7 @@
     background: var(--bg);
     padding: 0 8px;
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
+    font-size: 12px;
     letter-spacing: 2px;
     text-transform: uppercase;
     font-weight: 700;
@@ -248,7 +248,7 @@
     gap: 6px;
   }
   .loop-step {
-    font-size: 12px;
+    font-size: 14px;
     padding: 6px 12px;
     border-radius: 6px;
     border: 1px solid;
@@ -264,7 +264,7 @@
     justify-content: space-between;
     align-items: center;
   }
-  footer span { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--dim); letter-spacing: 1px; }
+  footer span { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--dim); letter-spacing: 1px; }
 
   @media (max-width: 768px) {
     .header, .section { padding-left: 20px; padding-right: 20px; }
@@ -394,16 +394,16 @@
 <div class="section" id="plan-mode">
   <div class="section-label">Section 02</div>
   <div class="section-title">Plan Mode &amp; Outline-First Prompting</div>
-  <p class="section-desc">Never let Claude write code on an ambiguous brief. Think of yourself as the senior engineer — Claude is the junior. Your job is to define, review, approve. <strong>Plan Mode</strong> is a Claude Code-specific feature (<code style="background:rgba(88,166,255,0.12);color:var(--accent);padding:1px 6px;border-radius:3px;font-size:11px;">claude --plan</code> flag or triggered interactively) where Claude proposes all file changes without executing them until you approve. In Claude.ai chat and the API, the equivalent discipline is <strong>Outline-First Prompting</strong> — explicitly asking Claude to outline before writing.</p>
+  <p class="section-desc">Never let Claude write code on an ambiguous brief. Think of yourself as the senior engineer — Claude is the junior. Your job is to define, review, approve. <strong>Plan Mode</strong> is a Claude Code-specific feature (<code style="background:rgba(88,166,255,0.12);color:var(--accent);padding:1px 6px;border-radius:3px;font-size:13px;">claude --plan</code> flag or triggered interactively) where Claude proposes all file changes without executing them until you approve. In Claude.ai chat and the API, the equivalent discipline is <strong>Outline-First Prompting</strong> — explicitly asking Claude to outline before writing.</p>
 
   <!-- Surface clarity banner -->
   <div style="display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap;">
-    <div style="background:rgba(88,166,255,0.08);border:1px solid rgba(88,166,255,0.3);border-radius:6px;padding:10px 16px;font-size:12px;flex:1;min-width:220px;">
-      <span style="color:var(--accent);font-weight:700;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1px;">⚡ CLAUDE CODE</span><br>
+    <div style="background:rgba(88,166,255,0.08);border:1px solid rgba(88,166,255,0.3);border-radius:6px;padding:10px 16px;font-size:14px;flex:1;min-width:220px;">
+      <span style="color:var(--accent);font-weight:700;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:1px;">⚡ CLAUDE CODE</span><br>
       <span style="color:var(--muted);margin-top:4px;display:block;">Use <code style="color:var(--accent);">--plan</code> flag or type <code style="color:var(--accent);">/plan</code> in session. Claude proposes changes as a structured diff preview — no files are touched until you explicitly approve each step.</span>
     </div>
-    <div style="background:rgba(63,185,80,0.08);border:1px solid rgba(63,185,80,0.3);border-radius:6px;padding:10px 16px;font-size:12px;flex:1;min-width:220px;">
-      <span style="color:var(--green);font-weight:700;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1px;">💬 CHAT / API</span><br>
+    <div style="background:rgba(63,185,80,0.08);border:1px solid rgba(63,185,80,0.3);border-radius:6px;padding:10px 16px;font-size:14px;flex:1;min-width:220px;">
+      <span style="color:var(--green);font-weight:700;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:1px;">💬 CHAT / API</span><br>
       <span style="color:var(--muted);margin-top:4px;display:block;">No native plan mode. Use <strong>Outline-First Prompting</strong>: ask Claude to list its approach and assumptions before writing anything. You review the outline, then say "proceed."</span>
     </div>
   </div>
@@ -411,9 +411,9 @@
   <div class="phase-row">
     <div class="phase-step" style="border-top: 2px solid var(--accent);">
       <div class="card-step" style="color:var(--accent);">🎯 TRIGGER</div>
-      <div class="card-title" style="font-size:13px;margin-bottom:8px;">Enter Planning Phase</div>
+      <div class="card-title" style="font-size:15px;margin-bottom:8px;">Enter Planning Phase</div>
       <ul class="bullet-list">
-        <li><strong>Claude Code:</strong> <code style="color:var(--accent);font-size:10px;">claude --plan</code> or <code style="color:var(--accent);font-size:10px;">/plan</code> in session</li>
+        <li><strong>Claude Code:</strong> <code style="color:var(--accent);font-size:12px;">claude --plan</code> or <code style="color:var(--accent);font-size:12px;">/plan</code> in session</li>
         <li><strong>Chat/API:</strong> "Outline your approach before writing any code"</li>
         <li>State the problem in 1–2 sentences</li>
         <li>List files/systems that will be touched</li>
@@ -422,7 +422,7 @@
     <div class="phase-arrow">→</div>
     <div class="phase-step" style="border-top: 2px solid var(--gold);">
       <div class="card-step" style="color:var(--gold);">🔒 SCOPE LOCK</div>
-      <div class="card-title" style="font-size:13px;margin-bottom:8px;">Before any run</div>
+      <div class="card-title" style="font-size:15px;margin-bottom:8px;">Before any run</div>
       <ul class="bullet-list">
         <li>Define explicit success criteria</li>
         <li>Name files that must NOT be touched</li>
@@ -433,7 +433,7 @@
     <div class="phase-arrow">→</div>
     <div class="phase-step" style="border-top: 2px solid var(--green);">
       <div class="card-step" style="color:var(--green);">✅ REVIEW</div>
-      <div class="card-title" style="font-size:13px;margin-bottom:8px;">After plan is proposed</div>
+      <div class="card-title" style="font-size:15px;margin-bottom:8px;">After plan is proposed</div>
       <ul class="bullet-list">
         <li>Read every step mentally before approving</li>
         <li>Flag any step that's too broad</li>
@@ -444,7 +444,7 @@
     <div class="phase-arrow">→</div>
     <div class="phase-step" style="border-top: 2px solid var(--purple);">
       <div class="card-step" style="color:var(--purple);">🚀 EXECUTE</div>
-      <div class="card-title" style="font-size:13px;margin-bottom:8px;">After approval</div>
+      <div class="card-title" style="font-size:15px;margin-bottom:8px;">After approval</div>
       <ul class="bullet-list">
         <li>Watch context usage — bail if bloating</li>
         <li>Interrupt immediately if it deviates from plan</li>
@@ -552,21 +552,21 @@
 
   <!-- Orchestration tiers -->
   <div style="margin-bottom:32px;">
-    <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">Orchestration Tiers</div>
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">Orchestration Tiers</div>
 
     <div class="agent-tier">
       <div class="agent-tier-header" style="background:rgba(88,166,255,0.06);">
         <div style="width:36px;height:36px;border-radius:8px;background:rgba(88,166,255,0.15);border:1px solid rgba(88,166,255,0.3);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">🎯</div>
         <div>
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:2px;font-weight:700;">TIER 1 — SINGLE AGENT</div>
-          <div style="font-size:13px;font-weight:600;color:var(--text);">One Claude, one task, one session</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--accent);letter-spacing:2px;font-weight:700;">TIER 1 — SINGLE AGENT</div>
+          <div style="font-size:15px;font-weight:600;color:var(--text);">One Claude, one task, one session</div>
         </div>
         <div style="margin-left:auto;"><span class="tag" style="background:rgba(88,166,255,0.1);border:1px solid rgba(88,166,255,0.3);color:var(--accent);">Default</span></div>
       </div>
       <div class="agent-tier-body">
         <div class="grid-2" style="gap:12px;">
           <div>
-            <div style="font-size:11px;color:var(--muted);margin-bottom:8px;">✅ Use when:</div>
+            <div style="font-size:13px;color:var(--muted);margin-bottom:8px;">✅ Use when:</div>
             <ul class="bullet-list">
               <li>Task is well-scoped and fits in one context window</li>
               <li>Output is a single file, document, or answer</li>
@@ -575,7 +575,7 @@
             </ul>
           </div>
           <div>
-            <div style="font-size:11px;color:var(--muted);margin-bottom:8px;">🔑 Key patterns:</div>
+            <div style="font-size:13px;color:var(--muted);margin-bottom:8px;">🔑 Key patterns:</div>
             <ul class="bullet-list">
               <li>Plan → Execute → Review in one session</li>
               <li>Multi-turn refinement within one conversation (not a pipeline)</li>
@@ -591,15 +591,15 @@
       <div class="agent-tier-header" style="background:rgba(227,179,65,0.06);">
         <div style="width:36px;height:36px;border-radius:8px;background:rgba(227,179,65,0.15);border:1px solid rgba(227,179,65,0.3);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">🔗</div>
         <div>
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:2px;font-weight:700;">TIER 2 — PROMPT CHAINING</div>
-          <div style="font-size:13px;font-weight:600;color:var(--text);">Sequential tasks, output feeds next input</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--gold);letter-spacing:2px;font-weight:700;">TIER 2 — PROMPT CHAINING</div>
+          <div style="font-size:15px;font-weight:600;color:var(--text);">Sequential tasks, output feeds next input</div>
         </div>
         <div style="margin-left:auto;"><span class="tag" style="background:rgba(227,179,65,0.1);border:1px solid rgba(227,179,65,0.3);color:var(--gold);">Intermediate</span></div>
       </div>
       <div class="agent-tier-body">
         <div class="grid-2" style="gap:12px;margin-bottom:14px;">
           <div>
-            <div style="font-size:11px;color:var(--muted);margin-bottom:8px;">✅ Use when:</div>
+            <div style="font-size:13px;color:var(--muted);margin-bottom:8px;">✅ Use when:</div>
             <ul class="bullet-list">
               <li>Task has clear sequential stages</li>
               <li>Each stage needs validation before next runs</li>
@@ -608,7 +608,7 @@
             </ul>
           </div>
           <div>
-            <div style="font-size:11px;color:var(--muted);margin-bottom:8px;">📋 Examples:</div>
+            <div style="font-size:13px;color:var(--muted);margin-bottom:8px;">📋 Examples:</div>
             <ul class="bullet-list">
               <li>Research → Outline → Draft → Edit → Publish</li>
               <li>Scrape data → Clean → Analyze → Visualize</li>
@@ -619,19 +619,19 @@
         </div>
         <!-- Chain diagram -->
         <div style="background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:14px 18px;">
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:2px;margin-bottom:10px;">EXAMPLE CHAIN</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--dim);letter-spacing:2px;margin-bottom:10px;">EXAMPLE CHAIN</div>
           <div style="display:flex;align-items:center;flex-wrap:wrap;gap:6px;">
-            <div style="background:rgba(227,179,65,0.1);border:1px solid rgba(227,179,65,0.3);color:var(--gold);border-radius:6px;padding:6px 12px;font-size:11px;font-weight:600;">📥 Input</div>
+            <div style="background:rgba(227,179,65,0.1);border:1px solid rgba(227,179,65,0.3);color:var(--gold);border-radius:6px;padding:6px 12px;font-size:13px;font-weight:600;">📥 Input</div>
             <span style="color:var(--dim);">→</span>
-            <div style="background:var(--card);border:1px solid var(--border);color:var(--text);border-radius:6px;padding:6px 12px;font-size:11px;">Claude call 1<br><span style="color:var(--muted);font-size:10px;">Extract + structure</span></div>
+            <div style="background:var(--card);border:1px solid var(--border);color:var(--text);border-radius:6px;padding:6px 12px;font-size:13px;">Claude call 1<br><span style="color:var(--muted);font-size:12px;">Extract + structure</span></div>
             <span style="color:var(--dim);">→</span>
-            <div style="background:rgba(63,185,80,0.08);border:1px solid rgba(63,185,80,0.25);color:var(--green);border-radius:6px;padding:6px 12px;font-size:11px;">✅ Gate check</div>
+            <div style="background:rgba(63,185,80,0.08);border:1px solid rgba(63,185,80,0.25);color:var(--green);border-radius:6px;padding:6px 12px;font-size:13px;">✅ Gate check</div>
             <span style="color:var(--dim);">→</span>
-            <div style="background:var(--card);border:1px solid var(--border);color:var(--text);border-radius:6px;padding:6px 12px;font-size:11px;">Claude call 2<br><span style="color:var(--muted);font-size:10px;">Analyze + reason</span></div>
+            <div style="background:var(--card);border:1px solid var(--border);color:var(--text);border-radius:6px;padding:6px 12px;font-size:13px;">Claude call 2<br><span style="color:var(--muted);font-size:12px;">Analyze + reason</span></div>
             <span style="color:var(--dim);">→</span>
-            <div style="background:var(--card);border:1px solid var(--border);color:var(--text);border-radius:6px;padding:6px 12px;font-size:11px;">Claude call 3<br><span style="color:var(--muted);font-size:10px;">Format output</span></div>
+            <div style="background:var(--card);border:1px solid var(--border);color:var(--text);border-radius:6px;padding:6px 12px;font-size:13px;">Claude call 3<br><span style="color:var(--muted);font-size:12px;">Format output</span></div>
             <span style="color:var(--dim);">→</span>
-            <div style="background:rgba(88,166,255,0.1);border:1px solid rgba(88,166,255,0.3);color:var(--accent);border-radius:6px;padding:6px 12px;font-size:11px;">📤 Final output</div>
+            <div style="background:rgba(88,166,255,0.1);border:1px solid rgba(88,166,255,0.3);color:var(--accent);border-radius:6px;padding:6px 12px;font-size:13px;">📤 Final output</div>
           </div>
         </div>
       </div>
@@ -641,19 +641,19 @@
       <div class="agent-tier-header" style="background:rgba(188,140,255,0.06);">
         <div style="width:36px;height:36px;border-radius:8px;background:rgba(188,140,255,0.15);border:1px solid rgba(188,140,255,0.3);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">🕸️</div>
         <div>
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--purple);letter-spacing:2px;font-weight:700;">TIER 3 — YOU ORCHESTRATE, CLAUDE EXECUTES EACH NODE</div>
-          <div style="font-size:13px;font-weight:600;color:var(--text);">You architect the pipeline; Claude runs each specialized role</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--purple);letter-spacing:2px;font-weight:700;">TIER 3 — YOU ORCHESTRATE, CLAUDE EXECUTES EACH NODE</div>
+          <div style="font-size:15px;font-weight:600;color:var(--text);">You architect the pipeline; Claude runs each specialized role</div>
         </div>
         <div style="margin-left:auto;"><span class="tag" style="background:rgba(188,140,255,0.1);border:1px solid rgba(188,140,255,0.3);color:var(--purple);">Advanced</span></div>
       </div>
       <div class="agent-tier-body">
         <!-- Critical clarification -->
-        <div style="background:rgba(247,129,102,0.08);border:1px solid rgba(247,129,102,0.3);border-radius:6px;padding:10px 14px;margin-bottom:14px;font-size:12px;color:var(--orange);">
-          ⚠️ <strong>Important:</strong> Claude does not autonomously spawn subagents on its own in chat or standard API use. <em>You</em> are the orchestrator — you design the pipeline, run each Claude call in sequence or parallel, and pass outputs between them. In Claude Code's agentic mode, Claude can use the <code style="font-size:10px;background:rgba(247,129,102,0.15);padding:1px 5px;border-radius:3px;">Task</code> tool to dispatch subtasks, but this is an advanced opt-in API feature, not default behavior.
+        <div style="background:rgba(247,129,102,0.08);border:1px solid rgba(247,129,102,0.3);border-radius:6px;padding:10px 14px;margin-bottom:14px;font-size:14px;color:var(--orange);">
+          ⚠️ <strong>Important:</strong> Claude does not autonomously spawn subagents on its own in chat or standard API use. <em>You</em> are the orchestrator — you design the pipeline, run each Claude call in sequence or parallel, and pass outputs between them. In Claude Code's agentic mode, Claude can use the <code style="font-size:12px;background:rgba(247,129,102,0.15);padding:1px 5px;border-radius:3px;">Task</code> tool to dispatch subtasks, but this is an advanced opt-in API feature, not default behavior.
         </div>
         <div class="grid-2" style="gap:12px;margin-bottom:14px;">
           <div>
-            <div style="font-size:11px;color:var(--muted);margin-bottom:8px;">✅ Use when:</div>
+            <div style="font-size:13px;color:var(--muted);margin-bottom:8px;">✅ Use when:</div>
             <ul class="bullet-list">
               <li>Task has parallel independent subtasks</li>
               <li>Different roles need different system prompts</li>
@@ -662,7 +662,7 @@
             </ul>
           </div>
           <div>
-            <div style="font-size:11px;color:var(--muted);margin-bottom:8px;">📋 How to build it:</div>
+            <div style="font-size:13px;color:var(--muted);margin-bottom:8px;">📋 How to build it:</div>
             <ul class="bullet-list">
               <li>You call Claude with a Researcher system prompt → get output</li>
               <li>You call Claude with a Builder system prompt → pass research as input</li>
@@ -673,28 +673,28 @@
         </div>
         <!-- Orchestrator diagram -->
         <div style="background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:16px 18px;">
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:2px;margin-bottom:12px;">ORCHESTRATOR PATTERN — YOU CONTROL THE FLOW</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--dim);letter-spacing:2px;margin-bottom:12px;">ORCHESTRATOR PATTERN — YOU CONTROL THE FLOW</div>
           <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
-            <div style="background:rgba(227,179,65,0.12);border:2px solid rgba(227,179,65,0.5);color:var(--gold);border-radius:8px;padding:10px 24px;font-size:12px;font-weight:700;text-align:center;">👤 YOU (the Orchestrator)<br><span style="font-size:10px;font-weight:400;color:var(--muted);">Design pipeline · pass outputs · approve results</span></div>
+            <div style="background:rgba(227,179,65,0.12);border:2px solid rgba(227,179,65,0.5);color:var(--gold);border-radius:8px;padding:10px 24px;font-size:14px;font-weight:700;text-align:center;">👤 YOU (the Orchestrator)<br><span style="font-size:12px;font-weight:400;color:var(--muted);">Design pipeline · pass outputs · approve results</span></div>
             <div style="display:flex;gap:8px;align-items:flex-start;">
               <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
                 <span style="color:var(--dim);">↓ call</span>
-                <div style="background:var(--card);border:1px solid var(--purple);color:var(--text);border-radius:6px;padding:8px 14px;font-size:11px;text-align:center;">🔬 Claude A<br><span style="color:var(--purple);font-size:10px;">Researcher role</span></div>
+                <div style="background:var(--card);border:1px solid var(--purple);color:var(--text);border-radius:6px;padding:8px 14px;font-size:13px;text-align:center;">🔬 Claude A<br><span style="color:var(--purple);font-size:12px;">Researcher role</span></div>
               </div>
               <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
                 <span style="color:var(--dim);">↓ call</span>
-                <div style="background:var(--card);border:1px solid var(--purple);color:var(--text);border-radius:6px;padding:8px 14px;font-size:11px;text-align:center;">⚙️ Claude B<br><span style="color:var(--purple);font-size:10px;">Builder role</span></div>
+                <div style="background:var(--card);border:1px solid var(--purple);color:var(--text);border-radius:6px;padding:8px 14px;font-size:13px;text-align:center;">⚙️ Claude B<br><span style="color:var(--purple);font-size:12px;">Builder role</span></div>
               </div>
               <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
                 <span style="color:var(--dim);">↓ call</span>
-                <div style="background:var(--card);border:1px solid var(--purple);color:var(--text);border-radius:6px;padding:8px 14px;font-size:11px;text-align:center;">🧪 Claude C<br><span style="color:var(--purple);font-size:10px;">Validator role</span></div>
+                <div style="background:var(--card);border:1px solid var(--purple);color:var(--text);border-radius:6px;padding:8px 14px;font-size:13px;text-align:center;">🧪 Claude C<br><span style="color:var(--purple);font-size:12px;">Validator role</span></div>
               </div>
               <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
                 <span style="color:var(--dim);">↓ call</span>
-                <div style="background:var(--card);border:1px solid var(--purple);color:var(--text);border-radius:6px;padding:8px 14px;font-size:11px;text-align:center;">📝 Claude D<br><span style="color:var(--purple);font-size:10px;">Writer role</span></div>
+                <div style="background:var(--card);border:1px solid var(--purple);color:var(--text);border-radius:6px;padding:8px 14px;font-size:13px;text-align:center;">📝 Claude D<br><span style="color:var(--purple);font-size:12px;">Writer role</span></div>
               </div>
             </div>
-            <div style="font-size:10px;color:var(--dim);font-style:italic;">Each is a separate Claude call with its own focused system prompt — not one Claude doing everything</div>
+            <div style="font-size:12px;color:var(--dim);font-style:italic;">Each is a separate Claude call with its own focused system prompt — not one Claude doing everything</div>
           </div>
         </div>
       </div>
@@ -704,15 +704,15 @@
       <div class="agent-tier-header" style="background:rgba(247,129,102,0.06);">
         <div style="width:36px;height:36px;border-radius:8px;background:rgba(247,129,102,0.15);border:1px solid rgba(247,129,102,0.3);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">🔄</div>
         <div>
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--orange);letter-spacing:2px;font-weight:700;">TIER 4 — DYNAMIC LOOPS</div>
-          <div style="font-size:13px;font-weight:600;color:var(--text);">Self-correcting agents that loop until done</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--orange);letter-spacing:2px;font-weight:700;">TIER 4 — DYNAMIC LOOPS</div>
+          <div style="font-size:15px;font-weight:600;color:var(--text);">Self-correcting agents that loop until done</div>
         </div>
         <div style="margin-left:auto;"><span class="tag" style="background:rgba(247,129,102,0.1);border:1px solid rgba(247,129,102,0.3);color:var(--orange);">Power</span></div>
       </div>
       <div class="agent-tier-body">
         <div class="grid-2" style="gap:12px;margin-bottom:16px;">
           <div>
-            <div style="font-size:11px;color:var(--muted);margin-bottom:8px;">✅ Use when:</div>
+            <div style="font-size:13px;color:var(--muted);margin-bottom:8px;">✅ Use when:</div>
             <ul class="bullet-list">
               <li>Output quality is measurable (tests pass/fail)</li>
               <li>Task requires iteration to converge on correct answer</li>
@@ -721,7 +721,7 @@
             </ul>
           </div>
           <div>
-            <div style="font-size:11px;color:var(--muted);margin-bottom:8px;">⚠️ Loop safety rules:</div>
+            <div style="font-size:13px;color:var(--muted);margin-bottom:8px;">⚠️ Loop safety rules:</div>
             <ul class="bullet-list">
               <li>Always set a max iteration cap (3–5 loops)</li>
               <li>Log each iteration's state for debugging</li>
@@ -760,7 +760,7 @@
             <div class="loop-step" style="color:var(--green);border-color:rgba(63,185,80,0.3);background:rgba(63,185,80,0.08);">Score ≥ threshold? Done</div>
             <span style="color:var(--dim);">↺ repeat</span>
           </div>
-          <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:11px;color:var(--orange);">
+          <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:13px;color:var(--orange);">
             ⚠️ <strong>Sycophantic convergence risk:</strong> Claude asked to critique its own previous output in the same session tends to agree with itself and stop genuinely improving. Use a <em>fresh Claude call</em> with a separate critic system prompt ("You are a harsh senior editor — find every flaw") rather than asking the same instance to self-review. Different session = more honest critique.
           </div>
         </div>
@@ -784,7 +784,7 @@
   </div>
 
   <!-- When to use subagents matrix -->
-  <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">Subagent Decision Matrix</div>
+  <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">Subagent Decision Matrix</div>
   <div class="card" style="padding:0;overflow:hidden;">
     <table>
       <thead>
@@ -846,7 +846,7 @@
     <div class="card card-accent-left" style="border-left-color:var(--green);">
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
         <span style="font-size:20px;">🚨</span>
-        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--green);letter-spacing:2px;font-weight:700;text-transform:uppercase;">Always Include</span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--green);letter-spacing:2px;font-weight:700;text-transform:uppercase;">Always Include</span>
       </div>
       <ul class="bullet-list">
         <li>Full error messages and stack traces</li>
@@ -860,7 +860,7 @@
     <div class="card card-accent-left" style="border-left-color:var(--orange);">
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
         <span style="font-size:20px;">⛔</span>
-        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--orange);letter-spacing:2px;font-weight:700;text-transform:uppercase;">Never Do</span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--orange);letter-spacing:2px;font-weight:700;text-transform:uppercase;">Never Do</span>
       </div>
       <ul class="bullet-list">
         <li>Summarize errors in your own words</li>
@@ -874,7 +874,7 @@
     <div class="card card-accent-left" style="border-left-color:var(--gold);">
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
         <span style="font-size:20px;">🔄</span>
-        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:2px;font-weight:700;text-transform:uppercase;">Reset Signals</span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--gold);letter-spacing:2px;font-weight:700;text-transform:uppercase;">Reset Signals</span>
       </div>
       <ul class="bullet-list">
         <li>Responses start drifting or hallucinating</li>
@@ -888,7 +888,7 @@
     <div class="card card-accent-left" style="border-left-color:var(--accent);">
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
         <span style="font-size:20px;">💡</span>
-        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:2px;font-weight:700;text-transform:uppercase;">Pro Techniques</span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--accent);letter-spacing:2px;font-weight:700;text-transform:uppercase;">Pro Techniques</span>
       </div>
       <ul class="bullet-list">
         <li>Open each session with a context brief</li>
@@ -904,8 +904,8 @@
   <!-- Context meter -->
   <div class="card">
     <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px;">
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;">Context Window Health Guide</div>
-      <div style="font-size:10px;color:var(--dim);font-style:italic;">Rule of thumb — not a hard spec. Larger models (Opus) handle long context better than Haiku.</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;">Context Window Health Guide</div>
+      <div style="font-size:12px;color:var(--dim);font-style:italic;">Rule of thumb — not a hard spec. Larger models (Opus) handle long context better than Haiku.</div>
     </div>
     <div class="meter">
       <div style="flex:0.6;background:var(--green);opacity:0.7;"></div>
@@ -917,7 +917,7 @@
       <div style="display:flex;gap:7px;align-items:center;"><div class="meter-dot" style="background:var(--gold)"></div><span class="meter-label">60–80% — Monitor, watch for drift</span></div>
       <div style="display:flex;gap:7px;align-items:center;"><div class="meter-dot" style="background:var(--orange)"></div><span class="meter-label">80–100% — Consider reset; degradation likely on complex tasks</span></div>
     </div>
-    <div style="margin-top:10px;font-size:11px;color:var(--dim);">Degradation is task-dependent — creative tasks tolerate long context better than precise code generation. Watch for behavioral signals (drift, contradiction) more than raw token counts.</div>
+    <div style="margin-top:10px;font-size:13px;color:var(--dim);">Degradation is task-dependent — creative tasks tolerate long context better than precise code generation. Watch for behavioral signals (drift, contradiction) more than raw token counts.</div>
   </div>
 </div>
 
@@ -941,8 +941,8 @@
       <div style="font-size:22px;flex-shrink:0;">🎯</div>
       <div>
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
-          <span style="font-size:13px;font-weight:700;">One Job Per Prompt</span>
-          <span class="tag" style="background:rgba(63,185,80,0.1);border:1px solid rgba(63,185,80,0.3);color:var(--green);font-size:9px;">FOUNDATIONAL</span>
+          <span style="font-size:15px;font-weight:700;">One Job Per Prompt</span>
+          <span class="tag" style="background:rgba(63,185,80,0.1);border:1px solid rgba(63,185,80,0.3);color:var(--green);font-size:11px;">FOUNDATIONAL</span>
         </div>
         <div class="card-desc" style="margin:0;">Single responsibility principle applies to prompts. Don't ask Claude to design + build + test + document in one shot.</div>
       </div>
@@ -952,8 +952,8 @@
       <div style="font-size:22px;flex-shrink:0;">🗂️</div>
       <div>
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
-          <span style="font-size:13px;font-weight:700;">Use Projects for Domain Work</span>
-          <span class="tag" style="background:rgba(88,166,255,0.1);border:1px solid rgba(88,166,255,0.3);color:var(--accent);font-size:9px;">LEVERAGE</span>
+          <span style="font-size:15px;font-weight:700;">Use Projects for Domain Work</span>
+          <span class="tag" style="background:rgba(88,166,255,0.1);border:1px solid rgba(88,166,255,0.3);color:var(--accent);font-size:11px;">LEVERAGE</span>
         </div>
         <div class="card-desc" style="margin:0;">Working in the same codebase weekly? A Project with system prompt beats starting fresh every time.</div>
       </div>
@@ -963,8 +963,8 @@
       <div style="font-size:22px;flex-shrink:0;">🔁</div>
       <div>
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
-          <span style="font-size:13px;font-weight:700;">Iterative Refinement Loop</span>
-          <span class="tag" style="background:rgba(88,166,255,0.1);border:1px solid rgba(88,166,255,0.3);color:var(--accent);font-size:9px;">LEVERAGE</span>
+          <span style="font-size:15px;font-weight:700;">Iterative Refinement Loop</span>
+          <span class="tag" style="background:rgba(88,166,255,0.1);border:1px solid rgba(88,166,255,0.3);color:var(--accent);font-size:11px;">LEVERAGE</span>
         </div>
         <div class="card-desc" style="margin:0;">Generate → critique → refine is 3× better than accepting the first output. Always ask Claude to improve its own work.</div>
       </div>
@@ -974,8 +974,8 @@
       <div style="font-size:22px;flex-shrink:0;">📏</div>
       <div>
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
-          <span style="font-size:13px;font-weight:700;">Explicit Output Contracts</span>
-          <span class="tag" style="background:rgba(63,185,80,0.1);border:1px solid rgba(63,185,80,0.3);color:var(--green);font-size:9px;">FOUNDATIONAL</span>
+          <span style="font-size:15px;font-weight:700;">Explicit Output Contracts</span>
+          <span class="tag" style="background:rgba(63,185,80,0.1);border:1px solid rgba(63,185,80,0.3);color:var(--green);font-size:11px;">FOUNDATIONAL</span>
         </div>
         <div class="card-desc" style="margin:0;">"Write a function" is weak. "Write a Python function that returns X given Y, with docstring and type hints" is strong.</div>
       </div>
@@ -985,8 +985,8 @@
       <div style="font-size:22px;flex-shrink:0;">🧪</div>
       <div>
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
-          <span style="font-size:13px;font-weight:700;">Test-First Prompting</span>
-          <span class="tag" style="background:rgba(188,140,255,0.1);border:1px solid rgba(188,140,255,0.3);color:var(--purple);font-size:9px;">ADVANCED</span>
+          <span style="font-size:15px;font-weight:700;">Test-First Prompting</span>
+          <span class="tag" style="background:rgba(188,140,255,0.1);border:1px solid rgba(188,140,255,0.3);color:var(--purple);font-size:11px;">ADVANCED</span>
         </div>
         <div class="card-desc" style="margin:0;">Ask Claude to write tests before implementation. Forces understanding of acceptance criteria before writing a line of code.</div>
       </div>
@@ -996,8 +996,8 @@
       <div style="font-size:22px;flex-shrink:0;">🔐</div>
       <div>
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
-          <span style="font-size:13px;font-weight:700;">Adversarial Review Pass</span>
-          <span class="tag" style="background:rgba(188,140,255,0.1);border:1px solid rgba(188,140,255,0.3);color:var(--purple);font-size:9px;">ADVANCED</span>
+          <span style="font-size:15px;font-weight:700;">Adversarial Review Pass</span>
+          <span class="tag" style="background:rgba(188,140,255,0.1);border:1px solid rgba(188,140,255,0.3);color:var(--purple);font-size:11px;">ADVANCED</span>
         </div>
         <div class="card-desc" style="margin:0;">After any generated system: "Act as a senior engineer trying to break this. What are the failure modes and security gaps?"</div>
       </div>
@@ -1007,8 +1007,8 @@
       <div style="font-size:22px;flex-shrink:0;">📌</div>
       <div>
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
-          <span style="font-size:13px;font-weight:700;">Anchor Key Constraints</span>
-          <span class="tag" style="background:rgba(63,185,80,0.1);border:1px solid rgba(63,185,80,0.3);color:var(--green);font-size:9px;">FOUNDATIONAL</span>
+          <span style="font-size:15px;font-weight:700;">Anchor Key Constraints</span>
+          <span class="tag" style="background:rgba(63,185,80,0.1);border:1px solid rgba(63,185,80,0.3);color:var(--green);font-size:11px;">FOUNDATIONAL</span>
         </div>
         <div class="card-desc" style="margin:0;">Repeat the most important constraints at both the beginning and end of long prompts. Context window attention is not uniform.</div>
       </div>
@@ -1018,8 +1018,8 @@
       <div style="font-size:22px;flex-shrink:0;">🌐</div>
       <div>
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
-          <span style="font-size:13px;font-weight:700;">Model-Agnostic Patterns</span>
-          <span class="tag" style="background:rgba(227,179,65,0.1);border:1px solid rgba(227,179,65,0.3);color:var(--gold);font-size:9px;">UNIVERSAL</span>
+          <span style="font-size:15px;font-weight:700;">Model-Agnostic Patterns</span>
+          <span class="tag" style="background:rgba(227,179,65,0.1);border:1px solid rgba(227,179,65,0.3);color:var(--gold);font-size:11px;">UNIVERSAL</span>
         </div>
         <div class="card-desc" style="margin:0;">Every pattern in this guide applies to GPT-4, Gemini, Mistral, and others. Strong prompt architecture transcends any one model.</div>
       </div>
@@ -1049,61 +1049,61 @@
         <tr>
           <td style="color:var(--text);">Build a CLI tool (CareerOS, stockbroc-analyst)</td>
           <td style="color:var(--accent);font-weight:600;">Claude Code</td>
-          <td style="color:var(--purple);font-size:11px;">Plan → Subagents</td>
+          <td style="color:var(--purple);font-size:13px;">Plan → Subagents</td>
           <td style="color:var(--muted);">Shell access + multi-file editing + git</td>
         </tr>
         <tr>
           <td style="color:var(--text);">Write a product spec or PM doc</td>
           <td style="color:var(--green);font-weight:600;">Claude.ai Chat</td>
-          <td style="color:var(--gold);font-size:11px;">Critic-Refine Loop</td>
+          <td style="color:var(--gold);font-size:13px;">Critic-Refine Loop</td>
           <td style="color:var(--muted);">Conversational iteration on docs</td>
         </tr>
         <tr>
           <td style="color:var(--text);">Recurring code reviews or resume tailoring</td>
           <td style="color:var(--gold);font-weight:600;">Projects</td>
-          <td style="color:var(--accent);font-size:11px;">Single agent</td>
+          <td style="color:var(--accent);font-size:13px;">Single agent</td>
           <td style="color:var(--muted);">Persistent style guide & context</td>
         </tr>
         <tr>
           <td style="color:var(--text);">Stock analysis pipeline (IR → DCF → Memo)</td>
           <td style="color:var(--purple);font-weight:600;">API + Claude Code</td>
-          <td style="color:var(--orange);font-size:11px;">Prompt Chaining + Loop</td>
+          <td style="color:var(--orange);font-size:13px;">Prompt Chaining + Loop</td>
           <td style="color:var(--muted);">Waterfall pipeline with gate checks</td>
         </tr>
         <tr>
           <td style="color:var(--text);">Quick debug a function</td>
           <td style="color:var(--green);font-weight:600;">Claude.ai Chat</td>
-          <td style="color:var(--muted);font-size:11px;">None</td>
+          <td style="color:var(--muted);font-size:13px;">None</td>
           <td style="color:var(--muted);">Fast, no setup overhead needed</td>
         </tr>
         <tr>
           <td style="color:var(--text);">Power BI / Tableau dashboard build</td>
           <td style="color:var(--gold);font-weight:600;">Projects + Chat</td>
-          <td style="color:var(--gold);font-size:11px;">Chaining</td>
+          <td style="color:var(--gold);font-size:13px;">Chaining</td>
           <td style="color:var(--muted);">Domain docs persistent + iterative build</td>
         </tr>
         <tr>
           <td style="color:var(--text);">YouTube script (StockBroc)</td>
           <td style="color:var(--gold);font-weight:600;">Projects</td>
-          <td style="color:var(--accent);font-size:11px;">Critic-Refine</td>
+          <td style="color:var(--accent);font-size:13px;">Critic-Refine</td>
           <td style="color:var(--muted);">Voice/style always loaded, refine to match</td>
         </tr>
         <tr>
           <td style="color:var(--text);">App with AI features (habit tracker)</td>
           <td style="color:var(--purple);font-weight:600;">API / Artifacts</td>
-          <td style="color:var(--purple);font-size:11px;">Orchestrator + Subagents</td>
+          <td style="color:var(--purple);font-size:13px;">Orchestrator + Subagents</td>
           <td style="color:var(--muted);">Embed Claude in the product directly</td>
         </tr>
         <tr>
           <td style="color:var(--text);">Refactor a large repo</td>
           <td style="color:var(--accent);font-weight:600;">Claude Code</td>
-          <td style="color:var(--orange);font-size:11px;">Plan → Eval-Fix Loop</td>
+          <td style="color:var(--orange);font-size:13px;">Plan → Eval-Fix Loop</td>
           <td style="color:var(--muted);">Full repo context + test loop for safety</td>
         </tr>
         <tr>
           <td style="color:var(--text);">BOM extraction pipeline (Tesla)</td>
           <td style="color:var(--accent);font-weight:600;">Claude Code</td>
-          <td style="color:var(--gold);font-size:11px;">Chaining</td>
+          <td style="color:var(--gold);font-size:13px;">Chaining</td>
           <td style="color:var(--muted);">Parse → validate → consolidate → output</td>
         </tr>
       </tbody>
@@ -1112,7 +1112,7 @@
 
   <!-- Decision tree -->
   <div class="card">
-    <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:16px;">Quick Decision Tree</div>
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:16px;">Quick Decision Tree</div>
     <div class="decision-row">
       <span class="decision-q">Does it touch multiple files or need shell access?</span>
       <span class="decision-a" style="color:var(--accent);">→ Claude Code</span>
@@ -1160,7 +1160,7 @@
   position:fixed;bottom:28px;right:28px;
   background:var(--surface);border:1px solid var(--border);
   color:var(--muted);border-radius:8px;
-  padding:9px 14px;font-size:12px;font-family:'IBM Plex Mono',monospace;
+  padding:9px 14px;font-size:14px;font-family:'IBM Plex Mono',monospace;
   cursor:pointer;opacity:0;transition:opacity 0.2s;z-index:200;
   letter-spacing:1px;
 ">↑ TOP</button>
