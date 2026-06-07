@@ -4,24 +4,29 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Claude Power User Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
-
   :root {
-    --bg: #0a0c10;
-    --surface: #111318;
-    --card: #161b22;
-    --border: #21262d;
-    --accent: #58a6ff;
-    --gold: #e3b341;
-    --green: #3fb950;
-    --purple: #bc8cff;
-    --orange: #f78166;
-    --red: #ff6b6b;
-    --teal: #39d0d8;
-    --text: #e6edf3;
-    --muted: #8b949e;
-    --dim: #484f58;
+    --bg: #0c0c14;
+    --surface: #12121c;
+    --card: #1a1a2e;
+    --card-hover: #1f1f36;
+    --border: #2a2a40;
+    --border-light: #33335a;
+    --accent: #7c5cfc;
+    --accent-light: #9b82fc;
+    --accent-glow: rgba(124,92,252,0.15);
+    --blue: #5b9cf6;
+    --green: #34d399;
+    --gold: #fbbf24;
+    --orange: #fb923c;
+    --red: #f87171;
+    --teal: #2dd4bf;
+    --pink: #f472b6;
+    --text: #e8e8f0;
+    --text-secondary: #9d9db8;
+    --text-dim: #5e5e7a;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -29,94 +34,313 @@
   body {
     background: var(--bg);
     color: var(--text);
-    font-family: 'IBM Plex Sans', system-ui, sans-serif;
-    font-size: 17px;
-    line-height: 1.6;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+    display: flex;
+    min-height: 100vh;
   }
 
-  /* ── HEADER ── */
-  .header {
+  /* ── SIDEBAR ── */
+  .sidebar {
+    width: 260px;
     background: var(--surface);
+    border-right: 1px solid var(--border);
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    overflow-y: auto;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+  }
+
+  .sidebar-logo {
+    padding: 24px 24px 20px;
     border-bottom: 1px solid var(--border);
-    padding: 28px 40px 0;
+  }
+  .sidebar-logo h1 {
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .sidebar-logo h1 .logo-icon {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, var(--accent), var(--blue));
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .sidebar-logo .subtitle {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 4px;
+    font-weight: 500;
+  }
+
+  .sidebar-search {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .sidebar-search input {
+    width: 100%;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 9px 12px 9px 34px;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 13px;
+    outline: none;
+    transition: border-color 0.15s;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%235e5e7a' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85zm-5.242.656a5 5 0 1 1 0-10 5 5 0 0 1 0 10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: 10px center;
+  }
+  .sidebar-search input::placeholder { color: var(--text-dim); }
+  .sidebar-search input:focus { border-color: var(--accent); }
+
+  .sidebar-nav {
+    flex: 1;
+    padding: 12px 0;
+    overflow-y: auto;
+  }
+  .nav-group-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-dim);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 16px 24px 8px;
+  }
+  .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 24px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.12s;
+    border-left: 3px solid transparent;
+    cursor: pointer;
+  }
+  .nav-link:hover {
+    color: var(--text);
+    background: var(--accent-glow);
+  }
+  .nav-link.active {
+    color: var(--accent-light);
+    background: var(--accent-glow);
+    border-left-color: var(--accent);
+  }
+  .nav-link .nav-icon { font-size: 16px; width: 20px; text-align: center; flex-shrink: 0; }
+  .nav-link .nav-badge {
+    margin-left: auto;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1px 8px;
+    font-size: 11px;
+    color: var(--text-dim);
+    font-weight: 600;
+  }
+
+  .sidebar-footer {
+    padding: 16px 24px;
+    border-top: 1px solid var(--border);
+    font-size: 11px;
+    color: var(--text-dim);
+  }
+
+  /* ── MAIN CONTENT ── */
+  .main {
+    margin-left: 260px;
+    flex: 1;
+    min-height: 100vh;
+  }
+
+  /* Top bar */
+  .topbar {
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 50;
+    background: rgba(12,12,20,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
-  .header-meta { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--muted); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 6px; }
-  .header h1 { font-family: 'IBM Plex Mono', monospace; font-size: 22px; font-weight: 700; margin-bottom: 20px; letter-spacing: -0.5px; }
-  .header h1 .accent { color: var(--accent); }
-  .header h1 .slash { color: var(--dim); }
-
-  nav { display: flex; gap: 0; overflow-x: auto; }
-  nav a {
-    display: block;
-    padding: 10px 18px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 13px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--muted);
-    text-decoration: none;
-    border-bottom: 2px solid transparent;
-    white-space: nowrap;
-    transition: all 0.15s;
+  .topbar-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
   }
-  nav a:hover { color: var(--accent); }
+  .topbar-tags { display: flex; gap: 8px; }
+  .topbar-tag {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 6px;
+    letter-spacing: 0.3px;
+  }
 
-  /* ── SECTIONS ── */
-  .section { padding: 36px 40px; border-bottom: 1px solid var(--border); }
+  /* Content area */
+  .content { padding: 36px 40px 60px; max-width: 1100px; }
+
+  /* Section */
+  .section {
+    margin-bottom: 48px;
+    scroll-margin-top: 80px;
+  }
+  .section-header {
+    margin-bottom: 24px;
+  }
   .section-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
-    color: var(--muted);
-    letter-spacing: 3px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 2px;
     text-transform: uppercase;
     margin-bottom: 6px;
   }
   .section-title {
-    font-size: 20px;
-    font-weight: 700;
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
     margin-bottom: 8px;
-    letter-spacing: -0.3px;
+    line-height: 1.2;
   }
-  .section-desc { color: var(--muted); font-size: 15px; max-width: 680px; margin-bottom: 28px; }
+  .section-desc {
+    color: var(--text-secondary);
+    font-size: 15px;
+    max-width: 700px;
+    line-height: 1.7;
+  }
 
-  /* ── CARDS GRID ── */
-  .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  /* ── CARDS ── */
+  .grid { display: grid; gap: 16px; }
+  .grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid-4 { grid-template-columns: repeat(4, 1fr); }
 
   .card {
     background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 22px;
+    border-radius: 12px;
+    padding: 24px;
+    transition: all 0.15s ease;
     position: relative;
-    overflow: hidden;
   }
-  .card-accent-top { border-top: 2px solid; }
-  .card-accent-left { border-left: 3px solid; }
+  .card:hover {
+    background: var(--card-hover);
+    border-color: var(--border-light);
+    transform: translateY(-1px);
+  }
 
-  .card-icon { font-size: 22px; margin-bottom: 10px; display: block; }
-  .card-step { font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 2px; font-weight: 700; margin-bottom: 2px; }
-  .card-title { font-size: 16px; font-weight: 700; margin-bottom: 10px; }
-  .card-desc { font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 12px; }
+  .card-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    margin-bottom: 14px;
+    flex-shrink: 0;
+  }
+  .card-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .card-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+  .card-desc {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
 
-  /* ── BULLETS ── */
-  .bullet-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
-  .bullet-list li { display: flex; gap: 8px; align-items: flex-start; font-size: 14px; color: var(--muted); line-height: 1.5; }
-  .bullet-list li::before { content: '◆'; font-size: 11px; margin-top: 3px; flex-shrink: 0; }
+  /* Bullets */
+  .bullet-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .bullet-list li {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+  .bullet-list li::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--border-light);
+    margin-top: 7px;
+    flex-shrink: 0;
+  }
 
-  /* ── TAGS ── */
-  .tag { display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 12px; padding: 3px 9px; border-radius: 4px; letter-spacing: 0.5px; }
-  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  /* Tags */
+  .tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 6px;
+    letter-spacing: 0.3px;
+  }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+
+  /* ── FLOW ── */
+  .flow {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+  }
+  .flow-node {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 7px 16px;
+    border-radius: 20px;
+    border: 1px solid;
+  }
+  .flow-arrow { color: var(--text-dim); font-size: 16px; }
 
   /* ── PHASE STEPS ── */
   .phase-row {
     display: flex;
     gap: 0;
-    margin-bottom: 28px;
+    margin-bottom: 24px;
     align-items: stretch;
   }
   .phase-step {
@@ -124,108 +348,98 @@
     background: var(--card);
     border: 1px solid var(--border);
     border-right: none;
-    padding: 20px;
+    padding: 22px;
   }
-  .phase-step:first-child { border-radius: 8px 0 0 8px; }
-  .phase-step:last-child { border-right: 1px solid var(--border); border-radius: 0 8px 8px 0; }
+  .phase-step:first-child { border-radius: 12px 0 0 12px; }
+  .phase-step:last-child { border-right: 1px solid var(--border); border-radius: 0 12px 12px 0; }
   .phase-arrow {
     display: flex;
     align-items: center;
     background: var(--surface);
-    padding: 0 6px;
-    color: var(--dim);
-    font-size: 18px;
+    padding: 0 8px;
+    color: var(--text-dim);
+    font-size: 16px;
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
   }
 
   /* ── TABLE ── */
+  .table-wrap {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
   table { width: 100%; border-collapse: collapse; }
-  thead tr { background: var(--surface); }
+  thead tr { background: rgba(124,92,252,0.06); }
   th {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
-    letter-spacing: 2px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
-    color: var(--dim);
-    padding: 12px 16px;
+    color: var(--text-dim);
+    padding: 14px 18px;
     text-align: left;
     border-bottom: 1px solid var(--border);
   }
-  td { padding: 13px 16px; font-size: 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
-  tr:nth-child(even) td { background: rgba(17,19,24,0.6); }
+  td {
+    padding: 14px 18px;
+    font-size: 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
   tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(124,92,252,0.03); }
 
-  /* ── CALLOUT BOX ── */
+  /* ── CALLOUT ── */
   .callout {
-    border-radius: 8px;
-    padding: 16px 20px;
+    border-radius: 12px;
+    padding: 18px 22px;
     font-size: 14px;
     line-height: 1.7;
-    margin-top: 16px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .callout-icon {
+    font-size: 18px;
+    flex-shrink: 0;
+    margin-top: 1px;
   }
 
-  /* ── FLOW DIAGRAM ── */
-  .flow {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 8px;
+  /* ── TIER BLOCKS (subagents) ── */
+  .tier-block {
     background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 20px 24px;
-    margin-bottom: 20px;
-  }
-  .flow-node {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 14px;
-    font-weight: 600;
-    padding: 6px 14px;
-    border-radius: 20px;
-    border: 1px solid;
-  }
-  .flow-arrow { color: var(--dim); font-size: 18px; }
-
-  /* ── DECISION TREE ── */
-  .decision-row {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    padding: 13px 0;
-    border-bottom: 1px solid var(--border);
-  }
-  .decision-row:last-child { border-bottom: none; }
-  .decision-q { flex: 1; font-size: 14px; color: var(--muted); }
-  .decision-a { font-family: 'IBM Plex Mono', monospace; font-size: 14px; font-weight: 700; flex-shrink: 0; min-width: 180px; }
-
-  /* ── CONTEXT METER ── */
-  .meter { display: flex; height: 20px; border-radius: 4px; overflow: hidden; margin: 12px 0; }
-  .meter-legend { display: flex; gap: 24px; }
-  .meter-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
-  .meter-label { font-size: 13px; color: var(--muted); }
-
-  /* ── SUBAGENTS SECTION ── */
-  .agent-tier {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    margin-bottom: 14px;
+    border-radius: 12px;
+    margin-bottom: 16px;
     overflow: hidden;
   }
-  .agent-tier-header {
+  .tier-header {
     display: flex;
     align-items: center;
     gap: 14px;
-    padding: 16px 20px;
+    padding: 18px 22px;
     border-bottom: 1px solid var(--border);
   }
-  .agent-tier-body { padding: 16px 20px; }
+  .tier-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .tier-body { padding: 20px 22px; }
 
+  /* ── LOOP BOX ── */
   .loop-box {
     border: 2px dashed;
-    border-radius: 10px;
-    padding: 20px;
+    border-radius: 12px;
+    padding: 22px;
     margin-bottom: 16px;
     position: relative;
   }
@@ -233,11 +447,11 @@
     position: absolute;
     top: -11px;
     left: 16px;
-    background: var(--bg);
-    padding: 0 8px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
-    letter-spacing: 2px;
+    background: var(--card);
+    padding: 0 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
     font-weight: 700;
   }
@@ -245,925 +459,1004 @@
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 6px;
+    gap: 8px;
   }
   .loop-step {
-    font-size: 14px;
-    padding: 6px 12px;
-    border-radius: 6px;
-    border: 1px solid;
+    font-size: 13px;
     font-weight: 600;
+    padding: 7px 14px;
+    border-radius: 8px;
+    border: 1px solid;
   }
 
+  /* ── DECISION TREE ── */
+  .decision-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .decision-row:last-child { border-bottom: none; }
+  .decision-q { flex: 1; font-size: 14px; color: var(--text-secondary); }
+  .decision-a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    flex-shrink: 0;
+    min-width: 200px;
+  }
+
+  /* ── METER ── */
+  .meter { display: flex; height: 22px; border-radius: 6px; overflow: hidden; margin: 12px 0; }
+  .meter-legend { display: flex; gap: 24px; flex-wrap: wrap; }
+  .meter-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+  .meter-label { font-size: 13px; color: var(--text-secondary); }
+
   /* ── FOOTER ── */
-  footer {
-    background: var(--surface);
+  .footer-bar {
     border-top: 1px solid var(--border);
-    padding: 16px 40px;
+    padding: 20px 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-size: 12px;
+    color: var(--text-dim);
   }
-  footer span { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--dim); letter-spacing: 1px; }
 
-  @media (max-width: 768px) {
-    .header, .section { padding-left: 20px; padding-right: 20px; }
+  /* ── MOBILE ── */
+  @media (max-width: 900px) {
+    .sidebar { display: none; }
+    .main { margin-left: 0; }
+    .content { padding: 24px 20px 40px; }
+    .topbar { padding: 14px 20px; }
     .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
     .phase-row { flex-direction: column; }
-    .phase-step { border-right: 1px solid var(--border); border-bottom: none; border-radius: 0; }
-    .phase-step:first-child { border-radius: 8px 8px 0 0; }
-    .phase-step:last-child { border-bottom: 1px solid var(--border); border-radius: 0 0 8px 8px; }
+    .phase-step { border-right: 1px solid var(--border); border-bottom: none; border-radius: 0 !important; }
+    .phase-step:first-child { border-radius: 12px 12px 0 0 !important; }
+    .phase-step:last-child { border-bottom: 1px solid var(--border); border-radius: 0 0 12px 12px !important; }
     .phase-arrow { display: none; }
+    .decision-row { flex-direction: column; gap: 6px; align-items: flex-start; }
+    .decision-a { min-width: 0; }
   }
 </style>
 </head>
 <body>
 
-<!-- ══════════════════════════════════════════════ HEADER -->
-<div class="header">
-  <div class="header-meta">Power User Reference &nbsp;·&nbsp; v2.0 &nbsp;·&nbsp; Model-Agnostic</div>
-  <h1><span class="accent">Claude</span><span class="slash"> /</span> Master Process Map</h1>
-  <nav>
-    <a href="#overview">Overview</a>
-    <a href="#plan-mode">Plan Mode</a>
-    <a href="#dev-pipeline">Dev Pipeline</a>
-    <a href="#subagents">Subagents & Loops</a>
-    <a href="#context">Context Hygiene</a>
-    <a href="#best-practices">Best Practices</a>
-    <a href="#tool-selection">Tool Selection</a>
+<!-- ══════ SIDEBAR ══════ -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <h1>
+      <span class="logo-icon">C</span>
+      <span>Claude Map</span>
+    </h1>
+    <div class="subtitle">Power User Reference Guide</div>
+  </div>
+
+  <div class="sidebar-search">
+    <input type="text" placeholder="Search sections..." id="sidebar-search">
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-group-label">Getting Started</div>
+    <a class="nav-link active" href="#overview">
+      <span class="nav-icon">&#9671;</span> The Four Surfaces
+      <span class="nav-badge">4</span>
+    </a>
+    <a class="nav-link" href="#plan-mode">
+      <span class="nav-icon">&#9881;</span> Plan Mode
+    </a>
+
+    <div class="nav-group-label">Build</div>
+    <a class="nav-link" href="#dev-pipeline">
+      <span class="nav-icon">&#9654;</span> Dev Pipeline
+      <span class="nav-badge">6</span>
+    </a>
+    <a class="nav-link" href="#subagents">
+      <span class="nav-icon">&#10226;</span> Subagents & Loops
+      <span class="nav-badge">4</span>
+    </a>
+
+    <div class="nav-group-label">Optimize</div>
+    <a class="nav-link" href="#context">
+      <span class="nav-icon">&#9783;</span> Context Hygiene
+    </a>
+    <a class="nav-link" href="#best-practices">
+      <span class="nav-icon">&#10003;</span> Best Practices
+      <span class="nav-badge">8</span>
+    </a>
+    <a class="nav-link" href="#tool-selection">
+      <span class="nav-icon">&#9776;</span> Tool Selection
+    </a>
   </nav>
-</div>
 
+  <div class="sidebar-footer">
+    v2.1 &middot; Model-agnostic &middot; Works with any frontier LLM
+  </div>
+</aside>
 
-<!-- ══════════════════════════════════════════════ 1. OVERVIEW -->
-<div class="section" id="overview">
-  <div class="section-label">Section 01</div>
-  <div class="section-title">The Four Claude Surfaces</div>
-  <p class="section-desc">Power users know which tool to reach for — and how to combine them. Each surface has a distinct capability profile. Mismatching surface to task is the #1 efficiency killer.</p>
+<!-- ══════ MAIN ══════ -->
+<div class="main">
 
-  <div class="grid-2" style="margin-bottom:24px;">
-
-    <div class="card card-accent-left" style="border-left-color: var(--accent);">
-      <span class="card-icon">⚡</span>
-      <div class="card-step" style="color:var(--accent);">Claude Code</div>
-      <div class="card-title">Agentic CLI</div>
-      <div class="card-desc">Multi-file edits, shell access, full repo context. Your power tool for building and refactoring systems end-to-end.</div>
-      <ul class="bullet-list">
-        <li style="--dot-color:var(--accent)">Large codebases & multi-file edits</li>
-        <li>Shell commands + filesystem I/O</li>
-        <li>GitHub integration & git workflows</li>
-        <li>Multi-step agentic builds</li>
-      </ul>
-      <div class="tags">
-        <span class="tag" style="background:rgba(88,166,255,0.1);border:1px solid rgba(88,166,255,0.3);color:var(--accent)">Subagents</span>
-        <span class="tag" style="background:rgba(88,166,255,0.1);border:1px solid rgba(88,166,255,0.3);color:var(--accent)">Plan Mode</span>
-        <span class="tag" style="background:rgba(88,166,255,0.1);border:1px solid rgba(88,166,255,0.3);color:var(--accent)">Loops</span>
-      </div>
-    </div>
-
-    <div class="card card-accent-left" style="border-left-color: var(--gold);">
-      <span class="card-icon">📁</span>
-      <div class="card-step" style="color:var(--gold);">Projects</div>
-      <div class="card-title">Persistent Context</div>
-      <div class="card-desc">System prompts + uploaded knowledge that persists across every conversation in the project. Your domain knowledge layer.</div>
-      <ul class="bullet-list">
-        <li>Codebase docs & architecture notes</li>
-        <li>Personal style guides & voice</li>
-        <li>Recurring workflow templates</li>
-        <li>Domain expertise injection</li>
-      </ul>
-      <div class="tags">
-        <span class="tag" style="background:rgba(227,179,65,0.1);border:1px solid rgba(227,179,65,0.3);color:var(--gold)">Always-on context</span>
-        <span class="tag" style="background:rgba(227,179,65,0.1);border:1px solid rgba(227,179,65,0.3);color:var(--gold)">System prompt</span>
-      </div>
-    </div>
-
-    <div class="card card-accent-left" style="border-left-color: var(--green);">
-      <span class="card-icon">💬</span>
-      <div class="card-step" style="color:var(--green);">Claude.ai Chat</div>
-      <div class="card-title">Interactive Sessions</div>
-      <div class="card-desc">Fastest path for ideation, writing, analysis, and one-off tasks. No setup overhead — just prompt and iterate.</div>
-      <ul class="bullet-list">
-        <li>Brainstorming & rapid ideation</li>
-        <li>Document & script drafts</li>
-        <li>Quick research & analysis</li>
-        <li>Learning concepts & Q&A</li>
-      </ul>
-      <div class="tags">
-        <span class="tag" style="background:rgba(63,185,80,0.1);border:1px solid rgba(63,185,80,0.3);color:var(--green)">No setup</span>
-        <span class="tag" style="background:rgba(63,185,80,0.1);border:1px solid rgba(63,185,80,0.3);color:var(--green)">Fast iteration</span>
-      </div>
-    </div>
-
-    <div class="card card-accent-left" style="border-left-color: var(--purple);">
-      <span class="card-icon">🤖</span>
-      <div class="card-step" style="color:var(--purple);">API / Artifacts</div>
-      <div class="card-title">Embedded Intelligence</div>
-      <div class="card-desc">Build Claude into your own tools. Artifacts ship AI-powered UIs directly in chat. API enables custom agents and pipelines.</div>
-      <ul class="bullet-list">
-        <li>Custom agents & MCP integrations</li>
-        <li>AI-powered product features</li>
-        <li>Automated analysis pipelines</li>
-        <li>Interactive Artifact UIs</li>
-      </ul>
-      <div class="tags">
-        <span class="tag" style="background:rgba(188,140,255,0.1);border:1px solid rgba(188,140,255,0.3);color:var(--purple)">Subagents</span>
-        <span class="tag" style="background:rgba(188,140,255,0.1);border:1px solid rgba(188,140,255,0.3);color:var(--purple)">Dynamic workflows</span>
-      </div>
+  <div class="topbar">
+    <span class="topbar-title" id="topbar-label">The Four Surfaces</span>
+    <div class="topbar-tags">
+      <span class="topbar-tag" style="background:rgba(124,92,252,0.12);color:var(--accent-light);">Claude</span>
+      <span class="topbar-tag" style="background:rgba(91,156,246,0.12);color:var(--blue);">GPT-4</span>
+      <span class="topbar-tag" style="background:rgba(52,211,153,0.12);color:var(--green);">Gemini</span>
+      <span class="topbar-tag" style="background:rgba(251,191,36,0.12);color:var(--gold);">Mistral</span>
     </div>
   </div>
 
-  <!-- Workflow hierarchy flow -->
-  <div class="flow">
-    <div class="flow-node" style="color:var(--accent);border-color:rgba(88,166,255,0.4);background:rgba(88,166,255,0.08)">Define scope</div>
-    <span class="flow-arrow">→</span>
-    <div class="flow-node" style="color:var(--gold);border-color:rgba(227,179,65,0.4);background:rgba(227,179,65,0.08)">Load context</div>
-    <span class="flow-arrow">→</span>
-    <div class="flow-node" style="color:var(--green);border-color:rgba(63,185,80,0.4);background:rgba(63,185,80,0.08)">Plan / outline-first</div>
-    <span class="flow-arrow">→</span>
-    <div class="flow-node" style="color:var(--purple);border-color:rgba(188,140,255,0.4);background:rgba(188,140,255,0.08)">Incremental build</div>
-    <span class="flow-arrow">→</span>
-    <div class="flow-node" style="color:var(--orange);border-color:rgba(247,129,102,0.4);background:rgba(247,129,102,0.08)">Self-review</div>
-    <span class="flow-arrow">→</span>
-    <div class="flow-node" style="color:var(--teal);border-color:rgba(57,208,216,0.4);background:rgba(57,208,216,0.08)">Ship + document</div>
-  </div>
-</div>
+  <div class="content">
 
-
-<!-- ══════════════════════════════════════════════ 2. PLAN MODE -->
-<div class="section" id="plan-mode">
-  <div class="section-label">Section 02</div>
-  <div class="section-title">Plan Mode &amp; Outline-First Prompting</div>
-  <p class="section-desc">Never let Claude write code on an ambiguous brief. Think of yourself as the senior engineer — Claude is the junior. Your job is to define, review, approve. <strong>Plan Mode</strong> is a Claude Code-specific feature (<code style="background:rgba(88,166,255,0.12);color:var(--accent);padding:1px 6px;border-radius:3px;font-size:13px;">claude --plan</code> flag or triggered interactively) where Claude proposes all file changes without executing them until you approve. In Claude.ai chat and the API, the equivalent discipline is <strong>Outline-First Prompting</strong> — explicitly asking Claude to outline before writing.</p>
-
-  <!-- Surface clarity banner -->
-  <div style="display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap;">
-    <div style="background:rgba(88,166,255,0.08);border:1px solid rgba(88,166,255,0.3);border-radius:6px;padding:10px 16px;font-size:14px;flex:1;min-width:220px;">
-      <span style="color:var(--accent);font-weight:700;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:1px;">⚡ CLAUDE CODE</span><br>
-      <span style="color:var(--muted);margin-top:4px;display:block;">Use <code style="color:var(--accent);">--plan</code> flag or type <code style="color:var(--accent);">/plan</code> in session. Claude proposes changes as a structured diff preview — no files are touched until you explicitly approve each step.</span>
-    </div>
-    <div style="background:rgba(63,185,80,0.08);border:1px solid rgba(63,185,80,0.3);border-radius:6px;padding:10px 16px;font-size:14px;flex:1;min-width:220px;">
-      <span style="color:var(--green);font-weight:700;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:1px;">💬 CHAT / API</span><br>
-      <span style="color:var(--muted);margin-top:4px;display:block;">No native plan mode. Use <strong>Outline-First Prompting</strong>: ask Claude to list its approach and assumptions before writing anything. You review the outline, then say "proceed."</span>
-    </div>
-  </div>
-
-  <div class="phase-row">
-    <div class="phase-step" style="border-top: 2px solid var(--accent);">
-      <div class="card-step" style="color:var(--accent);">🎯 TRIGGER</div>
-      <div class="card-title" style="font-size:15px;margin-bottom:8px;">Enter Planning Phase</div>
-      <ul class="bullet-list">
-        <li><strong>Claude Code:</strong> <code style="color:var(--accent);font-size:12px;">claude --plan</code> or <code style="color:var(--accent);font-size:12px;">/plan</code> in session</li>
-        <li><strong>Chat/API:</strong> "Outline your approach before writing any code"</li>
-        <li>State the problem in 1–2 sentences</li>
-        <li>List files/systems that will be touched</li>
-      </ul>
-    </div>
-    <div class="phase-arrow">→</div>
-    <div class="phase-step" style="border-top: 2px solid var(--gold);">
-      <div class="card-step" style="color:var(--gold);">🔒 SCOPE LOCK</div>
-      <div class="card-title" style="font-size:15px;margin-bottom:8px;">Before any run</div>
-      <ul class="bullet-list">
-        <li>Define explicit success criteria</li>
-        <li>Name files that must NOT be touched</li>
-        <li>Set output format expectations</li>
-        <li>Agree on error handling approach</li>
-      </ul>
-    </div>
-    <div class="phase-arrow">→</div>
-    <div class="phase-step" style="border-top: 2px solid var(--green);">
-      <div class="card-step" style="color:var(--green);">✅ REVIEW</div>
-      <div class="card-title" style="font-size:15px;margin-bottom:8px;">After plan is proposed</div>
-      <ul class="bullet-list">
-        <li>Read every step mentally before approving</li>
-        <li>Flag any step that's too broad</li>
-        <li>Ask "What could go wrong at step X?"</li>
-        <li>In Claude Code: inspect proposed edits before accepting</li>
-      </ul>
-    </div>
-    <div class="phase-arrow">→</div>
-    <div class="phase-step" style="border-top: 2px solid var(--purple);">
-      <div class="card-step" style="color:var(--purple);">🚀 EXECUTE</div>
-      <div class="card-title" style="font-size:15px;margin-bottom:8px;">After approval</div>
-      <ul class="bullet-list">
-        <li>Watch context usage — bail if bloating</li>
-        <li>Interrupt immediately if it deviates from plan</li>
-        <li>Commit checkpoints to git frequently</li>
-        <li>Test after each logical unit, not at the end</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="callout" style="background:rgba(227,179,65,0.08);border:1px solid rgba(227,179,65,0.25);color:var(--gold);">
-    💡 <strong>Rule of thumb:</strong> If the task touches more than 2 files or takes more than 10 minutes to write manually — planning is not optional. In Claude Code, use <code style="color:var(--gold);">--plan</code>. In chat, ask for an outline first. Ambiguous scope = expensive rewrites.
-  </div>
-</div>
-
-
-<!-- ══════════════════════════════════════════════ 3. DEV PIPELINE -->
-<div class="section" id="dev-pipeline">
-  <div class="section-label">Section 03</div>
-  <div class="section-title">Development Pipeline</div>
-  <p class="section-desc">A repeatable 6-step loop for any system build — CLI tools, data pipelines, web apps, automation agents, analysis scripts.</p>
-
-  <div class="grid-3">
-
-    <div class="card card-accent-top" style="border-top-color:var(--accent);">
-      <div class="card-step" style="color:var(--accent);">STEP 01</div>
-      <span class="card-icon">📂</span>
-      <div class="card-title">Context Loading</div>
-      <ul class="bullet-list">
-        <li>Feed architecture docs & README first</li>
-        <li>Include relevant schemas or data models</li>
-        <li>Paste full error logs — never summarize</li>
-        <li>Add style guides or linting rules</li>
-      </ul>
-    </div>
-
-    <div class="card card-accent-top" style="border-top-color:var(--gold);">
-      <div class="card-step" style="color:var(--gold);">STEP 02</div>
-      <span class="card-icon">🧠</span>
-      <div class="card-title">Problem Framing</div>
-      <ul class="bullet-list">
-        <li>State what you have vs. what you want</li>
-        <li>Give a concrete example of desired output</li>
-        <li>Mention constraints (lang, deps, perf)</li>
-        <li>Say what you've already tried</li>
-      </ul>
-    </div>
-
-    <div class="card card-accent-top" style="border-top-color:var(--green);">
-      <div class="card-step" style="color:var(--green);">STEP 03</div>
-      <span class="card-icon">📋</span>
-      <div class="card-title">Plan Approval</div>
-      <ul class="bullet-list">
-        <li>Request outline before code generation</li>
-        <li>Validate approach against your mental model</li>
-        <li>Check for unintended side effects</li>
-        <li>Ask: "What assumptions are you making?"</li>
-      </ul>
-    </div>
-
-    <div class="card card-accent-top" style="border-top-color:var(--purple);">
-      <div class="card-step" style="color:var(--purple);">STEP 04</div>
-      <span class="card-icon">🔧</span>
-      <div class="card-title">Incremental Build</div>
-      <ul class="bullet-list">
-        <li>Build one module at a time</li>
-        <li>Test each module before moving on</li>
-        <li>Use TODOs to defer scope for next turn</li>
-        <li>Avoid monster prompts that do everything</li>
-      </ul>
-    </div>
-
-    <div class="card card-accent-top" style="border-top-color:var(--orange);">
-      <div class="card-step" style="color:var(--orange);">STEP 05</div>
-      <span class="card-icon">🔍</span>
-      <div class="card-title">Review & Harden</div>
-      <ul class="bullet-list">
-        <li>Ask Claude to critique its own code</li>
-        <li>Request edge case enumeration</li>
-        <li>Ask: "What would break this in prod?"</li>
-        <li>Run a separate security review prompt</li>
-      </ul>
-    </div>
-
-    <div class="card card-accent-top" style="border-top-color:var(--teal);">
-      <div class="card-step" style="color:var(--teal);">STEP 06</div>
-      <span class="card-icon">📦</span>
-      <div class="card-title">Document & Ship</div>
-      <ul class="bullet-list">
-        <li>Have Claude write inline docstrings</li>
-        <li>Generate handoff README or SOP</li>
-        <li>Log what was built and why</li>
-        <li>Archive the full conversation</li>
-      </ul>
-    </div>
-
-  </div>
-</div>
-
-
-<!-- ══════════════════════════════════════════════ 4. SUBAGENTS & LOOPS -->
-<div class="section" id="subagents">
-  <div class="section-label">Section 04</div>
-  <div class="section-title">Subagents, Dynamic Workflows & Loops</div>
-  <p class="section-desc">The most powerful Claude patterns go beyond a single prompt-response. Orchestration — chaining agents, spawning subagents, and building feedback loops — is where you unlock order-of-magnitude productivity gains.</p>
-
-  <!-- Orchestration tiers -->
-  <div style="margin-bottom:32px;">
-    <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">Orchestration Tiers</div>
-
-    <div class="agent-tier">
-      <div class="agent-tier-header" style="background:rgba(88,166,255,0.06);">
-        <div style="width:36px;height:36px;border-radius:8px;background:rgba(88,166,255,0.15);border:1px solid rgba(88,166,255,0.3);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">🎯</div>
-        <div>
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--accent);letter-spacing:2px;font-weight:700;">TIER 1 — SINGLE AGENT</div>
-          <div style="font-size:15px;font-weight:600;color:var(--text);">One Claude, one task, one session</div>
-        </div>
-        <div style="margin-left:auto;"><span class="tag" style="background:rgba(88,166,255,0.1);border:1px solid rgba(88,166,255,0.3);color:var(--accent);">Default</span></div>
+    <!-- ══════ 1. OVERVIEW ══════ -->
+    <div class="section" id="overview">
+      <div class="section-header">
+        <div class="section-label">Section 01</div>
+        <div class="section-title">The Four Claude Surfaces</div>
+        <p class="section-desc">Power users know which tool to reach for and how to combine them. Each surface has a distinct capability profile. Mismatching surface to task is the #1 efficiency killer.</p>
       </div>
-      <div class="agent-tier-body">
-        <div class="grid-2" style="gap:12px;">
-          <div>
-            <div style="font-size:13px;color:var(--muted);margin-bottom:8px;">✅ Use when:</div>
-            <ul class="bullet-list">
-              <li>Task is well-scoped and fits in one context window</li>
-              <li>Output is a single file, document, or answer</li>
-              <li>No parallelization needed</li>
-              <li>Quick iteration more valuable than automation</li>
-            </ul>
+
+      <div class="grid grid-2" style="margin-bottom:24px;">
+
+        <div class="card">
+          <div class="card-icon" style="background:rgba(124,92,252,0.15);border:1px solid rgba(124,92,252,0.3);">&#9889;</div>
+          <div class="card-label" style="color:var(--accent);">Claude Code</div>
+          <div class="card-title">Agentic CLI</div>
+          <div class="card-desc">Multi-file edits, shell access, full repo context. Your power tool for building and refactoring systems end-to-end.</div>
+          <ul class="bullet-list">
+            <li>Large codebases & multi-file edits</li>
+            <li>Shell commands + filesystem I/O</li>
+            <li>GitHub integration & git workflows</li>
+            <li>Multi-step agentic builds</li>
+          </ul>
+          <div class="tags">
+            <span class="tag" style="background:rgba(124,92,252,0.1);border:1px solid rgba(124,92,252,0.3);color:var(--accent-light)">Subagents</span>
+            <span class="tag" style="background:rgba(124,92,252,0.1);border:1px solid rgba(124,92,252,0.3);color:var(--accent-light)">Plan Mode</span>
+            <span class="tag" style="background:rgba(124,92,252,0.1);border:1px solid rgba(124,92,252,0.3);color:var(--accent-light)">Loops</span>
           </div>
-          <div>
-            <div style="font-size:13px;color:var(--muted);margin-bottom:8px;">🔑 Key patterns:</div>
-            <ul class="bullet-list">
-              <li>Plan → Execute → Review in one session</li>
-              <li>Multi-turn refinement within one conversation (not a pipeline)</li>
-              <li>Ask Claude to self-critique and revise in the same session</li>
-              <li>Use structured outputs for downstream parsing</li>
-            </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-icon" style="background:rgba(251,191,36,0.15);border:1px solid rgba(251,191,36,0.3);">&#128193;</div>
+          <div class="card-label" style="color:var(--gold);">Projects</div>
+          <div class="card-title">Persistent Context</div>
+          <div class="card-desc">System prompts + uploaded knowledge that persists across every conversation in the project. Your domain knowledge layer.</div>
+          <ul class="bullet-list">
+            <li>Codebase docs & architecture notes</li>
+            <li>Style guides & brand voice</li>
+            <li>Recurring workflow templates</li>
+            <li>Domain expertise injection</li>
+          </ul>
+          <div class="tags">
+            <span class="tag" style="background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.3);color:var(--gold)">Always-on context</span>
+            <span class="tag" style="background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.3);color:var(--gold)">System prompt</span>
           </div>
+        </div>
+
+        <div class="card">
+          <div class="card-icon" style="background:rgba(52,211,153,0.15);border:1px solid rgba(52,211,153,0.3);">&#128172;</div>
+          <div class="card-label" style="color:var(--green);">Claude.ai Chat</div>
+          <div class="card-title">Interactive Sessions</div>
+          <div class="card-desc">Fastest path for ideation, writing, analysis, and one-off tasks. No setup overhead -- just prompt and iterate.</div>
+          <ul class="bullet-list">
+            <li>Brainstorming & rapid ideation</li>
+            <li>Document & script drafts</li>
+            <li>Quick research & analysis</li>
+            <li>Learning concepts & Q&A</li>
+          </ul>
+          <div class="tags">
+            <span class="tag" style="background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.3);color:var(--green)">No setup</span>
+            <span class="tag" style="background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.3);color:var(--green)">Fast iteration</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-icon" style="background:rgba(91,156,246,0.15);border:1px solid rgba(91,156,246,0.3);">&#129302;</div>
+          <div class="card-label" style="color:var(--blue);">API / Artifacts</div>
+          <div class="card-title">Embedded Intelligence</div>
+          <div class="card-desc">Build Claude into your own tools. Artifacts ship AI-powered UIs directly in chat. API enables custom agents and pipelines.</div>
+          <ul class="bullet-list">
+            <li>Custom agents & MCP integrations</li>
+            <li>AI-powered product features</li>
+            <li>Automated analysis pipelines</li>
+            <li>Interactive Artifact UIs</li>
+          </ul>
+          <div class="tags">
+            <span class="tag" style="background:rgba(91,156,246,0.1);border:1px solid rgba(91,156,246,0.3);color:var(--blue)">Subagents</span>
+            <span class="tag" style="background:rgba(91,156,246,0.1);border:1px solid rgba(91,156,246,0.3);color:var(--blue)">Dynamic workflows</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow">
+        <div class="flow-node" style="color:var(--accent-light);border-color:rgba(124,92,252,0.4);background:rgba(124,92,252,0.08)">Define scope</div>
+        <span class="flow-arrow">&rarr;</span>
+        <div class="flow-node" style="color:var(--gold);border-color:rgba(251,191,36,0.4);background:rgba(251,191,36,0.08)">Load context</div>
+        <span class="flow-arrow">&rarr;</span>
+        <div class="flow-node" style="color:var(--green);border-color:rgba(52,211,153,0.4);background:rgba(52,211,153,0.08)">Plan first</div>
+        <span class="flow-arrow">&rarr;</span>
+        <div class="flow-node" style="color:var(--blue);border-color:rgba(91,156,246,0.4);background:rgba(91,156,246,0.08)">Build incrementally</div>
+        <span class="flow-arrow">&rarr;</span>
+        <div class="flow-node" style="color:var(--orange);border-color:rgba(251,146,60,0.4);background:rgba(251,146,60,0.08)">Self-review</div>
+        <span class="flow-arrow">&rarr;</span>
+        <div class="flow-node" style="color:var(--teal);border-color:rgba(45,212,191,0.4);background:rgba(45,212,191,0.08)">Ship + document</div>
+      </div>
+    </div>
+
+
+    <!-- ══════ 2. PLAN MODE ══════ -->
+    <div class="section" id="plan-mode">
+      <div class="section-header">
+        <div class="section-label">Section 02</div>
+        <div class="section-title">Plan Mode & Outline-First Prompting</div>
+        <p class="section-desc">Never let Claude write code on an ambiguous brief. Think of yourself as the senior engineer -- Claude is the junior. Your job is to define, review, approve.</p>
+      </div>
+
+      <div class="grid grid-2" style="margin-bottom:20px;">
+        <div class="callout" style="background:rgba(124,92,252,0.08);border:1px solid rgba(124,92,252,0.25);">
+          <span class="callout-icon">&#9889;</span>
+          <div>
+            <div style="color:var(--accent-light);font-weight:700;font-size:12px;font-family:'JetBrains Mono',monospace;letter-spacing:1px;margin-bottom:4px;">CLAUDE CODE</div>
+            <span style="color:var(--text-secondary);">Use <code style="color:var(--accent-light);background:rgba(124,92,252,0.15);padding:1px 6px;border-radius:4px;">--plan</code> flag or type <code style="color:var(--accent-light);background:rgba(124,92,252,0.15);padding:1px 6px;border-radius:4px;">/plan</code> in session. Claude proposes changes as a structured diff preview -- no files are touched until you approve.</span>
+          </div>
+        </div>
+        <div class="callout" style="background:rgba(52,211,153,0.08);border:1px solid rgba(52,211,153,0.25);">
+          <span class="callout-icon">&#128172;</span>
+          <div>
+            <div style="color:var(--green);font-weight:700;font-size:12px;font-family:'JetBrains Mono',monospace;letter-spacing:1px;margin-bottom:4px;">CHAT / API</div>
+            <span style="color:var(--text-secondary);">No native plan mode. Use <strong>Outline-First Prompting</strong>: ask Claude to list its approach and assumptions before writing anything. You review the outline, then say "proceed."</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase-row">
+        <div class="phase-step" style="border-top:3px solid var(--accent);">
+          <div class="card-label" style="color:var(--accent);">TRIGGER</div>
+          <div class="card-title" style="font-size:15px;margin-bottom:8px;">Enter Planning Phase</div>
+          <ul class="bullet-list">
+            <li><strong>Claude Code:</strong> <code style="color:var(--accent-light);font-size:12px;">claude --plan</code> or <code style="color:var(--accent-light);font-size:12px;">/plan</code></li>
+            <li><strong>Chat/API:</strong> "Outline your approach before writing any code"</li>
+            <li>State the problem in 1-2 sentences</li>
+            <li>List files/systems that will be touched</li>
+          </ul>
+        </div>
+        <div class="phase-arrow">&rarr;</div>
+        <div class="phase-step" style="border-top:3px solid var(--gold);">
+          <div class="card-label" style="color:var(--gold);">SCOPE LOCK</div>
+          <div class="card-title" style="font-size:15px;margin-bottom:8px;">Before Any Run</div>
+          <ul class="bullet-list">
+            <li>Define explicit success criteria</li>
+            <li>Name files that must NOT be touched</li>
+            <li>Set output format expectations</li>
+            <li>Agree on error handling approach</li>
+          </ul>
+        </div>
+        <div class="phase-arrow">&rarr;</div>
+        <div class="phase-step" style="border-top:3px solid var(--green);">
+          <div class="card-label" style="color:var(--green);">REVIEW</div>
+          <div class="card-title" style="font-size:15px;margin-bottom:8px;">After Plan Is Proposed</div>
+          <ul class="bullet-list">
+            <li>Read every step mentally before approving</li>
+            <li>Flag any step that's too broad</li>
+            <li>Ask "What could go wrong at step X?"</li>
+            <li>Inspect proposed edits before accepting</li>
+          </ul>
+        </div>
+        <div class="phase-arrow">&rarr;</div>
+        <div class="phase-step" style="border-top:3px solid var(--blue);">
+          <div class="card-label" style="color:var(--blue);">EXECUTE</div>
+          <div class="card-title" style="font-size:15px;margin-bottom:8px;">After Approval</div>
+          <ul class="bullet-list">
+            <li>Watch context usage -- bail if bloating</li>
+            <li>Interrupt immediately if it deviates from plan</li>
+            <li>Commit checkpoints to git frequently</li>
+            <li>Test after each logical unit, not at the end</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout" style="background:rgba(251,191,36,0.08);border:1px solid rgba(251,191,36,0.2);">
+        <span class="callout-icon">&#128161;</span>
+        <div style="color:var(--gold);">
+          <strong>Rule of thumb:</strong> If the task touches more than 2 files or takes more than 10 minutes to write manually -- planning is not optional. Ambiguous scope = expensive rewrites.
         </div>
       </div>
     </div>
 
-    <div class="agent-tier">
-      <div class="agent-tier-header" style="background:rgba(227,179,65,0.06);">
-        <div style="width:36px;height:36px;border-radius:8px;background:rgba(227,179,65,0.15);border:1px solid rgba(227,179,65,0.3);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">🔗</div>
-        <div>
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--gold);letter-spacing:2px;font-weight:700;">TIER 2 — PROMPT CHAINING</div>
-          <div style="font-size:15px;font-weight:600;color:var(--text);">Sequential tasks, output feeds next input</div>
-        </div>
-        <div style="margin-left:auto;"><span class="tag" style="background:rgba(227,179,65,0.1);border:1px solid rgba(227,179,65,0.3);color:var(--gold);">Intermediate</span></div>
+
+    <!-- ══════ 3. DEV PIPELINE ══════ -->
+    <div class="section" id="dev-pipeline">
+      <div class="section-header">
+        <div class="section-label">Section 03</div>
+        <div class="section-title">Development Pipeline</div>
+        <p class="section-desc">A repeatable 6-step loop for any system build -- CLI tools, data pipelines, web apps, automation agents, analysis scripts.</p>
       </div>
-      <div class="agent-tier-body">
-        <div class="grid-2" style="gap:12px;margin-bottom:14px;">
-          <div>
-            <div style="font-size:13px;color:var(--muted);margin-bottom:8px;">✅ Use when:</div>
-            <ul class="bullet-list">
-              <li>Task has clear sequential stages</li>
-              <li>Each stage needs validation before next runs</li>
-              <li>Output of step N is input to step N+1</li>
-              <li>You want human checkpoints between stages</li>
-            </ul>
-          </div>
-          <div>
-            <div style="font-size:13px;color:var(--muted);margin-bottom:8px;">📋 Examples:</div>
-            <ul class="bullet-list">
-              <li>Research → Outline → Draft → Edit → Publish</li>
-              <li>Scrape data → Clean → Analyze → Visualize</li>
-              <li>Define schema → Generate code → Write tests</li>
-              <li>StockBroc: SEC pull → DCF → Memo → Script</li>
-            </ul>
-          </div>
+
+      <div class="grid grid-3">
+        <div class="card">
+          <div class="card-icon" style="background:rgba(124,92,252,0.15);border:1px solid rgba(124,92,252,0.3);">&#128194;</div>
+          <div class="card-label" style="color:var(--accent);">Step 01</div>
+          <div class="card-title">Context Loading</div>
+          <ul class="bullet-list">
+            <li>Feed architecture docs & README first</li>
+            <li>Include relevant schemas or data models</li>
+            <li>Paste full error logs -- never summarize</li>
+            <li>Add style guides or linting rules</li>
+          </ul>
         </div>
-        <!-- Chain diagram -->
-        <div style="background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:14px 18px;">
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--dim);letter-spacing:2px;margin-bottom:10px;">EXAMPLE CHAIN</div>
-          <div style="display:flex;align-items:center;flex-wrap:wrap;gap:6px;">
-            <div style="background:rgba(227,179,65,0.1);border:1px solid rgba(227,179,65,0.3);color:var(--gold);border-radius:6px;padding:6px 12px;font-size:13px;font-weight:600;">📥 Input</div>
-            <span style="color:var(--dim);">→</span>
-            <div style="background:var(--card);border:1px solid var(--border);color:var(--text);border-radius:6px;padding:6px 12px;font-size:13px;">Claude call 1<br><span style="color:var(--muted);font-size:12px;">Extract + structure</span></div>
-            <span style="color:var(--dim);">→</span>
-            <div style="background:rgba(63,185,80,0.08);border:1px solid rgba(63,185,80,0.25);color:var(--green);border-radius:6px;padding:6px 12px;font-size:13px;">✅ Gate check</div>
-            <span style="color:var(--dim);">→</span>
-            <div style="background:var(--card);border:1px solid var(--border);color:var(--text);border-radius:6px;padding:6px 12px;font-size:13px;">Claude call 2<br><span style="color:var(--muted);font-size:12px;">Analyze + reason</span></div>
-            <span style="color:var(--dim);">→</span>
-            <div style="background:var(--card);border:1px solid var(--border);color:var(--text);border-radius:6px;padding:6px 12px;font-size:13px;">Claude call 3<br><span style="color:var(--muted);font-size:12px;">Format output</span></div>
-            <span style="color:var(--dim);">→</span>
-            <div style="background:rgba(88,166,255,0.1);border:1px solid rgba(88,166,255,0.3);color:var(--accent);border-radius:6px;padding:6px 12px;font-size:13px;">📤 Final output</div>
-          </div>
+        <div class="card">
+          <div class="card-icon" style="background:rgba(251,191,36,0.15);border:1px solid rgba(251,191,36,0.3);">&#129504;</div>
+          <div class="card-label" style="color:var(--gold);">Step 02</div>
+          <div class="card-title">Problem Framing</div>
+          <ul class="bullet-list">
+            <li>State what you have vs. what you want</li>
+            <li>Give a concrete example of desired output</li>
+            <li>Mention constraints (lang, deps, perf)</li>
+            <li>Say what you've already tried</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-icon" style="background:rgba(52,211,153,0.15);border:1px solid rgba(52,211,153,0.3);">&#128203;</div>
+          <div class="card-label" style="color:var(--green);">Step 03</div>
+          <div class="card-title">Plan Approval</div>
+          <ul class="bullet-list">
+            <li>Request outline before code generation</li>
+            <li>Validate approach against your mental model</li>
+            <li>Check for unintended side effects</li>
+            <li>Ask: "What assumptions are you making?"</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-icon" style="background:rgba(91,156,246,0.15);border:1px solid rgba(91,156,246,0.3);">&#128295;</div>
+          <div class="card-label" style="color:var(--blue);">Step 04</div>
+          <div class="card-title">Incremental Build</div>
+          <ul class="bullet-list">
+            <li>Build one module at a time</li>
+            <li>Test each module before moving on</li>
+            <li>Use TODOs to defer scope for next turn</li>
+            <li>Avoid monster prompts that do everything</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-icon" style="background:rgba(251,146,60,0.15);border:1px solid rgba(251,146,60,0.3);">&#128269;</div>
+          <div class="card-label" style="color:var(--orange);">Step 05</div>
+          <div class="card-title">Review & Harden</div>
+          <ul class="bullet-list">
+            <li>Ask Claude to critique its own code</li>
+            <li>Request edge case enumeration</li>
+            <li>Ask: "What would break this in prod?"</li>
+            <li>Run a separate security review prompt</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-icon" style="background:rgba(45,212,191,0.15);border:1px solid rgba(45,212,191,0.3);">&#128230;</div>
+          <div class="card-label" style="color:var(--teal);">Step 06</div>
+          <div class="card-title">Document & Ship</div>
+          <ul class="bullet-list">
+            <li>Have Claude write inline docstrings</li>
+            <li>Generate handoff README or SOP</li>
+            <li>Log what was built and why</li>
+            <li>Archive the full conversation</li>
+          </ul>
         </div>
       </div>
     </div>
 
-    <div class="agent-tier">
-      <div class="agent-tier-header" style="background:rgba(188,140,255,0.06);">
-        <div style="width:36px;height:36px;border-radius:8px;background:rgba(188,140,255,0.15);border:1px solid rgba(188,140,255,0.3);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">🕸️</div>
-        <div>
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--purple);letter-spacing:2px;font-weight:700;">TIER 3 — YOU ORCHESTRATE, CLAUDE EXECUTES EACH NODE</div>
-          <div style="font-size:15px;font-weight:600;color:var(--text);">You architect the pipeline; Claude runs each specialized role</div>
-        </div>
-        <div style="margin-left:auto;"><span class="tag" style="background:rgba(188,140,255,0.1);border:1px solid rgba(188,140,255,0.3);color:var(--purple);">Advanced</span></div>
+
+    <!-- ══════ 4. SUBAGENTS & LOOPS ══════ -->
+    <div class="section" id="subagents">
+      <div class="section-header">
+        <div class="section-label">Section 04</div>
+        <div class="section-title">Subagents, Dynamic Workflows & Loops</div>
+        <p class="section-desc">The most powerful Claude patterns go beyond a single prompt-response. Orchestration -- chaining agents, spawning subagents, and building feedback loops -- unlocks order-of-magnitude productivity gains.</p>
       </div>
-      <div class="agent-tier-body">
-        <!-- Critical clarification -->
-        <div style="background:rgba(247,129,102,0.08);border:1px solid rgba(247,129,102,0.3);border-radius:6px;padding:10px 14px;margin-bottom:14px;font-size:14px;color:var(--orange);">
-          ⚠️ <strong>Important:</strong> Claude does not autonomously spawn subagents on its own in chat or standard API use. <em>You</em> are the orchestrator — you design the pipeline, run each Claude call in sequence or parallel, and pass outputs between them. In Claude Code's agentic mode, Claude can use the <code style="font-size:12px;background:rgba(247,129,102,0.15);padding:1px 5px;border-radius:3px;">Task</code> tool to dispatch subtasks, but this is an advanced opt-in API feature, not default behavior.
-        </div>
-        <div class="grid-2" style="gap:12px;margin-bottom:14px;">
+
+      <!-- Tier 1 -->
+      <div class="tier-block">
+        <div class="tier-header" style="background:rgba(124,92,252,0.05);">
+          <div class="tier-icon" style="background:rgba(124,92,252,0.15);border:1px solid rgba(124,92,252,0.3);">&#127919;</div>
           <div>
-            <div style="font-size:13px;color:var(--muted);margin-bottom:8px;">✅ Use when:</div>
-            <ul class="bullet-list">
-              <li>Task has parallel independent subtasks</li>
-              <li>Different roles need different system prompts</li>
-              <li>Work can be divided, run separately, then recombined</li>
-              <li>You want specialized context per role (not one bloated prompt)</li>
-            </ul>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent-light);letter-spacing:1.5px;font-weight:700;">TIER 1 -- SINGLE AGENT</div>
+            <div style="font-size:15px;font-weight:600;">One Claude, one task, one session</div>
           </div>
-          <div>
-            <div style="font-size:13px;color:var(--muted);margin-bottom:8px;">📋 How to build it:</div>
-            <ul class="bullet-list">
-              <li>You call Claude with a Researcher system prompt → get output</li>
-              <li>You call Claude with a Builder system prompt → pass research as input</li>
-              <li>You call Claude with a Validator prompt → check the build</li>
-              <li>You aggregate results and call a final Writer prompt</li>
-            </ul>
-          </div>
+          <div style="margin-left:auto;"><span class="tag" style="background:rgba(124,92,252,0.1);border:1px solid rgba(124,92,252,0.3);color:var(--accent-light);">Default</span></div>
         </div>
-        <!-- Orchestrator diagram -->
-        <div style="background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:16px 18px;">
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--dim);letter-spacing:2px;margin-bottom:12px;">ORCHESTRATOR PATTERN — YOU CONTROL THE FLOW</div>
-          <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
-            <div style="background:rgba(227,179,65,0.12);border:2px solid rgba(227,179,65,0.5);color:var(--gold);border-radius:8px;padding:10px 24px;font-size:14px;font-weight:700;text-align:center;">👤 YOU (the Orchestrator)<br><span style="font-size:12px;font-weight:400;color:var(--muted);">Design pipeline · pass outputs · approve results</span></div>
-            <div style="display:flex;gap:8px;align-items:flex-start;">
-              <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
-                <span style="color:var(--dim);">↓ call</span>
-                <div style="background:var(--card);border:1px solid var(--purple);color:var(--text);border-radius:6px;padding:8px 14px;font-size:13px;text-align:center;">🔬 Claude A<br><span style="color:var(--purple);font-size:12px;">Researcher role</span></div>
-              </div>
-              <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
-                <span style="color:var(--dim);">↓ call</span>
-                <div style="background:var(--card);border:1px solid var(--purple);color:var(--text);border-radius:6px;padding:8px 14px;font-size:13px;text-align:center;">⚙️ Claude B<br><span style="color:var(--purple);font-size:12px;">Builder role</span></div>
-              </div>
-              <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
-                <span style="color:var(--dim);">↓ call</span>
-                <div style="background:var(--card);border:1px solid var(--purple);color:var(--text);border-radius:6px;padding:8px 14px;font-size:13px;text-align:center;">🧪 Claude C<br><span style="color:var(--purple);font-size:12px;">Validator role</span></div>
-              </div>
-              <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
-                <span style="color:var(--dim);">↓ call</span>
-                <div style="background:var(--card);border:1px solid var(--purple);color:var(--text);border-radius:6px;padding:8px 14px;font-size:13px;text-align:center;">📝 Claude D<br><span style="color:var(--purple);font-size:12px;">Writer role</span></div>
-              </div>
+        <div class="tier-body">
+          <div class="grid grid-2" style="gap:12px;">
+            <div>
+              <div style="font-size:13px;color:var(--text-secondary);margin-bottom:8px;font-weight:600;">When to use:</div>
+              <ul class="bullet-list">
+                <li>Task is well-scoped and fits in one context window</li>
+                <li>Output is a single file, document, or answer</li>
+                <li>No parallelization needed</li>
+                <li>Quick iteration more valuable than automation</li>
+              </ul>
             </div>
-            <div style="font-size:12px;color:var(--dim);font-style:italic;">Each is a separate Claude call with its own focused system prompt — not one Claude doing everything</div>
+            <div>
+              <div style="font-size:13px;color:var(--text-secondary);margin-bottom:8px;font-weight:600;">Key patterns:</div>
+              <ul class="bullet-list">
+                <li>Plan, Execute, Review in one session</li>
+                <li>Multi-turn refinement within one conversation</li>
+                <li>Ask Claude to self-critique and revise</li>
+                <li>Use structured outputs for downstream parsing</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="agent-tier">
-      <div class="agent-tier-header" style="background:rgba(247,129,102,0.06);">
-        <div style="width:36px;height:36px;border-radius:8px;background:rgba(247,129,102,0.15);border:1px solid rgba(247,129,102,0.3);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">🔄</div>
-        <div>
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--orange);letter-spacing:2px;font-weight:700;">TIER 4 — DYNAMIC LOOPS</div>
-          <div style="font-size:15px;font-weight:600;color:var(--text);">Self-correcting agents that loop until done</div>
-        </div>
-        <div style="margin-left:auto;"><span class="tag" style="background:rgba(247,129,102,0.1);border:1px solid rgba(247,129,102,0.3);color:var(--orange);">Power</span></div>
-      </div>
-      <div class="agent-tier-body">
-        <div class="grid-2" style="gap:12px;margin-bottom:16px;">
+      <!-- Tier 2 -->
+      <div class="tier-block">
+        <div class="tier-header" style="background:rgba(251,191,36,0.05);">
+          <div class="tier-icon" style="background:rgba(251,191,36,0.15);border:1px solid rgba(251,191,36,0.3);">&#128279;</div>
           <div>
-            <div style="font-size:13px;color:var(--muted);margin-bottom:8px;">✅ Use when:</div>
-            <ul class="bullet-list">
-              <li>Output quality is measurable (tests pass/fail)</li>
-              <li>Task requires iteration to converge on correct answer</li>
-              <li>You can define a clear exit condition</li>
-              <li>Errors can be fed back as new context</li>
-            </ul>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:1.5px;font-weight:700;">TIER 2 -- PROMPT CHAINING</div>
+            <div style="font-size:15px;font-weight:600;">Sequential tasks, output feeds next input</div>
           </div>
+          <div style="margin-left:auto;"><span class="tag" style="background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.3);color:var(--gold);">Intermediate</span></div>
+        </div>
+        <div class="tier-body">
+          <div class="grid grid-2" style="gap:12px;margin-bottom:16px;">
+            <div>
+              <div style="font-size:13px;color:var(--text-secondary);margin-bottom:8px;font-weight:600;">When to use:</div>
+              <ul class="bullet-list">
+                <li>Task has clear sequential stages</li>
+                <li>Each stage needs validation before next runs</li>
+                <li>Output of step N is input to step N+1</li>
+                <li>You want human checkpoints between stages</li>
+              </ul>
+            </div>
+            <div>
+              <div style="font-size:13px;color:var(--text-secondary);margin-bottom:8px;font-weight:600;">Examples:</div>
+              <ul class="bullet-list">
+                <li>Research &rarr; Outline &rarr; Draft &rarr; Edit &rarr; Publish</li>
+                <li>Scrape data &rarr; Clean &rarr; Analyze &rarr; Visualize</li>
+                <li>Define schema &rarr; Generate code &rarr; Write tests</li>
+                <li>API design &rarr; Implementation &rarr; Docs &rarr; Deploy</li>
+              </ul>
+            </div>
+          </div>
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px 18px;">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-dim);letter-spacing:1.5px;margin-bottom:10px;">EXAMPLE CHAIN</div>
+            <div style="display:flex;align-items:center;flex-wrap:wrap;gap:8px;">
+              <div style="background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.3);color:var(--gold);border-radius:8px;padding:7px 14px;font-size:13px;font-weight:600;">Input</div>
+              <span style="color:var(--text-dim);">&rarr;</span>
+              <div style="background:var(--card);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:7px 14px;font-size:13px;">Claude call 1<br><span style="color:var(--text-secondary);font-size:11px;">Extract + structure</span></div>
+              <span style="color:var(--text-dim);">&rarr;</span>
+              <div style="background:rgba(52,211,153,0.08);border:1px solid rgba(52,211,153,0.25);color:var(--green);border-radius:8px;padding:7px 14px;font-size:13px;">Gate check</div>
+              <span style="color:var(--text-dim);">&rarr;</span>
+              <div style="background:var(--card);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:7px 14px;font-size:13px;">Claude call 2<br><span style="color:var(--text-secondary);font-size:11px;">Analyze + reason</span></div>
+              <span style="color:var(--text-dim);">&rarr;</span>
+              <div style="background:var(--card);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:7px 14px;font-size:13px;">Claude call 3<br><span style="color:var(--text-secondary);font-size:11px;">Format output</span></div>
+              <span style="color:var(--text-dim);">&rarr;</span>
+              <div style="background:rgba(124,92,252,0.1);border:1px solid rgba(124,92,252,0.3);color:var(--accent-light);border-radius:8px;padding:7px 14px;font-size:13px;">Final output</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tier 3 -->
+      <div class="tier-block">
+        <div class="tier-header" style="background:rgba(91,156,246,0.05);">
+          <div class="tier-icon" style="background:rgba(91,156,246,0.15);border:1px solid rgba(91,156,246,0.3);">&#128376;</div>
           <div>
-            <div style="font-size:13px;color:var(--muted);margin-bottom:8px;">⚠️ Loop safety rules:</div>
-            <ul class="bullet-list">
-              <li>Always set a max iteration cap (3–5 loops)</li>
-              <li>Log each iteration's state for debugging</li>
-              <li>Define what "good enough" means before starting</li>
-              <li>Human-in-the-loop checkpoint every N cycles</li>
-            </ul>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--blue);letter-spacing:1.5px;font-weight:700;">TIER 3 -- ORCHESTRATOR PATTERN</div>
+            <div style="font-size:15px;font-weight:600;">You architect the pipeline; Claude runs each node</div>
+          </div>
+          <div style="margin-left:auto;"><span class="tag" style="background:rgba(91,156,246,0.1);border:1px solid rgba(91,156,246,0.3);color:var(--blue);">Advanced</span></div>
+        </div>
+        <div class="tier-body">
+          <div class="callout" style="background:rgba(251,146,60,0.08);border:1px solid rgba(251,146,60,0.2);margin-bottom:16px;">
+            <span class="callout-icon">&#9888;</span>
+            <div style="color:var(--orange);font-size:13px;">
+              <strong>Important:</strong> Claude does not autonomously spawn subagents in chat or standard API use. <em>You</em> are the orchestrator -- you design the pipeline, run each Claude call, and pass outputs between them. In Claude Code, the <code style="font-size:11px;background:rgba(251,146,60,0.15);padding:1px 5px;border-radius:3px;">Task</code> tool can dispatch subtasks, but this is an advanced opt-in feature.
+            </div>
+          </div>
+          <div class="grid grid-2" style="gap:12px;margin-bottom:16px;">
+            <div>
+              <div style="font-size:13px;color:var(--text-secondary);margin-bottom:8px;font-weight:600;">When to use:</div>
+              <ul class="bullet-list">
+                <li>Task has parallel independent subtasks</li>
+                <li>Different roles need different system prompts</li>
+                <li>Work can be divided, run separately, then recombined</li>
+                <li>You want specialized context per role</li>
+              </ul>
+            </div>
+            <div>
+              <div style="font-size:13px;color:var(--text-secondary);margin-bottom:8px;font-weight:600;">How to build it:</div>
+              <ul class="bullet-list">
+                <li>Call Claude with a Researcher system prompt &rarr; get output</li>
+                <li>Call Claude with a Builder system prompt &rarr; pass research as input</li>
+                <li>Call Claude with a Validator prompt &rarr; check the build</li>
+                <li>Aggregate results and call a final Writer prompt</li>
+              </ul>
+            </div>
+          </div>
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px 18px;">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-dim);letter-spacing:1.5px;margin-bottom:12px;">ORCHESTRATOR PATTERN -- YOU CONTROL THE FLOW</div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+              <div style="background:rgba(251,191,36,0.12);border:2px solid rgba(251,191,36,0.4);color:var(--gold);border-radius:10px;padding:10px 28px;font-size:14px;font-weight:700;text-align:center;">You (the Orchestrator)<br><span style="font-size:12px;font-weight:400;color:var(--text-secondary);">Design pipeline &middot; pass outputs &middot; approve results</span></div>
+              <div style="display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap;justify-content:center;">
+                <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+                  <span style="color:var(--text-dim);font-size:13px;">&darr;</span>
+                  <div style="background:var(--card);border:1px solid var(--blue);color:var(--text);border-radius:8px;padding:8px 16px;font-size:13px;text-align:center;">Claude A<br><span style="color:var(--blue);font-size:11px;">Researcher</span></div>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+                  <span style="color:var(--text-dim);font-size:13px;">&darr;</span>
+                  <div style="background:var(--card);border:1px solid var(--blue);color:var(--text);border-radius:8px;padding:8px 16px;font-size:13px;text-align:center;">Claude B<br><span style="color:var(--blue);font-size:11px;">Builder</span></div>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+                  <span style="color:var(--text-dim);font-size:13px;">&darr;</span>
+                  <div style="background:var(--card);border:1px solid var(--blue);color:var(--text);border-radius:8px;padding:8px 16px;font-size:13px;text-align:center;">Claude C<br><span style="color:var(--blue);font-size:11px;">Validator</span></div>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+                  <span style="color:var(--text-dim);font-size:13px;">&darr;</span>
+                  <div style="background:var(--card);border:1px solid var(--blue);color:var(--text);border-radius:8px;padding:8px 16px;font-size:13px;text-align:center;">Claude D<br><span style="color:var(--blue);font-size:11px;">Writer</span></div>
+                </div>
+              </div>
+              <div style="font-size:12px;color:var(--text-dim);font-style:italic;">Each is a separate Claude call with its own focused system prompt</div>
+            </div>
           </div>
         </div>
+      </div>
 
-        <!-- Loop patterns -->
-        <div class="loop-box" style="border-color:rgba(247,129,102,0.4);">
-          <div class="loop-label" style="color:var(--orange);">Eval-Fix Loop (most common)</div>
-          <div class="loop-steps">
-            <div class="loop-step" style="color:var(--accent);border-color:rgba(88,166,255,0.3);background:rgba(88,166,255,0.08);">Generate</div>
-            <span style="color:var(--dim);">→</span>
-            <div class="loop-step" style="color:var(--gold);border-color:rgba(227,179,65,0.3);background:rgba(227,179,65,0.08);">Run tests / lint</div>
-            <span style="color:var(--dim);">→</span>
-            <div class="loop-step" style="color:var(--orange);border-color:rgba(247,129,102,0.3);background:rgba(247,129,102,0.08);">Feed errors back</div>
-            <span style="color:var(--dim);">→</span>
-            <div class="loop-step" style="color:var(--purple);border-color:rgba(188,140,255,0.3);background:rgba(188,140,255,0.08);">Fix</div>
-            <span style="color:var(--dim);">→</span>
-            <div class="loop-step" style="color:var(--green);border-color:rgba(63,185,80,0.3);background:rgba(63,185,80,0.08);">✅ Pass? Ship</div>
-            <span style="color:var(--dim);">↺ repeat if fail</span>
+      <!-- Tier 4 -->
+      <div class="tier-block">
+        <div class="tier-header" style="background:rgba(251,146,60,0.05);">
+          <div class="tier-icon" style="background:rgba(251,146,60,0.15);border:1px solid rgba(251,146,60,0.3);">&#128260;</div>
+          <div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--orange);letter-spacing:1.5px;font-weight:700;">TIER 4 -- DYNAMIC LOOPS</div>
+            <div style="font-size:15px;font-weight:600;">Self-correcting agents that loop until done</div>
+          </div>
+          <div style="margin-left:auto;"><span class="tag" style="background:rgba(251,146,60,0.1);border:1px solid rgba(251,146,60,0.3);color:var(--orange);">Power</span></div>
+        </div>
+        <div class="tier-body">
+          <div class="grid grid-2" style="gap:12px;margin-bottom:18px;">
+            <div>
+              <div style="font-size:13px;color:var(--text-secondary);margin-bottom:8px;font-weight:600;">When to use:</div>
+              <ul class="bullet-list">
+                <li>Output quality is measurable (tests pass/fail)</li>
+                <li>Task requires iteration to converge</li>
+                <li>You can define a clear exit condition</li>
+                <li>Errors can be fed back as new context</li>
+              </ul>
+            </div>
+            <div>
+              <div style="font-size:13px;color:var(--text-secondary);margin-bottom:8px;font-weight:600;">Loop safety rules:</div>
+              <ul class="bullet-list">
+                <li>Always set a max iteration cap (3-5 loops)</li>
+                <li>Log each iteration's state for debugging</li>
+                <li>Define what "good enough" means before starting</li>
+                <li>Human-in-the-loop checkpoint every N cycles</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="loop-box" style="border-color:rgba(251,146,60,0.4);">
+            <div class="loop-label" style="color:var(--orange);">Eval-Fix Loop</div>
+            <div class="loop-steps">
+              <div class="loop-step" style="color:var(--accent-light);border-color:rgba(124,92,252,0.3);background:rgba(124,92,252,0.08);">Generate</div>
+              <span style="color:var(--text-dim);">&rarr;</span>
+              <div class="loop-step" style="color:var(--gold);border-color:rgba(251,191,36,0.3);background:rgba(251,191,36,0.08);">Run tests</div>
+              <span style="color:var(--text-dim);">&rarr;</span>
+              <div class="loop-step" style="color:var(--orange);border-color:rgba(251,146,60,0.3);background:rgba(251,146,60,0.08);">Feed errors back</div>
+              <span style="color:var(--text-dim);">&rarr;</span>
+              <div class="loop-step" style="color:var(--blue);border-color:rgba(91,156,246,0.3);background:rgba(91,156,246,0.08);">Fix</div>
+              <span style="color:var(--text-dim);">&rarr;</span>
+              <div class="loop-step" style="color:var(--green);border-color:rgba(52,211,153,0.3);background:rgba(52,211,153,0.08);">Pass? Ship</div>
+              <span style="color:var(--text-dim);">&#8634; repeat if fail</span>
+            </div>
+          </div>
+
+          <div class="loop-box" style="border-color:rgba(124,92,252,0.4);">
+            <div class="loop-label" style="color:var(--accent-light);">Critic-Refine Loop</div>
+            <div class="loop-steps">
+              <div class="loop-step" style="color:var(--accent-light);border-color:rgba(124,92,252,0.3);background:rgba(124,92,252,0.08);">Draft v1</div>
+              <span style="color:var(--text-dim);">&rarr;</span>
+              <div class="loop-step" style="color:var(--blue);border-color:rgba(91,156,246,0.3);background:rgba(91,156,246,0.08);">Critic scores it</div>
+              <span style="color:var(--text-dim);">&rarr;</span>
+              <div class="loop-step" style="color:var(--gold);border-color:rgba(251,191,36,0.3);background:rgba(251,191,36,0.08);">Refine weak sections</div>
+              <span style="color:var(--text-dim);">&rarr;</span>
+              <div class="loop-step" style="color:var(--green);border-color:rgba(52,211,153,0.3);background:rgba(52,211,153,0.08);">Threshold met? Done</div>
+              <span style="color:var(--text-dim);">&#8634; repeat</span>
+            </div>
+            <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border);font-size:13px;color:var(--orange);">
+              <strong>Sycophantic convergence risk:</strong> Claude asked to critique its own previous output tends to agree with itself. Use a <em>fresh call</em> with a separate critic system prompt for honest critique.
+            </div>
+          </div>
+
+          <div class="loop-box" style="border-color:rgba(52,211,153,0.4);">
+            <div class="loop-label" style="color:var(--green);">Search-Until-Found Loop</div>
+            <div class="loop-steps">
+              <div class="loop-step" style="color:var(--green);border-color:rgba(52,211,153,0.3);background:rgba(52,211,153,0.08);">Query source</div>
+              <span style="color:var(--text-dim);">&rarr;</span>
+              <div class="loop-step" style="color:var(--gold);border-color:rgba(251,191,36,0.3);background:rgba(251,191,36,0.08);">Extract + validate</div>
+              <span style="color:var(--text-dim);">&rarr;</span>
+              <div class="loop-step" style="color:var(--orange);border-color:rgba(251,146,60,0.3);background:rgba(251,146,60,0.08);">Missing data? Requery</div>
+              <span style="color:var(--text-dim);">&rarr;</span>
+              <div class="loop-step" style="color:var(--accent-light);border-color:rgba(124,92,252,0.3);background:rgba(124,92,252,0.08);">Complete? Aggregate</div>
+              <span style="color:var(--text-dim);">&#8634;</span>
+            </div>
           </div>
         </div>
+      </div>
 
-        <div class="loop-box" style="border-color:rgba(88,166,255,0.4);">
-          <div class="loop-label" style="color:var(--accent);">Critic-Refine Loop (quality improvement)</div>
-          <div class="loop-steps">
-            <div class="loop-step" style="color:var(--accent);border-color:rgba(88,166,255,0.3);background:rgba(88,166,255,0.08);">Draft v1</div>
-            <span style="color:var(--dim);">→</span>
-            <div class="loop-step" style="color:var(--purple);border-color:rgba(188,140,255,0.3);background:rgba(188,140,255,0.08);">Critic Claude scores it</div>
-            <span style="color:var(--dim);">→</span>
-            <div class="loop-step" style="color:var(--gold);border-color:rgba(227,179,65,0.3);background:rgba(227,179,65,0.08);">Refine weak sections</div>
-            <span style="color:var(--dim);">→</span>
-            <div class="loop-step" style="color:var(--green);border-color:rgba(63,185,80,0.3);background:rgba(63,185,80,0.08);">Score ≥ threshold? Done</div>
-            <span style="color:var(--dim);">↺ repeat</span>
+      <!-- Decision Matrix -->
+      <div style="margin-top:8px;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-dim);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px;">Subagent Decision Matrix</div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Signal in your task</th><th>Pattern to use</th><th>Why</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Task has 2+ independent parallel workstreams</td>
+                <td><span style="color:var(--blue);font-weight:600;">Orchestrator + Subagents</span></td>
+                <td style="color:var(--text-secondary);">Parallel > sequential when subtasks don't depend on each other</td>
+              </tr>
+              <tr>
+                <td>Output quality is objectively measurable</td>
+                <td><span style="color:var(--orange);font-weight:600;">Eval-Fix Loop</span></td>
+                <td style="color:var(--text-secondary);">Tests/linting become the loop exit condition</td>
+              </tr>
+              <tr>
+                <td>You need a second opinion on output</td>
+                <td><span style="color:var(--accent-light);font-weight:600;">Critic-Refine Loop</span></td>
+                <td style="color:var(--text-secondary);">Separate critic role = more objective review</td>
+              </tr>
+              <tr>
+                <td>Data comes from multiple sources with gaps</td>
+                <td><span style="color:var(--green);font-weight:600;">Search-Until-Found Loop</span></td>
+                <td style="color:var(--text-secondary);">Loop until dataset is complete</td>
+              </tr>
+              <tr>
+                <td>Task steps have a strict order / dependency chain</td>
+                <td><span style="color:var(--gold);font-weight:600;">Prompt Chaining</span></td>
+                <td style="color:var(--text-secondary);">Sequential with human gates when order matters</td>
+              </tr>
+              <tr>
+                <td>Task is well-scoped and fits one context window</td>
+                <td><span style="color:var(--text-secondary);font-weight:600;">Single Agent</span></td>
+                <td style="color:var(--text-secondary);">Don't over-engineer. One session is often fastest.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="callout" style="background:rgba(251,146,60,0.08);border:1px solid rgba(251,146,60,0.2);margin-top:16px;">
+        <span class="callout-icon">&#9888;</span>
+        <div style="color:var(--orange);">
+          <strong>Loop safety:</strong> Every agentic loop needs a hard stop -- max iterations, a human checkpoint, or a pass/fail gate. Infinite loops are expensive. Always define "done" before the loop starts.
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ══════ 5. CONTEXT HYGIENE ══════ -->
+    <div class="section" id="context">
+      <div class="section-header">
+        <div class="section-label">Section 05</div>
+        <div class="section-title">Context Hygiene</div>
+        <p class="section-desc">Context management is invisible to most users and critical to all power users. The quality of Claude's output is bounded by the quality of your context.</p>
+      </div>
+
+      <div class="grid grid-2" style="margin-bottom:20px;">
+        <div class="card" style="border-left:3px solid var(--green);">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+            <span style="font-size:18px;">&#9989;</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--green);letter-spacing:1.5px;font-weight:700;">ALWAYS INCLUDE</span>
           </div>
-          <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:13px;color:var(--orange);">
-            ⚠️ <strong>Sycophantic convergence risk:</strong> Claude asked to critique its own previous output in the same session tends to agree with itself and stop genuinely improving. Use a <em>fresh Claude call</em> with a separate critic system prompt ("You are a harsh senior editor — find every flaw") rather than asking the same instance to self-review. Different session = more honest critique.
+          <ul class="bullet-list">
+            <li>Full error messages and stack traces</li>
+            <li>Exact file paths (not "the main file")</li>
+            <li>Language + runtime + library versions</li>
+            <li>What the code is supposed to do</li>
+            <li>What it's actually doing instead</li>
+          </ul>
+        </div>
+
+        <div class="card" style="border-left:3px solid var(--red);">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+            <span style="font-size:18px;">&#9940;</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--red);letter-spacing:1.5px;font-weight:700;">NEVER DO</span>
+          </div>
+          <ul class="bullet-list">
+            <li>Summarize errors in your own words</li>
+            <li>Paste 1000+ lines without flagging key area</li>
+            <li>Start new session mid-problem without recap</li>
+            <li>Let context window bloat past ~70-80% on precision tasks</li>
+            <li>Assume Claude remembers previous sessions</li>
+          </ul>
+        </div>
+
+        <div class="card" style="border-left:3px solid var(--gold);">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+            <span style="font-size:18px;">&#128260;</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:1.5px;font-weight:700;">RESET SIGNALS</span>
+          </div>
+          <ul class="bullet-list">
+            <li>Responses start drifting or hallucinating</li>
+            <li>Claude contradicts its earlier plan</li>
+            <li>Output quality degrades noticeably</li>
+            <li>You're 30+ turns deep on one problem</li>
+            <li>It suggests something you already ruled out</li>
+          </ul>
+        </div>
+
+        <div class="card" style="border-left:3px solid var(--accent);">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+            <span style="font-size:18px;">&#128161;</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent-light);letter-spacing:1.5px;font-weight:700;">PRO TECHNIQUES</span>
+          </div>
+          <ul class="bullet-list">
+            <li>Open each session with a context brief</li>
+            <li>Use Projects for persistent system prompts</li>
+            <li>Pin key constraints at top AND bottom of prompt</li>
+            <li>Use XML tags to separate context sections</li>
+            <li>Summarize and paste key decisions as you go</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Context meter -->
+      <div class="card">
+        <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px;flex-wrap:wrap;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-dim);letter-spacing:1.5px;text-transform:uppercase;">Context Window Health</div>
+          <div style="font-size:12px;color:var(--text-dim);font-style:italic;">Rule of thumb -- larger models handle long context better than smaller ones.</div>
+        </div>
+        <div class="meter">
+          <div style="flex:0.6;background:var(--green);opacity:0.7;border-radius:6px 0 0 6px;"></div>
+          <div style="flex:0.2;background:var(--gold);opacity:0.8;"></div>
+          <div style="flex:0.2;background:var(--orange);opacity:0.8;border-radius:0 6px 6px 0;"></div>
+        </div>
+        <div class="meter-legend">
+          <div style="display:flex;gap:7px;align-items:center;"><div class="meter-dot" style="background:var(--green)"></div><span class="meter-label">0-60% -- Optimal</span></div>
+          <div style="display:flex;gap:7px;align-items:center;"><div class="meter-dot" style="background:var(--gold)"></div><span class="meter-label">60-80% -- Monitor for drift</span></div>
+          <div style="display:flex;gap:7px;align-items:center;"><div class="meter-dot" style="background:var(--orange)"></div><span class="meter-label">80-100% -- Consider reset</span></div>
+        </div>
+        <div style="margin-top:10px;font-size:13px;color:var(--text-dim);">Creative tasks tolerate long context better than precise code generation. Watch for behavioral signals (drift, contradiction) more than raw token counts.</div>
+      </div>
+    </div>
+
+
+    <!-- ══════ 6. BEST PRACTICES ══════ -->
+    <div class="section" id="best-practices">
+      <div class="section-header">
+        <div class="section-label">Section 06</div>
+        <div class="section-title">Best Practices</div>
+        <p class="section-desc">Principles that separate expert-level prompting from average usage. These are model-agnostic -- they work with any frontier LLM.</p>
+      </div>
+
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;">
+        <span class="tag" style="background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.3);color:var(--green);">FOUNDATIONAL</span>
+        <span class="tag" style="background:rgba(124,92,252,0.1);border:1px solid rgba(124,92,252,0.3);color:var(--accent-light);">LEVERAGE</span>
+        <span class="tag" style="background:rgba(91,156,246,0.1);border:1px solid rgba(91,156,246,0.3);color:var(--blue);">ADVANCED</span>
+        <span class="tag" style="background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.3);color:var(--gold);">UNIVERSAL</span>
+      </div>
+
+      <div class="grid grid-2">
+        <div class="card" style="display:flex;gap:16px;">
+          <div class="card-icon" style="background:rgba(52,211,153,0.15);border:1px solid rgba(52,211,153,0.3);width:38px;height:38px;font-size:17px;">&#127919;</div>
+          <div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+              <span style="font-size:15px;font-weight:700;">One Job Per Prompt</span>
+              <span class="tag" style="background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.3);color:var(--green);">FOUNDATIONAL</span>
+            </div>
+            <div class="card-desc" style="margin:0;">Single responsibility principle applies to prompts. Don't ask Claude to design + build + test + document in one shot.</div>
           </div>
         </div>
-
-        <div class="loop-box" style="border-color:rgba(63,185,80,0.4);">
-          <div class="loop-label" style="color:var(--green);">Search-Until-Found Loop (research / data)</div>
-          <div class="loop-steps">
-            <div class="loop-step" style="color:var(--green);border-color:rgba(63,185,80,0.3);background:rgba(63,185,80,0.08);">Query source</div>
-            <span style="color:var(--dim);">→</span>
-            <div class="loop-step" style="color:var(--gold);border-color:rgba(227,179,65,0.3);background:rgba(227,179,65,0.08);">Extract + validate</div>
-            <span style="color:var(--dim);">→</span>
-            <div class="loop-step" style="color:var(--orange);border-color:rgba(247,129,102,0.3);background:rgba(247,129,102,0.08);">Missing data? Requery</div>
-            <span style="color:var(--dim);">→</span>
-            <div class="loop-step" style="color:var(--accent);border-color:rgba(88,166,255,0.3);background:rgba(88,166,255,0.08);">Complete? Aggregate</div>
-            <span style="color:var(--dim);">↺</span>
+        <div class="card" style="display:flex;gap:16px;">
+          <div class="card-icon" style="background:rgba(124,92,252,0.15);border:1px solid rgba(124,92,252,0.3);width:38px;height:38px;font-size:17px;">&#128451;</div>
+          <div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+              <span style="font-size:15px;font-weight:700;">Use Projects for Domain Work</span>
+              <span class="tag" style="background:rgba(124,92,252,0.1);border:1px solid rgba(124,92,252,0.3);color:var(--accent-light);">LEVERAGE</span>
+            </div>
+            <div class="card-desc" style="margin:0;">Working in the same codebase weekly? A Project with system prompt beats starting fresh every time.</div>
           </div>
         </div>
-
-      </div>
-    </div>
-  </div>
-
-  <!-- When to use subagents matrix -->
-  <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">Subagent Decision Matrix</div>
-  <div class="card" style="padding:0;overflow:hidden;">
-    <table>
-      <thead>
-        <tr>
-          <th>Signal in your task</th>
-          <th>Pattern to use</th>
-          <th>Why</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td style="color:var(--text);">Task has 2+ independent parallel workstreams</td>
-          <td><span style="color:var(--purple);font-weight:600;">Orchestrator + Subagents</span></td>
-          <td style="color:var(--muted);">Parallel > sequential when subtasks don't depend on each other</td>
-        </tr>
-        <tr>
-          <td style="color:var(--text);">Output quality is objectively measurable</td>
-          <td><span style="color:var(--orange);font-weight:600;">Eval-Fix Loop</span></td>
-          <td style="color:var(--muted);">Tests/linting become the loop exit condition</td>
-        </tr>
-        <tr>
-          <td style="color:var(--text);">You need a second opinion on Claude's output</td>
-          <td><span style="color:var(--accent);font-weight:600;">Critic-Refine Loop</span></td>
-          <td style="color:var(--muted);">Separate critic role = more objective review than self-edit</td>
-        </tr>
-        <tr>
-          <td style="color:var(--text);">Data comes from multiple sources with gaps</td>
-          <td><span style="color:var(--green);font-weight:600;">Search-Until-Found Loop</span></td>
-          <td style="color:var(--muted);">Loop until dataset is complete, not just first attempt</td>
-        </tr>
-        <tr>
-          <td style="color:var(--text);">Task steps have a strict order / dependency chain</td>
-          <td><span style="color:var(--gold);font-weight:600;">Prompt Chaining</span></td>
-          <td style="color:var(--muted);">Sequential with human gates > parallel when order matters</td>
-        </tr>
-        <tr>
-          <td style="color:var(--text);">Task is well-scoped and fits one context window</td>
-          <td><span style="color:var(--muted);font-weight:600;">Single Agent</span></td>
-          <td style="color:var(--muted);">Don't over-engineer. One session is often the fastest path.</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="callout" style="background:rgba(247,129,102,0.08);border:1px solid rgba(247,129,102,0.25);color:var(--orange);margin-top:16px;">
-    ⚠️ <strong>Loop safety:</strong> Every agentic loop needs a hard stop — max iterations, a human checkpoint, or a pass/fail gate. Infinite loops are expensive. Always define "done" before the loop starts.
-  </div>
-</div>
-
-
-<!-- ══════════════════════════════════════════════ 5. CONTEXT HYGIENE -->
-<div class="section" id="context">
-  <div class="section-label">Section 05</div>
-  <div class="section-title">Context Hygiene</div>
-  <p class="section-desc">Context management is invisible to most users and critical to all power users. The quality of Claude's output is bounded by the quality of your context. Garbage in, garbage out — at scale.</p>
-
-  <div class="grid-2" style="margin-bottom:20px;">
-
-    <div class="card card-accent-left" style="border-left-color:var(--green);">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
-        <span style="font-size:20px;">🚨</span>
-        <span style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--green);letter-spacing:2px;font-weight:700;text-transform:uppercase;">Always Include</span>
-      </div>
-      <ul class="bullet-list">
-        <li>Full error messages and stack traces</li>
-        <li>Exact file paths (not "the main file")</li>
-        <li>Language + runtime + library versions</li>
-        <li>What the code is supposed to do</li>
-        <li>What it's actually doing instead</li>
-      </ul>
-    </div>
-
-    <div class="card card-accent-left" style="border-left-color:var(--orange);">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
-        <span style="font-size:20px;">⛔</span>
-        <span style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--orange);letter-spacing:2px;font-weight:700;text-transform:uppercase;">Never Do</span>
-      </div>
-      <ul class="bullet-list">
-        <li>Summarize errors in your own words</li>
-        <li>Paste 1000+ lines without flagging key area</li>
-        <li>Start new session mid-problem without recap</li>
-        <li>Let context window bloat past ~70–80% on precision tasks (code, logic)</li>
-        <li>Assume Claude remembers previous sessions</li>
-      </ul>
-    </div>
-
-    <div class="card card-accent-left" style="border-left-color:var(--gold);">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
-        <span style="font-size:20px;">🔄</span>
-        <span style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--gold);letter-spacing:2px;font-weight:700;text-transform:uppercase;">Reset Signals</span>
-      </div>
-      <ul class="bullet-list">
-        <li>Responses start drifting or hallucinating</li>
-        <li>Claude contradicts its earlier plan</li>
-        <li>Output quality degrades noticeably</li>
-        <li>You're 30+ turns deep on one problem</li>
-        <li>It suggests something you already ruled out</li>
-      </ul>
-    </div>
-
-    <div class="card card-accent-left" style="border-left-color:var(--accent);">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
-        <span style="font-size:20px;">💡</span>
-        <span style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--accent);letter-spacing:2px;font-weight:700;text-transform:uppercase;">Pro Techniques</span>
-      </div>
-      <ul class="bullet-list">
-        <li>Open each session with a context brief</li>
-        <li>Use Projects for persistent system prompts</li>
-        <li>Pin key constraints at top AND bottom of prompt</li>
-        <li>Use XML tags to separate context sections</li>
-        <li>Summarize and paste key decisions as you go</li>
-      </ul>
-    </div>
-
-  </div>
-
-  <!-- Context meter -->
-  <div class="card">
-    <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px;">
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;">Context Window Health Guide</div>
-      <div style="font-size:12px;color:var(--dim);font-style:italic;">Rule of thumb — not a hard spec. Larger models (Opus) handle long context better than Haiku.</div>
-    </div>
-    <div class="meter">
-      <div style="flex:0.6;background:var(--green);opacity:0.7;"></div>
-      <div style="flex:0.2;background:var(--gold);opacity:0.8;"></div>
-      <div style="flex:0.2;background:var(--orange);opacity:0.8;"></div>
-    </div>
-    <div class="meter-legend">
-      <div style="display:flex;gap:7px;align-items:center;"><div class="meter-dot" style="background:var(--green)"></div><span class="meter-label">0–60% — Optimal, full coherence</span></div>
-      <div style="display:flex;gap:7px;align-items:center;"><div class="meter-dot" style="background:var(--gold)"></div><span class="meter-label">60–80% — Monitor, watch for drift</span></div>
-      <div style="display:flex;gap:7px;align-items:center;"><div class="meter-dot" style="background:var(--orange)"></div><span class="meter-label">80–100% — Consider reset; degradation likely on complex tasks</span></div>
-    </div>
-    <div style="margin-top:10px;font-size:13px;color:var(--dim);">Degradation is task-dependent — creative tasks tolerate long context better than precise code generation. Watch for behavioral signals (drift, contradiction) more than raw token counts.</div>
-  </div>
-</div>
-
-
-<!-- ══════════════════════════════════════════════ 6. BEST PRACTICES -->
-<div class="section" id="best-practices">
-  <div class="section-label">Section 06</div>
-  <div class="section-title">Best Practices</div>
-  <p class="section-desc">Principles that separate expert-level prompting from average usage. These are model-agnostic — they work with GPT-4, Gemini, Mistral, and any frontier LLM.</p>
-
-  <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px;">
-    <span class="tag" style="background:rgba(63,185,80,0.1);border:1px solid rgba(63,185,80,0.3);color:var(--green);">FOUNDATIONAL</span>
-    <span class="tag" style="background:rgba(88,166,255,0.1);border:1px solid rgba(88,166,255,0.3);color:var(--accent);">LEVERAGE</span>
-    <span class="tag" style="background:rgba(188,140,255,0.1);border:1px solid rgba(188,140,255,0.3);color:var(--purple);">ADVANCED</span>
-    <span class="tag" style="background:rgba(227,179,65,0.1);border:1px solid rgba(227,179,65,0.3);color:var(--gold);">UNIVERSAL</span>
-  </div>
-
-  <div class="grid-2">
-
-    <div class="card" style="display:flex;gap:14px;">
-      <div style="font-size:22px;flex-shrink:0;">🎯</div>
-      <div>
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
-          <span style="font-size:15px;font-weight:700;">One Job Per Prompt</span>
-          <span class="tag" style="background:rgba(63,185,80,0.1);border:1px solid rgba(63,185,80,0.3);color:var(--green);font-size:11px;">FOUNDATIONAL</span>
+        <div class="card" style="display:flex;gap:16px;">
+          <div class="card-icon" style="background:rgba(124,92,252,0.15);border:1px solid rgba(124,92,252,0.3);width:38px;height:38px;font-size:17px;">&#128257;</div>
+          <div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+              <span style="font-size:15px;font-weight:700;">Iterative Refinement Loop</span>
+              <span class="tag" style="background:rgba(124,92,252,0.1);border:1px solid rgba(124,92,252,0.3);color:var(--accent-light);">LEVERAGE</span>
+            </div>
+            <div class="card-desc" style="margin:0;">Generate, critique, refine is 3x better than accepting the first output. Always ask Claude to improve its own work.</div>
+          </div>
         </div>
-        <div class="card-desc" style="margin:0;">Single responsibility principle applies to prompts. Don't ask Claude to design + build + test + document in one shot.</div>
-      </div>
-    </div>
-
-    <div class="card" style="display:flex;gap:14px;">
-      <div style="font-size:22px;flex-shrink:0;">🗂️</div>
-      <div>
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
-          <span style="font-size:15px;font-weight:700;">Use Projects for Domain Work</span>
-          <span class="tag" style="background:rgba(88,166,255,0.1);border:1px solid rgba(88,166,255,0.3);color:var(--accent);font-size:11px;">LEVERAGE</span>
+        <div class="card" style="display:flex;gap:16px;">
+          <div class="card-icon" style="background:rgba(52,211,153,0.15);border:1px solid rgba(52,211,153,0.3);width:38px;height:38px;font-size:17px;">&#128207;</div>
+          <div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+              <span style="font-size:15px;font-weight:700;">Explicit Output Contracts</span>
+              <span class="tag" style="background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.3);color:var(--green);">FOUNDATIONAL</span>
+            </div>
+            <div class="card-desc" style="margin:0;">"Write a function" is weak. "Write a Python function that returns X given Y, with docstring and type hints" is strong.</div>
+          </div>
         </div>
-        <div class="card-desc" style="margin:0;">Working in the same codebase weekly? A Project with system prompt beats starting fresh every time.</div>
-      </div>
-    </div>
-
-    <div class="card" style="display:flex;gap:14px;">
-      <div style="font-size:22px;flex-shrink:0;">🔁</div>
-      <div>
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
-          <span style="font-size:15px;font-weight:700;">Iterative Refinement Loop</span>
-          <span class="tag" style="background:rgba(88,166,255,0.1);border:1px solid rgba(88,166,255,0.3);color:var(--accent);font-size:11px;">LEVERAGE</span>
+        <div class="card" style="display:flex;gap:16px;">
+          <div class="card-icon" style="background:rgba(91,156,246,0.15);border:1px solid rgba(91,156,246,0.3);width:38px;height:38px;font-size:17px;">&#129514;</div>
+          <div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+              <span style="font-size:15px;font-weight:700;">Test-First Prompting</span>
+              <span class="tag" style="background:rgba(91,156,246,0.1);border:1px solid rgba(91,156,246,0.3);color:var(--blue);">ADVANCED</span>
+            </div>
+            <div class="card-desc" style="margin:0;">Ask Claude to write tests before implementation. Forces understanding of acceptance criteria before writing code.</div>
+          </div>
         </div>
-        <div class="card-desc" style="margin:0;">Generate → critique → refine is 3× better than accepting the first output. Always ask Claude to improve its own work.</div>
-      </div>
-    </div>
-
-    <div class="card" style="display:flex;gap:14px;">
-      <div style="font-size:22px;flex-shrink:0;">📏</div>
-      <div>
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
-          <span style="font-size:15px;font-weight:700;">Explicit Output Contracts</span>
-          <span class="tag" style="background:rgba(63,185,80,0.1);border:1px solid rgba(63,185,80,0.3);color:var(--green);font-size:11px;">FOUNDATIONAL</span>
+        <div class="card" style="display:flex;gap:16px;">
+          <div class="card-icon" style="background:rgba(91,156,246,0.15);border:1px solid rgba(91,156,246,0.3);width:38px;height:38px;font-size:17px;">&#128272;</div>
+          <div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+              <span style="font-size:15px;font-weight:700;">Adversarial Review Pass</span>
+              <span class="tag" style="background:rgba(91,156,246,0.1);border:1px solid rgba(91,156,246,0.3);color:var(--blue);">ADVANCED</span>
+            </div>
+            <div class="card-desc" style="margin:0;">After any generated system: "Act as a senior engineer trying to break this. What are the failure modes and security gaps?"</div>
+          </div>
         </div>
-        <div class="card-desc" style="margin:0;">"Write a function" is weak. "Write a Python function that returns X given Y, with docstring and type hints" is strong.</div>
-      </div>
-    </div>
-
-    <div class="card" style="display:flex;gap:14px;">
-      <div style="font-size:22px;flex-shrink:0;">🧪</div>
-      <div>
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
-          <span style="font-size:15px;font-weight:700;">Test-First Prompting</span>
-          <span class="tag" style="background:rgba(188,140,255,0.1);border:1px solid rgba(188,140,255,0.3);color:var(--purple);font-size:11px;">ADVANCED</span>
+        <div class="card" style="display:flex;gap:16px;">
+          <div class="card-icon" style="background:rgba(52,211,153,0.15);border:1px solid rgba(52,211,153,0.3);width:38px;height:38px;font-size:17px;">&#128204;</div>
+          <div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+              <span style="font-size:15px;font-weight:700;">Anchor Key Constraints</span>
+              <span class="tag" style="background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.3);color:var(--green);">FOUNDATIONAL</span>
+            </div>
+            <div class="card-desc" style="margin:0;">Repeat the most important constraints at both the beginning and end of long prompts. Context window attention is not uniform.</div>
+          </div>
         </div>
-        <div class="card-desc" style="margin:0;">Ask Claude to write tests before implementation. Forces understanding of acceptance criteria before writing a line of code.</div>
-      </div>
-    </div>
-
-    <div class="card" style="display:flex;gap:14px;">
-      <div style="font-size:22px;flex-shrink:0;">🔐</div>
-      <div>
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
-          <span style="font-size:15px;font-weight:700;">Adversarial Review Pass</span>
-          <span class="tag" style="background:rgba(188,140,255,0.1);border:1px solid rgba(188,140,255,0.3);color:var(--purple);font-size:11px;">ADVANCED</span>
+        <div class="card" style="display:flex;gap:16px;">
+          <div class="card-icon" style="background:rgba(251,191,36,0.15);border:1px solid rgba(251,191,36,0.3);width:38px;height:38px;font-size:17px;">&#127760;</div>
+          <div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+              <span style="font-size:15px;font-weight:700;">Model-Agnostic Patterns</span>
+              <span class="tag" style="background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.3);color:var(--gold);">UNIVERSAL</span>
+            </div>
+            <div class="card-desc" style="margin:0;">Every pattern in this guide applies to GPT-4, Gemini, Mistral, and others. Strong prompt architecture transcends any one model.</div>
+          </div>
         </div>
-        <div class="card-desc" style="margin:0;">After any generated system: "Act as a senior engineer trying to break this. What are the failure modes and security gaps?"</div>
       </div>
     </div>
 
-    <div class="card" style="display:flex;gap:14px;">
-      <div style="font-size:22px;flex-shrink:0;">📌</div>
-      <div>
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
-          <span style="font-size:15px;font-weight:700;">Anchor Key Constraints</span>
-          <span class="tag" style="background:rgba(63,185,80,0.1);border:1px solid rgba(63,185,80,0.3);color:var(--green);font-size:11px;">FOUNDATIONAL</span>
+
+    <!-- ══════ 7. TOOL SELECTION ══════ -->
+    <div class="section" id="tool-selection">
+      <div class="section-header">
+        <div class="section-label">Section 07</div>
+        <div class="section-title">Tool Selection Matrix</div>
+        <p class="section-desc">The right Claude surface for the right job. Match tool to task, then layer in the right orchestration pattern.</p>
+      </div>
+
+      <div class="table-wrap" style="margin-bottom:24px;">
+        <table>
+          <thead>
+            <tr><th>Task</th><th>Best Tool</th><th>Orchestration</th><th>Why</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Build a CLI tool or backend service</td>
+              <td style="color:var(--accent-light);font-weight:600;">Claude Code</td>
+              <td style="color:var(--blue);font-size:13px;">Plan &rarr; Subagents</td>
+              <td style="color:var(--text-secondary);">Shell access + multi-file editing + git</td>
+            </tr>
+            <tr>
+              <td>Write a product spec or strategy doc</td>
+              <td style="color:var(--green);font-weight:600;">Claude.ai Chat</td>
+              <td style="color:var(--gold);font-size:13px;">Critic-Refine Loop</td>
+              <td style="color:var(--text-secondary);">Conversational iteration on documents</td>
+            </tr>
+            <tr>
+              <td>Recurring code reviews or content creation</td>
+              <td style="color:var(--gold);font-weight:600;">Projects</td>
+              <td style="color:var(--accent-light);font-size:13px;">Single agent</td>
+              <td style="color:var(--text-secondary);">Persistent style guide & context</td>
+            </tr>
+            <tr>
+              <td>Multi-stage data analysis pipeline</td>
+              <td style="color:var(--blue);font-weight:600;">API + Claude Code</td>
+              <td style="color:var(--orange);font-size:13px;">Prompt Chaining + Loop</td>
+              <td style="color:var(--text-secondary);">Waterfall pipeline with gate checks</td>
+            </tr>
+            <tr>
+              <td>Quick debug a function</td>
+              <td style="color:var(--green);font-weight:600;">Claude.ai Chat</td>
+              <td style="color:var(--text-secondary);font-size:13px;">None</td>
+              <td style="color:var(--text-secondary);">Fast, no setup overhead needed</td>
+            </tr>
+            <tr>
+              <td>Dashboard or visualization build</td>
+              <td style="color:var(--gold);font-weight:600;">Projects + Chat</td>
+              <td style="color:var(--gold);font-size:13px;">Chaining</td>
+              <td style="color:var(--text-secondary);">Domain docs persistent + iterative build</td>
+            </tr>
+            <tr>
+              <td>Long-form content (scripts, articles)</td>
+              <td style="color:var(--gold);font-weight:600;">Projects</td>
+              <td style="color:var(--accent-light);font-size:13px;">Critic-Refine</td>
+              <td style="color:var(--text-secondary);">Voice/style always loaded, refine to match</td>
+            </tr>
+            <tr>
+              <td>App with embedded AI features</td>
+              <td style="color:var(--blue);font-weight:600;">API / Artifacts</td>
+              <td style="color:var(--blue);font-size:13px;">Orchestrator + Subagents</td>
+              <td style="color:var(--text-secondary);">Embed Claude in the product directly</td>
+            </tr>
+            <tr>
+              <td>Refactor a large repo</td>
+              <td style="color:var(--accent-light);font-weight:600;">Claude Code</td>
+              <td style="color:var(--orange);font-size:13px;">Plan &rarr; Eval-Fix Loop</td>
+              <td style="color:var(--text-secondary);">Full repo context + test loop for safety</td>
+            </tr>
+            <tr>
+              <td>Document parsing and extraction</td>
+              <td style="color:var(--accent-light);font-weight:600;">Claude Code</td>
+              <td style="color:var(--gold);font-size:13px;">Chaining</td>
+              <td style="color:var(--text-secondary);">Parse, validate, consolidate, output</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Decision tree -->
+      <div class="card">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-dim);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:16px;">Quick Decision Tree</div>
+        <div class="decision-row">
+          <span class="decision-q">Does it touch multiple files or need shell access?</span>
+          <span class="decision-a" style="color:var(--accent-light);">&rarr; Claude Code</span>
         </div>
-        <div class="card-desc" style="margin:0;">Repeat the most important constraints at both the beginning and end of long prompts. Context window attention is not uniform.</div>
-      </div>
-    </div>
-
-    <div class="card" style="display:flex;gap:14px;">
-      <div style="font-size:22px;flex-shrink:0;">🌐</div>
-      <div>
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
-          <span style="font-size:15px;font-weight:700;">Model-Agnostic Patterns</span>
-          <span class="tag" style="background:rgba(227,179,65,0.1);border:1px solid rgba(227,179,65,0.3);color:var(--gold);font-size:11px;">UNIVERSAL</span>
+        <div class="decision-row">
+          <span class="decision-q">Will you do this same type of task weekly?</span>
+          <span class="decision-a" style="color:var(--gold);">&rarr; Projects</span>
         </div>
-        <div class="card-desc" style="margin:0;">Every pattern in this guide applies to GPT-4, Gemini, Mistral, and others. Strong prompt architecture transcends any one model.</div>
+        <div class="decision-row">
+          <span class="decision-q">Is this a one-off question or draft?</span>
+          <span class="decision-a" style="color:var(--green);">&rarr; Claude.ai Chat</span>
+        </div>
+        <div class="decision-row">
+          <span class="decision-q">Is Claude part of a product you're shipping?</span>
+          <span class="decision-a" style="color:var(--blue);">&rarr; API / Artifacts</span>
+        </div>
+        <div class="decision-row">
+          <span class="decision-q">Does it have parallel independent subtasks?</span>
+          <span class="decision-a" style="color:var(--blue);">&rarr; Orchestrator + Subagents</span>
+        </div>
+        <div class="decision-row">
+          <span class="decision-q">Can output quality be measured automatically?</span>
+          <span class="decision-a" style="color:var(--orange);">&rarr; Eval-Fix Loop</span>
+        </div>
+        <div class="decision-row">
+          <span class="decision-q">Does step N output feed step N+1?</span>
+          <span class="decision-a" style="color:var(--gold);">&rarr; Prompt Chaining</span>
+        </div>
+        <div class="decision-row" style="border-bottom:none;">
+          <span class="decision-q">Do you want Claude to improve its own output?</span>
+          <span class="decision-a" style="color:var(--accent-light);">&rarr; Critic-Refine Loop</span>
+        </div>
       </div>
     </div>
 
+  </div><!-- /content -->
+
+  <div class="footer-bar">
+    <span>Claude Power User Map v2.1 &middot; Model-agnostic reference guide</span>
+    <span>Works with Claude, GPT-4, Gemini, Mistral & any frontier LLM</span>
   </div>
-</div>
 
+</div><!-- /main -->
 
-<!-- ══════════════════════════════════════════════ 7. TOOL SELECTION -->
-<div class="section" id="tool-selection">
-  <div class="section-label">Section 07</div>
-  <div class="section-title">Tool Selection Matrix</div>
-  <p class="section-desc">The right Claude surface for the right job. Over-using Claude Code is expensive. Under-using it is slow. Match tool to task, then layer in the right orchestration pattern.</p>
-
-  <div class="card" style="padding:0;overflow:hidden;margin-bottom:20px;">
-    <table>
-      <thead>
-        <tr>
-          <th>Task</th>
-          <th>Best Tool</th>
-          <th>Orchestration</th>
-          <th>Why</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td style="color:var(--text);">Build a CLI tool (CareerOS, stockbroc-analyst)</td>
-          <td style="color:var(--accent);font-weight:600;">Claude Code</td>
-          <td style="color:var(--purple);font-size:13px;">Plan → Subagents</td>
-          <td style="color:var(--muted);">Shell access + multi-file editing + git</td>
-        </tr>
-        <tr>
-          <td style="color:var(--text);">Write a product spec or PM doc</td>
-          <td style="color:var(--green);font-weight:600;">Claude.ai Chat</td>
-          <td style="color:var(--gold);font-size:13px;">Critic-Refine Loop</td>
-          <td style="color:var(--muted);">Conversational iteration on docs</td>
-        </tr>
-        <tr>
-          <td style="color:var(--text);">Recurring code reviews or resume tailoring</td>
-          <td style="color:var(--gold);font-weight:600;">Projects</td>
-          <td style="color:var(--accent);font-size:13px;">Single agent</td>
-          <td style="color:var(--muted);">Persistent style guide & context</td>
-        </tr>
-        <tr>
-          <td style="color:var(--text);">Stock analysis pipeline (IR → DCF → Memo)</td>
-          <td style="color:var(--purple);font-weight:600;">API + Claude Code</td>
-          <td style="color:var(--orange);font-size:13px;">Prompt Chaining + Loop</td>
-          <td style="color:var(--muted);">Waterfall pipeline with gate checks</td>
-        </tr>
-        <tr>
-          <td style="color:var(--text);">Quick debug a function</td>
-          <td style="color:var(--green);font-weight:600;">Claude.ai Chat</td>
-          <td style="color:var(--muted);font-size:13px;">None</td>
-          <td style="color:var(--muted);">Fast, no setup overhead needed</td>
-        </tr>
-        <tr>
-          <td style="color:var(--text);">Power BI / Tableau dashboard build</td>
-          <td style="color:var(--gold);font-weight:600;">Projects + Chat</td>
-          <td style="color:var(--gold);font-size:13px;">Chaining</td>
-          <td style="color:var(--muted);">Domain docs persistent + iterative build</td>
-        </tr>
-        <tr>
-          <td style="color:var(--text);">YouTube script (StockBroc)</td>
-          <td style="color:var(--gold);font-weight:600;">Projects</td>
-          <td style="color:var(--accent);font-size:13px;">Critic-Refine</td>
-          <td style="color:var(--muted);">Voice/style always loaded, refine to match</td>
-        </tr>
-        <tr>
-          <td style="color:var(--text);">App with AI features (habit tracker)</td>
-          <td style="color:var(--purple);font-weight:600;">API / Artifacts</td>
-          <td style="color:var(--purple);font-size:13px;">Orchestrator + Subagents</td>
-          <td style="color:var(--muted);">Embed Claude in the product directly</td>
-        </tr>
-        <tr>
-          <td style="color:var(--text);">Refactor a large repo</td>
-          <td style="color:var(--accent);font-weight:600;">Claude Code</td>
-          <td style="color:var(--orange);font-size:13px;">Plan → Eval-Fix Loop</td>
-          <td style="color:var(--muted);">Full repo context + test loop for safety</td>
-        </tr>
-        <tr>
-          <td style="color:var(--text);">BOM extraction pipeline (Tesla)</td>
-          <td style="color:var(--accent);font-weight:600;">Claude Code</td>
-          <td style="color:var(--gold);font-size:13px;">Chaining</td>
-          <td style="color:var(--muted);">Parse → validate → consolidate → output</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- Decision tree -->
-  <div class="card">
-    <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:16px;">Quick Decision Tree</div>
-    <div class="decision-row">
-      <span class="decision-q">Does it touch multiple files or need shell access?</span>
-      <span class="decision-a" style="color:var(--accent);">→ Claude Code</span>
-    </div>
-    <div class="decision-row">
-      <span class="decision-q">Will you do this same type of task weekly?</span>
-      <span class="decision-a" style="color:var(--gold);">→ Projects</span>
-    </div>
-    <div class="decision-row">
-      <span class="decision-q">Is this a one-off question or draft?</span>
-      <span class="decision-a" style="color:var(--green);">→ Claude.ai Chat</span>
-    </div>
-    <div class="decision-row">
-      <span class="decision-q">Is Claude part of a product you're shipping?</span>
-      <span class="decision-a" style="color:var(--purple);">→ API / Artifacts</span>
-    </div>
-    <div class="decision-row">
-      <span class="decision-q">Does it have parallel independent subtasks?</span>
-      <span class="decision-a" style="color:var(--purple);">→ Orchestrator + Subagents</span>
-    </div>
-    <div class="decision-row">
-      <span class="decision-q">Can output quality be measured automatically?</span>
-      <span class="decision-a" style="color:var(--orange);">→ Eval-Fix Loop</span>
-    </div>
-    <div class="decision-row">
-      <span class="decision-q">Does step N output feed step N+1?</span>
-      <span class="decision-a" style="color:var(--gold);">→ Prompt Chaining</span>
-    </div>
-    <div class="decision-row" style="border-bottom:none;">
-      <span class="decision-q">Do you want Claude to improve its own output?</span>
-      <span class="decision-a" style="color:var(--accent);">→ Critic-Refine Loop</span>
-    </div>
-  </div>
-</div>
-
-
-<!-- ══════════════════════════════════════════════ FOOTER -->
-<footer>
-  <span>CLAUDE POWER USER MAP v2.1 — Accuracy-reviewed · Subagents · Loops · Orchestration · Context</span>
-  <span>Works with Claude · GPT-4 · Gemini · Mistral · Any frontier LLM</span>
-</footer>
-
-<!-- Back to top button -->
+<!-- Back to top -->
 <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="
   position:fixed;bottom:28px;right:28px;
-  background:var(--surface);border:1px solid var(--border);
-  color:var(--muted);border-radius:8px;
-  padding:9px 14px;font-size:14px;font-family:'IBM Plex Mono',monospace;
+  background:var(--card);border:1px solid var(--border);
+  color:var(--text-secondary);border-radius:10px;
+  padding:10px 16px;font-size:13px;font-family:'JetBrains Mono',monospace;
   cursor:pointer;opacity:0;transition:opacity 0.2s;z-index:200;
-  letter-spacing:1px;
-">↑ TOP</button>
+  letter-spacing:0.5px;
+">&uarr; TOP</button>
 
 <script>
   // Back to top visibility
@@ -1172,25 +1465,32 @@
     btn.style.opacity = window.scrollY > 400 ? '1' : '0';
   });
 
-  // Active nav highlight on scroll
+  // Active nav + topbar update on scroll
   const sections = document.querySelectorAll('.section[id]');
-  const navLinks = document.querySelectorAll('nav a');
+  const navLinks = document.querySelectorAll('.nav-link[href]');
+  const topLabel = document.getElementById('topbar-label');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        navLinks.forEach(a => {
-          a.style.color = '';
-          a.style.borderBottomColor = 'transparent';
-        });
-        const active = document.querySelector(`nav a[href="#${entry.target.id}"]`);
+        navLinks.forEach(a => a.classList.remove('active'));
+        const active = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
         if (active) {
-          active.style.color = 'var(--accent)';
-          active.style.borderBottomColor = 'var(--accent)';
+          active.classList.add('active');
+          const title = entry.target.querySelector('.section-title');
+          if (title && topLabel) topLabel.textContent = title.textContent;
         }
       }
     });
   }, { rootMargin: '-20% 0px -70% 0px' });
   sections.forEach(s => observer.observe(s));
+
+  // Sidebar search filter
+  document.getElementById('sidebar-search').addEventListener('input', function(e) {
+    const q = e.target.value.toLowerCase();
+    navLinks.forEach(link => {
+      link.style.display = link.textContent.toLowerCase().includes(q) ? '' : 'none';
+    });
+  });
 </script>
 
 </body>
