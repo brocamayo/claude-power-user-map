@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude Cheat Sheet — Developer Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f7fb;
+    --white: #ffffff;
+    --text: #1a1a2e;
+    --sub: #555770;
+    --dim: #999;
+    --border: #e5e5ef;
+    --purple: #7c5cfc;
+    --purple-bg: #f0ecff;
+    --blue: #3b82f6;
+    --blue-bg: #eff6ff;
+    --green: #10b981;
+    --green-bg: #ecfdf5;
+    --amber: #f59e0b;
+    --amber-bg: #fffbeb;
+    --orange: #f97316;
+    --orange-bg: #fff7ed;
+    --red: #ef4444;
+    --red-bg: #fef2f2;
+    --teal: #14b8a6;
+    --teal-bg: #f0fdfa;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    padding: 0 0 40px;
+  }
+
+  .header {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+  }
+  .header-inner {
+    max-width: 880px;
+    margin: 0 auto;
+  }
+  .header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+  }
+  .header-logo { font-size: 17px; font-weight: 800; letter-spacing: -0.5px; }
+  .header-tabs { display: flex; gap: 0; }
+  .header-tabs a {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--dim);
+    text-decoration: none;
+    padding: 16px 18px;
+    border-bottom: 2px solid transparent;
+    transition: all 0.12s;
+  }
+  .header-tabs a:hover { color: var(--text); }
+  .header-tabs a.active { color: var(--purple); border-bottom-color: var(--purple); }
+
+  .hero {
+    text-align: center;
+    padding: 48px 24px 36px;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .hero-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--blue);
+    background: var(--blue-bg);
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+  }
+  .hero h1 { font-size: 28px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 8px; }
+  .hero p { font-size: 15px; color: var(--sub); }
+
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 20px; }
+  .label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--purple);
+    margin-bottom: 10px;
+  }
+  .block { margin-bottom: 28px; }
+
+  .row { display: grid; gap: 12px; }
+  .r2 { grid-template-columns: 1fr 1fr; }
+  .r3 { grid-template-columns: 1fr 1fr 1fr; }
+
+  .c {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+  }
+  .c-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
+  .c-desc { font-size: 13px; color: var(--sub); line-height: 1.55; }
+  .c ul { list-style: none; margin-top: 6px; }
+  .c li { font-size: 13px; color: var(--sub); padding: 2px 0; display: flex; gap: 6px; align-items: baseline; }
+  .c li::before { content: '•'; color: var(--dim); flex-shrink: 0; }
+
+  .pill {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+
+  code {
+    background: var(--purple-bg);
+    color: var(--purple);
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+  }
+  .code-block {
+    background: #1e1e2e;
+    color: #cdd6f4;
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 12px;
+    line-height: 1.6;
+    overflow-x: auto;
+    margin-top: 8px;
+  }
+  .code-block .comment { color: #6c7086; }
+  .code-block .keyword { color: #cba6f7; }
+  .code-block .string { color: #a6e3a1; }
+  .code-block .func { color: #89b4fa; }
+
+  .tbl { background: var(--white); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+  .tbl table { width: 100%; border-collapse: collapse; }
+  .tbl th {
+    font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--dim); padding: 10px 14px; text-align: left; background: var(--bg); border-bottom: 1px solid var(--border);
+  }
+  .tbl td { padding: 10px 14px; font-size: 13px; color: var(--sub); border-bottom: 1px solid var(--border); }
+  .tbl tr:last-child td { border-bottom: none; }
+
+  .tip {
+    border-radius: 10px;
+    padding: 14px 18px;
+    font-size: 13px;
+    line-height: 1.6;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .flow {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .fn { padding: 5px 12px; border-radius: 6px; }
+  .fa { color: var(--dim); }
+
+  hr { border: none; border-top: 1px solid var(--border); margin: 28px 0; }
+  .footer { text-align: center; font-size: 12px; color: var(--dim); padding: 20px; }
+
+  @media (max-width: 640px) {
+    .r2, .r3 { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 22px; }
+    .header-tabs a { padding: 14px 12px; font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-inner">
+    <div class="header-top">
+      <div class="header-logo">Claude Cheat Sheet</div>
+    </div>
+    <div class="header-tabs">
+      <a href="index.html">General</a>
+      <a href="developers.html" class="active">Developers</a>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">Developer Reference</div>
+  <h1>Building with Claude</h1>
+  <p>Best practices for using AI when developing apps, writing code, and shipping software.</p>
+</div>
+
+<div class="wrap">
+
+  <!-- PROJECT SETUP -->
+  <div class="block">
+    <div class="label">Before You Start</div>
+    <div class="row r2">
+      <div class="c" style="border-top:3px solid var(--purple);">
+        <div class="c-title">&#128203; Set Up a CLAUDE.md</div>
+        <div class="c-desc">Create a CLAUDE.md file in your project root. It tells Claude your stack, conventions, and constraints every session — no re-explaining.</div>
+        <div class="code-block">
+<span class="comment"># CLAUDE.md</span>
+<span class="comment"># Stack: Next.js 14, TypeScript, Tailwind</span>
+<span class="comment"># DB: Postgres via Prisma</span>
+<span class="comment"># Tests: Vitest + Playwright</span>
+<span class="comment"># Rules: No any types. Always use</span>
+<span class="comment"># server actions for mutations.</span>
+        </div>
+      </div>
+      <div class="c" style="border-top:3px solid var(--blue);">
+        <div class="c-title">&#128230; Feed Architecture First</div>
+        <div class="c-desc">Before asking Claude to build anything, share your folder structure, key schemas, and existing patterns. Context quality = output quality.</div>
+        <ul>
+          <li>README + architecture docs</li>
+          <li>Database schema or data models</li>
+          <li>Existing component/module patterns</li>
+          <li>Linting and style rules</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- CODE WORKFLOW -->
+  <div class="block">
+    <div class="label">The Dev Workflow</div>
+    <div class="c">
+      <div class="flow">
+        <span class="fn" style="background:var(--purple-bg);color:var(--purple);">1. Share context</span>
+        <span class="fa">&rarr;</span>
+        <span class="fn" style="background:var(--amber-bg);color:#92400e;">2. Describe the goal</span>
+        <span class="fa">&rarr;</span>
+        <span class="fn" style="background:var(--green-bg);color:#065f46;">3. Ask for plan</span>
+        <span class="fa">&rarr;</span>
+        <span class="fn" style="background:var(--blue-bg);color:var(--blue);">4. Build one piece</span>
+        <span class="fa">&rarr;</span>
+        <span class="fn" style="background:var(--orange-bg);color:#9a3412;">5. Test it</span>
+        <span class="fa">&rarr;</span>
+        <span class="fn" style="background:var(--teal-bg);color:#115e59;">6. Next piece</span>
+      </div>
+    </div>
+    <div class="tip" style="background:var(--red-bg);margin-top:10px;color:var(--red);">
+      <span>&#9940;</span>
+      <span><strong>Never say "build me a full app."</strong> Break it into features. One prompt per module. Test between each. Monster prompts produce monster bugs.</span>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- PROMPTING FOR CODE -->
+  <div class="block">
+    <div class="label">Prompting for Code</div>
+    <div class="row r2">
+      <div class="c" style="border-left:3px solid var(--red);">
+        <div class="c-title" style="color:var(--red);">&#10060; Weak Prompt</div>
+        <div class="code-block" style="background:#2a1a1a;color:#f5a6a6;">
+Build me a user authentication system
+        </div>
+      </div>
+      <div class="c" style="border-left:3px solid var(--green);">
+        <div class="c-title" style="color:var(--green);">&#9989; Strong Prompt</div>
+        <div class="code-block" style="background:#1a2a1a;color:#a6f5b0;">
+Add email/password auth to our Next.js
+app using NextAuth.js v5. Use our
+existing Prisma User model. Include:
+- Sign up, sign in, sign out
+- Protected API routes via middleware
+- Session provider in root layout
+- No OAuth for now, just credentials
+Write tests with Vitest.
+        </div>
+      </div>
+    </div>
+
+    <div class="row r2" style="margin-top:12px;">
+      <div class="c">
+        <div class="c-title">&#127919; What to include</div>
+        <ul>
+          <li>Stack and framework versions</li>
+          <li>Specific libraries to use (or avoid)</li>
+          <li>Concrete inputs and outputs</li>
+          <li>Error handling expectations</li>
+          <li>What NOT to touch</li>
+        </ul>
+      </div>
+      <div class="c">
+        <div class="c-title">&#128683; What to skip</div>
+        <ul>
+          <li>Vague goals ("make it better")</li>
+          <li>Multiple unrelated features at once</li>
+          <li>Assumed context from prior sessions</li>
+          <li>Asking for perfection in one shot</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- CLAUDE CODE TIPS -->
+  <div class="block">
+    <div class="label">Claude Code Tips</div>
+    <div class="row r2">
+      <div class="c">
+        <div class="c-title">&#9881; Plan Mode</div>
+        <div class="c-desc">Run <code>claude --plan</code> or type <code>/plan</code> in a session. Claude proposes changes as a diff preview — nothing executes until you approve. Use for anything touching 2+ files.</div>
+      </div>
+      <div class="c">
+        <div class="c-title">&#128736; Git Checkpoints</div>
+        <div class="c-desc">Commit after every working milestone. If Claude breaks something 5 steps later, you can roll back. Treat each commit as a save point.</div>
+      </div>
+      <div class="c">
+        <div class="c-title">&#128269; Review Diffs</div>
+        <div class="c-desc">Always read Claude's diffs before accepting. Skim for unintended changes — removed imports, changed function signatures, deleted comments.</div>
+      </div>
+      <div class="c">
+        <div class="c-title">&#128202; Watch Token Usage</div>
+        <div class="c-desc">If Claude starts giving vague or contradictory answers, you've likely hit context limits. Start a fresh session with a recap of what's been built.</div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- TESTING -->
+  <div class="block">
+    <div class="label">Testing & Review</div>
+    <div class="row r3">
+      <div class="c" style="border-top:3px solid var(--green);">
+        <div class="c-title">&#129514; Tests First</div>
+        <div class="c-desc">Ask Claude to write tests before implementation. Forces clear thinking about what the code should actually do.</div>
+      </div>
+      <div class="c" style="border-top:3px solid var(--orange);">
+        <div class="c-title">&#128260; Eval-Fix Loop</div>
+        <div class="c-desc">Generate &rarr; run tests &rarr; paste failures &rarr; fix. Cap at 3-5 rounds. Most things converge by round 2.</div>
+      </div>
+      <div class="c" style="border-top:3px solid var(--purple);">
+        <div class="c-title">&#128272; Security Review</div>
+        <div class="c-desc">"Act as a senior security engineer. Find every vulnerability in this code." Always do this for auth, payments, and user data.</div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- COMMON TASKS TABLE -->
+  <div class="block">
+    <div class="label">Quick Reference — Common Tasks</div>
+    <div class="tbl">
+      <table>
+        <thead>
+          <tr><th>Task</th><th>Best Approach</th><th>Model</th></tr>
+        </thead>
+        <tbody>
+          <tr><td style="color:var(--text);">New feature (multi-file)</td><td>Plan mode &rarr; build &rarr; test</td><td style="color:var(--blue);font-weight:700;">Sonnet</td></tr>
+          <tr><td style="color:var(--text);">Bug fix</td><td>Paste error + file &rarr; ask for fix</td><td style="color:var(--blue);font-weight:700;">Sonnet</td></tr>
+          <tr><td style="color:var(--text);">Hard/elusive bug</td><td>Share full context + hypothesis</td><td style="color:var(--purple);font-weight:700;">Opus</td></tr>
+          <tr><td style="color:var(--text);">Refactor</td><td>Plan mode &rarr; incremental &rarr; test each</td><td style="color:var(--blue);font-weight:700;">Sonnet</td></tr>
+          <tr><td style="color:var(--text);">Write tests</td><td>Share code + describe expected behavior</td><td style="color:var(--blue);font-weight:700;">Sonnet</td></tr>
+          <tr><td style="color:var(--text);">API integration</td><td>Share docs + desired interface</td><td style="color:var(--blue);font-weight:700;">Sonnet</td></tr>
+          <tr><td style="color:var(--text);">Architecture design</td><td>Describe requirements + constraints</td><td style="color:var(--purple);font-weight:700;">Opus</td></tr>
+          <tr><td style="color:var(--text);">Code review</td><td>Paste diff + ask for issues</td><td style="color:var(--blue);font-weight:700;">Sonnet</td></tr>
+          <tr><td style="color:var(--text);">Security audit</td><td>Share code + "find vulnerabilities"</td><td style="color:var(--purple);font-weight:700;">Opus</td></tr>
+          <tr><td style="color:var(--text);">Boilerplate / scaffolding</td><td>Describe stack + structure</td><td style="color:var(--green);font-weight:700;">Haiku</td></tr>
+          <tr><td style="color:var(--text);">Regex, SQL, one-liners</td><td>Just ask directly</td><td style="color:var(--green);font-weight:700;">Haiku</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- ANTI-PATTERNS -->
+  <div class="block">
+    <div class="label">Mistakes That Waste Time</div>
+    <div class="row r2">
+      <div class="c">
+        <div class="c-title">&#128165; "Build the whole thing"</div>
+        <div class="c-desc">Asking for a complete app in one prompt produces fragile code full of shortcuts. Break it into features and build each one separately.</div>
+      </div>
+      <div class="c">
+        <div class="c-title">&#128165; Accepting without reading</div>
+        <div class="c-desc">Always read the diff. Claude sometimes removes things you need, changes function signatures, or adds unwanted dependencies.</div>
+      </div>
+      <div class="c">
+        <div class="c-title">&#128165; No version control</div>
+        <div class="c-desc">If you're not committing between Claude edits, you have no undo. One bad generation can wreck an hour of work.</div>
+      </div>
+      <div class="c">
+        <div class="c-title">&#128165; Debugging by re-prompting</div>
+        <div class="c-desc">If Claude's fix doesn't work, don't just say "that didn't work." Paste the actual error. Full stack trace. Every time.</div>
+      </div>
+      <div class="c">
+        <div class="c-title">&#128165; Skipping tests</div>
+        <div class="c-desc">AI-generated code needs more testing, not less. If Claude wrote it, verify it. Especially edge cases and error paths.</div>
+      </div>
+      <div class="c">
+        <div class="c-title">&#128165; Using Opus for everything</div>
+        <div class="c-desc">Sonnet handles 80% of dev tasks at comparable quality. Save Opus for architecture, hard bugs, and security reviews.</div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- API USAGE -->
+  <div class="block">
+    <div class="label">Building AI Into Your App</div>
+    <div class="row r2">
+      <div class="c">
+        <div class="c-title">&#128279; Prompt Chaining</div>
+        <div class="c-desc">For pipelines: break work into stages. Each Claude call does one focused thing. Pass the output of step 1 as input to step 2. Add validation gates between.</div>
+      </div>
+      <div class="c">
+        <div class="c-title">&#128200; Model Cascading</div>
+        <div class="c-desc">Use Haiku for fast triage/routing, Sonnet for the main work, Opus only when you need it. This pattern cuts API costs 5-10x at scale.</div>
+      </div>
+      <div class="c">
+        <div class="c-title">&#128218; Structured Output</div>
+        <div class="c-desc">Always request JSON or a specific format when you need to parse the response programmatically. Define the exact schema in your prompt.</div>
+      </div>
+      <div class="c">
+        <div class="c-title">&#128737; System Prompts</div>
+        <div class="c-desc">Give each Claude call a focused role via the system prompt. A "researcher" prompt and a "code reviewer" prompt produce much better results than one generic prompt.</div>
+      </div>
+    </div>
+    <div class="tip" style="background:var(--blue-bg);margin-top:10px;color:#1e40af;">
+      <span>&#128161;</span>
+      <span><strong>Enable prompt caching</strong> if you're sending the same system prompt or context repeatedly. It reduces latency and cost significantly on the Claude API.</span>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  Claude Cheat Sheet v2.1 &middot; <a href="index.html" style="color:var(--purple);text-decoration:none;">General Guide</a> &middot; Share freely
+</div>
+
+</body>
+</html>
